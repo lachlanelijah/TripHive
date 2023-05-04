@@ -8,11 +8,17 @@
 import Foundation
 import UIKit
 
+enum categoryType {
+    case accomodation, place
+}
+
 class Category {
     
     var categoryName: String
+    var categoryType: categoryType
     
     init() {
         categoryName = "Category"
+        categoryType = .place
     }
 }
