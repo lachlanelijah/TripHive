@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint, .systemBlue])
+var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint, .systemOrange])
 
 class Trip {
     
@@ -16,10 +16,10 @@ class Trip {
     var tripName: String
     var tripIcon: UIImage
     
-    init() {
-        numberOfPeople = 1
-        tripName = "Trip"
-        tripIcon = UIImage(systemName: "airplane.departure", withConfiguration: config)!
+    init(people: Int, name: String, icon: UIImage) {
+        numberOfPeople = people
+        tripName = name
+        tripIcon = icon
     }
     
     func setNumberOfPeople(_ people: Int) {
@@ -36,5 +36,13 @@ class Trip {
     
     func getTripName() -> String {
         return tripName
+    }
+    
+    func setIcon(_ name: UIImage) {
+        tripIcon = name
+    }
+    
+    func getIcon() -> UIImage {
+        return tripIcon
     }
 }
