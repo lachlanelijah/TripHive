@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import UIKit
 
 enum categoryType {
-    case accomodation, place
+    case accommodation, place
 }
 
 class Category {
@@ -20,5 +19,21 @@ class Category {
     init() {
         categoryName = "Category"
         categoryType = .place
+    }
+    
+    func setCategoryName(_ category: String) {
+        categoryName = category
+    }
+    
+    func getCategoryName() -> String {
+        return categoryName
+    }
+    
+    func setCategoryType(_ category: categoryType) {
+        categoryType = category
+    }
+    
+    func getCategoryType() -> String {
+        return categoryName
     }
 }
