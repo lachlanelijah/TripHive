@@ -120,9 +120,10 @@ class TripTableViewController: UITableViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
-            let name = ac.textFields![0]
-            let count = ac.textFields![1]
-            trips.append(Trip(people: Int(name.text), name: name.text ?? "Trip", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
+            let name = ac.textFields![0].text
+            let count = ac.textFields![1].text
+            
+            trips.append(Trip(people: Int(name!) ?? 1, name: name ?? "Trip", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
             self.tableView.reloadData()
             
         }
