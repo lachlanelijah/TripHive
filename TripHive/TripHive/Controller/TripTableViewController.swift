@@ -18,7 +18,7 @@ class TripTableViewController: UITableViewController {
         
         trips.append(Trip(people: 2, name: "Japan", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
         trips.append(Trip(people: 3, name: "Korea", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
-        print(trips)
+         
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
@@ -74,6 +74,7 @@ class TripTableViewController: UITableViewController {
                 style: .destructive,
                 handler: { _ in
                     tableView.deleteRows(at: [indexPath], with: .fade)
+                    trips.remove(at: indexPath.row)
             }))
             alert.addAction(UIAlertAction(
                 title: "Cancel",
@@ -96,15 +97,15 @@ class TripTableViewController: UITableViewController {
             trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
     
-//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//            let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
-//                trips.remove(at: indexPath.row)
-//                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-//            }
-//
-//            let swipeActions = UISwipeActionsConfiguration(actions: [delete])
-//            return swipeActions
-//        }
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
+                trips.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            }
+
+            let swipeActions = UISwipeActionsConfiguration(actions: [delete])
+            return swipeActions
+        }
     
     @objc func addTapped() {
         let ac = UIAlertController(title: "Add new trip", message: nil, preferredStyle: .alert)
@@ -123,7 +124,7 @@ class TripTableViewController: UITableViewController {
             let name = ac.textFields![0].text
             let count = ac.textFields![1].text
             
-            trips.append(Trip(people: Int(name!) ?? 1, name: name ?? "Trip", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
+            trips.append(Trip(people: Int(count!) ?? 1, name: name ?? "Trip", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
             self.tableView.reloadData()
             
         }
@@ -159,14 +160,25 @@ class TripTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "goToLocationView" {
+            let VC = segue.destination as! LocationTableViewController
+            VC.selectedIndex = 
+            
+//            VC.name =  nameTextField.text!
+//            VC.remainingTime = Int(timeSlider.value)
+//            VC.maximumNumberOfBubbles = Int(numberOfBubblesSlider.value)
+            //passes name, time, and max number of bubbles to the GameViewController
+        }
+        
     }
-    */
+    
 
 }

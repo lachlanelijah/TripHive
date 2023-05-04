@@ -7,20 +7,20 @@
 
 import Foundation
 
-class Location {
-    
-    var locationName: String
-    
-    init() {
-        locationName = "Location"
-    }
-    
-    func setLocationName(_ location: String) {
-        locationName = location
-    }
-    
-    func getLocationName() -> String {
-        return locationName
-    }
-    
-}
+//class Location {
+//    
+//    var locationName: String
+//    
+//    init() {
+//        locationName = "Location"
+//    }
+//    
+//    func setLocationName(_ location: String) {
+//        locationName = location
+//    }
+//    
+//    func getLocationName() -> String {
+//        return locationName
+//    }
+//    
+//}

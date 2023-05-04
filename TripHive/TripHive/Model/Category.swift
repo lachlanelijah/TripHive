@@ -7,33 +7,31 @@
 
 import Foundation
 
-enum categoryType {
-    case accommodation, place
-}
 
-class Category {
-    
-    var categoryName: String
-    var categoryType: categoryType
-    
-    init() {
-        categoryName = "Category"
-        categoryType = .place
-    }
-    
-    func setCategoryName(_ category: String) {
-        categoryName = category
-    }
-    
-    func getCategoryName() -> String {
-        return categoryName
-    }
-    
-    func setCategoryType(_ category: categoryType) {
-        categoryType = category
-    }
-    
-    func getCategoryType() -> String {
-        return categoryName
-    }
-}
+
+//class Category {
+//    
+//    var categoryName: String
+//    var categoryType: categoryType
+//    
+//    init() {
+//        categoryName = "Category"
+//        categoryType = .place
+//    }
+//    
+//    func setCategoryName(_ category: String) {
+//        categoryName = category
+//    }
+//    
+//    func getCategoryName() -> String {
+//        return categoryName
+//    }
+//    
+//    func setCategoryType(_ category: categoryType) {
+//        categoryType = category
+//    }
+//    
+//    func getCategoryType() -> String {
+//        return categoryName
+//    }
+//}

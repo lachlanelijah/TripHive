@@ -8,27 +8,71 @@
 import UIKit
 
 class LocationTableViewController: UITableViewController {
+    
+    var selectedIndex: Int = 3
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(selectedIndex)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return trips[selectedIndex].getLocationCount()
+    }
+    
+    @objc func addTapped() {
+        let ac = UIAlertController(title: "Add new trip", message: nil, preferredStyle: .alert)
+//        ac.addTextField()
+//        ac.addTextField()
+        ac.addTextField { field in
+            field.placeholder = "Trip name"
+        }
+        
+        ac.addTextField { field in
+            field.placeholder = "Number of people"
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
+            let name = ac.textFields![0].text
+            let count = ac.textFields![1].text
+            
+            trips.append(Trip(people: Int(count!) ?? 1, name: name ?? "Trip", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
+            self.tableView.reloadData()
+            
+        }
+        ac.addAction(cancelAction)
+        ac.addAction(submitAction)
+
+        present(ac, animated: true)
+    }
+
+    @objc func editTapped() {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+
+                if tableView.isEditing {
+                    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editTapped))
+                }
+                else {
+                    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+                }
     }
 
     /*
