@@ -47,11 +47,16 @@ class LocationTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+            trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+    }
+    
     @objc func addTapped() {
         let ac = UIAlertController(title: "Add new location", message: nil, preferredStyle: .alert)
         ac.addTextField { field in
             field.placeholder = "Location name"
         }
+        
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in

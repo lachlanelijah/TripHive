@@ -22,6 +22,7 @@ class CategoryViewController: UIViewController {
             let VC = segue.destination as? ItemTableViewController
             VC!.selectedTrip = selectedTrip
             VC!.category = .accommodation
+            VC!.selectedLocation = selectedLocation
         }
         
         if segue.identifier == "goToPlacesItemView" {
