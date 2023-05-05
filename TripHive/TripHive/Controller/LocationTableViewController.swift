@@ -34,7 +34,26 @@ class LocationTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+//        return 1
+        print("There are \(trips[selectedIndex].getLocationCount()) locations")
+
         return trips[selectedIndex].getLocationCount()
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
+//        cell.textLabel!.text = "Foo"
+//        return cell
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
+//        let location = tripslocations[indexPath.row]
+//        cell.textLabel!.text = location[selectedIndex].locations[selectedIndex].getLocationName()
+//        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
+        let text = trips[selectedIndex].locations[indexPath.row].locationName
+        cell.textLabel!.text = text
+        return cell
+        
     }
     
     @objc func addTapped() {

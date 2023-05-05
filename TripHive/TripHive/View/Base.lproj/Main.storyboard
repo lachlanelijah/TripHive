@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,19 +77,31 @@
         <!--Locations-->
         <scene sceneID="irI-qd-ia1">
             <objects>
-                <tableViewController id="jnV-pX-tRo" sceneMemberID="viewController">
+                <tableViewController id="jnV-pX-tRo" customClass="LocationTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="HyT-T7-kQb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="FeV-E6-aHk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LocationCell" textLabel="WZW-7U-Zrw" style="IBUITableViewCellStyleDefault" id="FeV-E6-aHk">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FeV-E6-aHk" id="87b-bz-aGu">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WZW-7U-Zrw">
+                                            <rect key="frame" x="20" y="0.0" width="334.66666666666669" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="LNL-is-SE0" kind="show" identifier="goToCategoryView" id="4u0-T2-9Xe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -96,11 +109,41 @@
                             <outlet property="delegate" destination="jnV-pX-tRo" id="3gi-vq-B4X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Locations" id="IED-JM-J8M"/>
+                    <navigationItem key="navigationItem" title="Locations" leftItemsSupplementBackButton="YES" id="IED-JM-J8M"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIh-Ye-r6v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6045.0381679389311" y="814.78873239436621"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6lL-5g-1BP">
+            <objects>
+                <viewController id="LNL-is-SE0" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MY4-ne-qqH">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDh-iN-F6F">
+                                <rect key="frame" x="67" y="189" width="259" height="199"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="house.lodge" catalog="system" title="Accommodation"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0U1-CZ-dbW">
+                                <rect key="frame" x="67" y="417" width="259" height="199"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="figure.hiking" catalog="system" title="Activities"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5gU-cO-yCi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Tuh-8t-8K3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Evc-sE-yPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6942.7480916030536" y="814.78873239436621"/>
         </scene>
         <!--Trips-->
         <scene sceneID="ikH-BC-0Io">
@@ -171,7 +214,9 @@
     </scenes>
     <resources>
         <image name="airplane.circle" catalog="system" width="128" height="123"/>
+        <image name="figure.hiking" catalog="system" width="98" height="128"/>
         <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="house.lodge" catalog="system" width="128" height="55"/>
         <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

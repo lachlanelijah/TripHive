@@ -52,8 +52,11 @@ class TripTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            // Segue to the second view controller
-            self.performSegue(withIdentifier: "goToLocationView", sender: self)
+        // Segue to the second view controller
+        self.performSegue(withIdentifier: "goToLocationView", sender: self)
+//        let indexPath = tableView.indexPathForSelectedRow
+//        let VC = segue.destination as! LocationTableViewController
+//        VC.selectedIndex = indexPath
     }
 
     /*
@@ -168,15 +171,23 @@ class TripTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "goToLocationView" {
-            let VC = segue.destination as! LocationTableViewController
-            VC.selectedIndex = 
-            
+//        if segue.identifier == "goToLocationView" {
+//            let VC = segue.destination as! LocationTableViewController
+//            VC.selectedIndex = tableView.indexPathForSelectedRow!.item
+
 //            VC.name =  nameTextField.text!
 //            VC.remainingTime = Int(timeSlider.value)
 //            VC.maximumNumberOfBubbles = Int(numberOfBubblesSlider.value)
             //passes name, time, and max number of bubbles to the GameViewController
-        }
+//        }
+        
+        guard let selectedPath = tableView.indexPathForSelectedRow else { return }
+            if
+                segue.identifier == "goToLocationView",
+                let VC = segue.destination as? LocationTableViewController
+            {
+                VC.selectedIndex = selectedPath.row
+            }
         
     }
     

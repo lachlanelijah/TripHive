@@ -9,14 +9,24 @@ import Foundation
 import UIKit
 
 var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint, .systemOrange])
-var defaultLocation = Location(
-    locationName: "Default Location",
+var defaultLocation1 = Location(
+    locationName: "Default Location 1",
     categories: [
-        Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation),
-        Category(categoryName: "Places", categoryType: .places, items: defaultPlaces)]
+        Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation1),
+        Category(categoryName: "Places", categoryType: .places, items: defaultPlaces1)]
 )
-var defaultAccommodation = [Item(itemName: "Hotel 1", itemPrice: 50), Item(itemName: "Hotel 2", itemPrice: 75)]
-var defaultPlaces = [Item(itemName: "Theme Park", itemPrice: 40), Item(itemName: "Art Museum", itemPrice: 30)]
+var defaultAccommodation1 = [Item(itemName: "Hotel 1", itemPrice: 50), Item(itemName: "Hotel 2", itemPrice: 75)]
+var defaultPlaces1 = [Item(itemName: "Theme Park", itemPrice: 40), Item(itemName: "Art Museum", itemPrice: 30)]
+
+var defaultLocation2 = Location(
+    locationName: "Default Location 2",
+    categories: [
+        Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation2),
+        Category(categoryName: "Places", categoryType: .places, items: defaultPlaces2)]
+)
+
+var defaultAccommodation2 = [Item(itemName: "Hotel 3", itemPrice: 30), Item(itemName: "Hotel 4", itemPrice: 100)]
+var defaultPlaces2 = [Item(itemName: "Coastal Walk", itemPrice: 0), Item(itemName: "Parliament House", itemPrice: 5)]
 
 enum categoryType {
     case accommodation, places
@@ -29,6 +39,10 @@ struct Location {
     mutating func setLocationName(name: String) {
         locationName = name
     }
+//    
+//    func getLocationName() -> String {
+//        return locationName
+//    }
 }
 
 struct Category {
@@ -62,16 +76,24 @@ class Trip {
         numberOfPeople = people
         tripName = name
         tripIcon = icon
-        locations = [defaultLocation]
+        locations = [defaultLocation1, defaultLocation2]
     }
     
     func addLocation(_ name: String) {
-        locations.append(defaultLocation)
+        locations.append(defaultLocation1)
         locations[locations.count-1].setLocationName(name: name)
     }
     
     func removeLocation(index: Int) {
         locations.remove(at: index)
+    }
+    
+//    func getLocationName(index: Int) -> String {
+//        return locations[index]
+//    }
+    
+    func getLocationCount() -> Int {
+        return locations.count
     }
     
     func setNumberOfPeople(_ people: Int) {
@@ -96,9 +118,5 @@ class Trip {
     
     func getIcon() -> UIImage {
         return tripIcon
-    }
-    
-    func getLocationCount() -> Int {
-        return locations.count
     }
 }
