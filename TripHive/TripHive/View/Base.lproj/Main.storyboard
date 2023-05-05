@@ -133,7 +133,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="zo7-ah-j3C"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" image="house.lodge.fill" catalog="system" title="Accommodation"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="house.fill" catalog="system" title="Accommodation"/>
                                         <connections>
                                             <segue destination="Oh8-Ug-Jo5" kind="show" identifier="goToAccommodationItemView" id="ccR-Yq-2jn"/>
                                         </connections>
@@ -145,9 +145,9 @@
                                             <constraint firstAttribute="height" constant="100" id="z3M-Pl-lXO"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" image="figure.hiking" catalog="system" title="Places"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="figure.hiking" catalog="system" title="Activities"/>
                                         <connections>
-                                            <segue destination="Oh8-Ug-Jo5" kind="show" identifier="goToPlacesItemView" id="GWg-57-3gm"/>
+                                            <segue destination="Oh8-Ug-Jo5" kind="show" identifier="goToActivitiesItemView" id="GWg-57-3gm"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -233,12 +233,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" id="g8Y-2d-GIJ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" textLabel="2wP-Ck-5Ri" style="IBUITableViewCellStyleDefault" id="g8Y-2d-GIJ">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g8Y-2d-GIJ" id="HPC-7I-GL4">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2wP-Ck-5Ri">
+                                            <rect key="frame" x="20" y="0.0" width="353" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -321,13 +330,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ccR-Yq-2jn"/>
+        <segue reference="GWg-57-3gm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="airplane.circle" catalog="system" width="128" height="123"/>
         <image name="figure.hiking" catalog="system" width="98" height="128"/>
         <image name="gear" catalog="system" width="128" height="122"/>
-        <image name="house.lodge.fill" catalog="system" width="128" height="55"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -13,23 +13,23 @@ var defaultLocation1 = Location(
     locationName: "Default Location 1",
     categories: [
         Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation1),
-        Category(categoryName: "Places", categoryType: .places, items: defaultPlaces1)]
+        Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities1)]
 )
 var defaultAccommodation1 = [Item(itemName: "Hotel 1", itemPrice: 50), Item(itemName: "Hotel 2", itemPrice: 75)]
-var defaultPlaces1 = [Item(itemName: "Theme Park", itemPrice: 40), Item(itemName: "Art Museum", itemPrice: 30)]
+var defaultActivities1 = [Item(itemName: "Theme Park", itemPrice: 40), Item(itemName: "Art Museum", itemPrice: 30)]
 
 var defaultLocation2 = Location(
     locationName: "Default Location 2",
     categories: [
         Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation2),
-        Category(categoryName: "Places", categoryType: .places, items: defaultPlaces2)]
+        Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities2)]
 )
 
 var defaultAccommodation2 = [Item(itemName: "Hotel 3", itemPrice: 30), Item(itemName: "Hotel 4", itemPrice: 100)]
-var defaultPlaces2 = [Item(itemName: "Coastal Walk", itemPrice: 0), Item(itemName: "Parliament House", itemPrice: 5)]
+var defaultActivities2 = [Item(itemName: "Coastal Walk", itemPrice: 0), Item(itemName: "Parliament House", itemPrice: 5)]
 
 enum categoryType {
-    case accommodation, places
+    case accommodation, activities
 }
 
 struct Location {

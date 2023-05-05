@@ -8,9 +8,23 @@
 import UIKit
 
 class DetailTableViewController: UITableViewController {
+    
+    var selectedTrip = 0
+    var selectedLocation = 0
+    var selectedItem = 0
+    var category: categoryType = .activities
+    var propertyArray: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if category == .accommodation {
+            propertyArray.append("Accommodation name: \(trips[selectedTrip].locations[selectedLocation].categories[0].items[selectedItem].itemName)")
+            propertyArray.append("Price per night: \(trips[selectedTrip].locations[selectedLocation].categories[0].items[selectedItem].itemPrice)")
+        } else {
+            propertyArray.append("Activity name: \(trips[selectedTrip].locations[selectedLocation].categories[1].items[selectedItem].itemName)")
+            propertyArray.append("Activity cost: \(trips[selectedTrip].locations[selectedLocation].categories[1].items[selectedItem].itemPrice)")
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -23,23 +37,26 @@ class DetailTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if category == .accommodation {
+            return 2
+        } else {
+            return 2
+        }
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
+        let text = propertyArray[indexPath.row]
+        cell.textLabel!.text = text
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

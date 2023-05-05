@@ -11,7 +11,7 @@ class ItemTableViewController: UITableViewController {
     
     var selectedTrip = 0
     var selectedLocation = 0
-    var category: categoryType = .places
+    var category: categoryType = .activities
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ class ItemTableViewController: UITableViewController {
         if category == .accommodation {
             self.title = "Accommodation"
         } else {
-            self.title = "Places"
+            self.title = "Activities"
         }
         
         print("The selected location is index \(selectedLocation)")
@@ -44,9 +44,9 @@ class ItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if category == .accommodation {
-            return trips[selectedTrip].locations[selectedLocation].categories[0].getItemCount()
+            return trips[selectedTrip].locations[selectedLocation].categories[0].items.count
         } else {
-            return trips[selectedTrip].locations[selectedLocation].categories[1].getItemCount()
+            return trips[selectedTrip].locations[selectedLocation].categories[1].items.count
         }
     }
     
@@ -237,5 +237,18 @@ class ItemTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedPath = tableView.indexPathForSelectedRow else { return }
+            if
+                segue.identifier == "goToDetailView",
+                let VC = segue.destination as? DetailTableViewController
+            {
+                VC.selectedTrip = selectedTrip
+                VC.category = category
+                VC.selectedLocation = selectedLocation
+                VC.selectedItem = selectedPath.row
+            }
+    }
 
 }
