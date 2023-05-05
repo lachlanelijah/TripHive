@@ -21,6 +21,9 @@
 		6D9752842A038CEA0095B1D8 /* TripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9752832A038CEA0095B1D8 /* TripTableViewController.swift */; };
 		6DB3A00E2A03937C00250F69 /* LocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A00D2A03937C00250F69 /* LocationTableViewController.swift */; };
 		6DB3A0102A03963C00250F69 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A00F2A03963C00250F69 /* TripTableViewCell.swift */; };
+		6DB3A0122A049EE600250F69 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A0112A049EE600250F69 /* CategoryViewController.swift */; };
+		6DB3A0142A04A03A00250F69 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A0132A04A03A00250F69 /* ItemTableViewController.swift */; };
+		6DB3A0162A04A09300250F69 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A0152A04A09300250F69 /* DetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		6D9752832A038CEA0095B1D8 /* TripTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewController.swift; sourceTree = "<group>"; };
 		6DB3A00D2A03937C00250F69 /* LocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewController.swift; sourceTree = "<group>"; };
 		6DB3A00F2A03963C00250F69 /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
+		6DB3A0112A049EE600250F69 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		6DB3A0132A04A03A00250F69 /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
+		6DB3A0152A04A09300250F69 /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,9 @@
 				6D5AF9F32A01F3E800FE5782 /* ViewController.swift */,
 				6D9752832A038CEA0095B1D8 /* TripTableViewController.swift */,
 				6DB3A00D2A03937C00250F69 /* LocationTableViewController.swift */,
+				6DB3A0112A049EE600250F69 /* CategoryViewController.swift */,
+				6DB3A0132A04A03A00250F69 /* ItemTableViewController.swift */,
+				6DB3A0152A04A09300250F69 /* DetailTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,12 +195,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DB3A0162A04A09300250F69 /* DetailTableViewController.swift in Sources */,
 				6DB3A0102A03963C00250F69 /* TripTableViewCell.swift in Sources */,
 				6D97526E2A036CC60095B1D8 /* Trip.swift in Sources */,
 				6D9752702A0370870095B1D8 /* Category.swift in Sources */,
 				6D9752842A038CEA0095B1D8 /* TripTableViewController.swift in Sources */,
+				6DB3A0122A049EE600250F69 /* CategoryViewController.swift in Sources */,
 				6D5AF9F42A01F3E800FE5782 /* ViewController.swift in Sources */,
 				6D9752782A03757D0095B1D8 /* Place.swift in Sources */,
+				6DB3A0142A04A03A00250F69 /* ItemTableViewController.swift in Sources */,
 				6D5AF9F02A01F3E800FE5782 /* AppDelegate.swift in Sources */,
 				6D9752742A0372100095B1D8 /* Location.swift in Sources */,
 				6D5AF9F22A01F3E800FE5782 /* SceneDelegate.swift in Sources */,

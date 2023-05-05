@@ -9,12 +9,12 @@ import UIKit
 
 class LocationTableViewController: UITableViewController {
     
-    var selectedIndex: Int = 3
+    var selectedTrip: Int = 0
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(selectedIndex)
+//        print(selectedIndex)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,45 +35,28 @@ class LocationTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 //        return 1
-        print("There are \(trips[selectedIndex].getLocationCount()) locations")
+//        print("There are \(trips[selectedIndex].getLocationCount()) locations")
 
-        return trips[selectedIndex].getLocationCount()
+        return trips[selectedTrip].getLocationCount()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
-//        cell.textLabel!.text = "Foo"
-//        return cell
-        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
-//        let location = tripslocations[indexPath.row]
-//        cell.textLabel!.text = location[selectedIndex].locations[selectedIndex].getLocationName()
-//        return cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
-        let text = trips[selectedIndex].locations[indexPath.row].locationName
+        let text = trips[selectedTrip].locations[indexPath.row].locationName
         cell.textLabel!.text = text
         return cell
-        
     }
     
     @objc func addTapped() {
-        let ac = UIAlertController(title: "Add new trip", message: nil, preferredStyle: .alert)
-//        ac.addTextField()
-//        ac.addTextField()
+        let ac = UIAlertController(title: "Add new location", message: nil, preferredStyle: .alert)
         ac.addTextField { field in
-            field.placeholder = "Trip name"
-        }
-        
-        ac.addTextField { field in
-            field.placeholder = "Number of people"
+            field.placeholder = "Location name"
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
             let name = ac.textFields![0].text
-            let count = ac.textFields![1].text
-            
-            trips.append(Trip(people: Int(count!) ?? 1, name: name ?? "Trip", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
+            trips[self.selectedTrip].addLocation(name ?? "Location")
             self.tableView.reloadData()
             
         }
@@ -123,6 +106,72 @@ class LocationTableViewController: UITableViewController {
         }    
     }
     */
+    
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            // Delete the row from the data source
+//            let alert = UIAlertController(title: "Are you sure you want to delete this location?", message: nil, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(
+//                title: "Delete",
+//                style: .destructive,
+//                handler: { _ in
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
+//                    trips[self.selectedIndex].removeLocation(index: indexPath.row)
+//            }))
+//            alert.addAction(UIAlertAction(
+//                title: "Cancel",
+//                style: .cancel,
+//                handler: { _ in
+//                // cancel action
+//            }))
+//            present(alert,
+//                    animated: true,
+//                    completion: nil
+//            )
+//
+//        } else if editingStyle == .insert {
+//
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        }
+//    }
+    
+//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//            let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
+//                trips[self.selectedIndex].removeLocation(index: indexPath.row)
+//                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+//            }
+//
+//            let swipeActions = UISwipeActionsConfiguration(actions: [delete])
+//            return swipeActions
+//    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
+//                trips.remove(at: indexPath.row)
+//                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            let alert = UIAlertController(title: "Are you sure you want to delete this location?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { _ in
+                    trips[self.selectedTrip].removeLocation(index: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            }))
+            alert.addAction(UIAlertAction(
+                title: "Cancel",
+                style: .cancel,
+                handler: { _ in
+                // cancel action
+            }))
+            self.present(alert,
+                    animated: true,
+                    completion: nil
+            )
+        }
+
+            let swipeActions = UISwipeActionsConfiguration(actions: [delete])
+            return swipeActions
+    }
 
     /*
     // Override to support rearranging the table view.
@@ -148,5 +197,16 @@ class LocationTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedPath = tableView.indexPathForSelectedRow else { return }
+            if
+                segue.identifier == "goToCategoryView",
+                let VC = segue.destination as? CategoryViewController
+            {
+                VC.selectedTrip = selectedTrip
+                VC.selectedLocation = selectedPath.row
+            }
+    }
 
 }

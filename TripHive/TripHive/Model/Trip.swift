@@ -39,10 +39,6 @@ struct Location {
     mutating func setLocationName(name: String) {
         locationName = name
     }
-//    
-//    func getLocationName() -> String {
-//        return locationName
-//    }
 }
 
 struct Category {
@@ -58,6 +54,10 @@ struct Category {
         items.remove(at: index)
     }
     
+    func getItemCount() -> Int {
+        return items.count
+    }
+    
 }
 
 struct Item {
@@ -66,7 +66,6 @@ struct Item {
 }
 
 class Trip {
-    
     var numberOfPeople: Int
     var tripName: String
     var tripIcon: UIImage
@@ -88,12 +87,16 @@ class Trip {
         locations.remove(at: index)
     }
     
-//    func getLocationName(index: Int) -> String {
-//        return locations[index]
-//    }
-    
     func getLocationCount() -> Int {
         return locations.count
+    }
+    
+    func getItemCount(selectedTrip: Int, selectedLocation: Int, category: categoryType) -> Int {
+        if category == .accommodation {
+            return trips[selectedTrip].locations[selectedLocation].categories[0].getItemCount()
+        } else {
+            return trips[selectedTrip].locations[selectedLocation].categories[1].getItemCount()
+        }
     }
     
     func setNumberOfPeople(_ people: Int) {

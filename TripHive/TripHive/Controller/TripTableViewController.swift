@@ -59,42 +59,40 @@ class TripTableViewController: UITableViewController {
 //        VC.selectedIndex = indexPath
     }
 
-    /*
+
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            let alert = UIAlertController(title: "Are you sure you want to delete this trip?", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(
-                title: "Delete",
-                style: .destructive,
-                handler: { _ in
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    trips.remove(at: indexPath.row)
-            }))
-            alert.addAction(UIAlertAction(
-                title: "Cancel",
-                style: .cancel,
-                handler: { _ in
-                // cancel action
-            }))
-            present(alert,
-                    animated: true,
-                    completion: nil
-            )
-            
-        } else if editingStyle == .insert {
-            
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            // Delete the row from the data source
+//            let alert = UIAlertController(title: "Are you sure you want to delete this trip?", message: nil, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(
+//                title: "Delete",
+//                style: .destructive,
+//                handler: { _ in
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
+//                    trips.remove(at: indexPath.row)
+//            }))
+//            alert.addAction(UIAlertAction(
+//                title: "Cancel",
+//                style: .cancel,
+//                handler: { _ in
+//                // cancel action
+//            }))
+//            present(alert,
+//                    animated: true,
+//                    completion: nil
+//            )
+//
+//        } else if editingStyle == .insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        }
+//    }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
             trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
@@ -102,13 +100,31 @@ class TripTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
             let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
-                trips.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-            }
+//                trips.remove(at: indexPath.row)
+//                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            let alert = UIAlertController(title: "Are you sure you want to delete this trip?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { _ in
+                    trips.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+            }))
+            alert.addAction(UIAlertAction(
+                title: "Cancel",
+                style: .cancel,
+                handler: { _ in
+                // cancel action
+            }))
+            self.present(alert,
+                    animated: true,
+                    completion: nil
+            )
+        }
 
             let swipeActions = UISwipeActionsConfiguration(actions: [delete])
             return swipeActions
-        }
+    }
     
     @objc func addTapped() {
         let ac = UIAlertController(title: "Add new trip", message: nil, preferredStyle: .alert)
@@ -168,28 +184,12 @@ class TripTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        
-//        if segue.identifier == "goToLocationView" {
-//            let VC = segue.destination as! LocationTableViewController
-//            VC.selectedIndex = tableView.indexPathForSelectedRow!.item
-
-//            VC.name =  nameTextField.text!
-//            VC.remainingTime = Int(timeSlider.value)
-//            VC.maximumNumberOfBubbles = Int(numberOfBubblesSlider.value)
-            //passes name, time, and max number of bubbles to the GameViewController
-//        }
-        
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if
                 segue.identifier == "goToLocationView",
                 let VC = segue.destination as? LocationTableViewController
             {
-                VC.selectedIndex = selectedPath.row
+                VC.selectedTrip = selectedPath.row
             }
-        
     }
-    
-
 }
