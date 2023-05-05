@@ -19,8 +19,8 @@ class TripTableViewController: UITableViewController {
         trips.append(Trip(people: 2, name: "Japan", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
         trips.append(Trip(people: 3, name: "Korea", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
          
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
 
         // Uncomment the following line to preserve selection between presentations
@@ -126,36 +126,36 @@ class TripTableViewController: UITableViewController {
             return swipeActions
     }
     
-    @objc func addTapped() {
-        let ac = UIAlertController(title: "Add new trip", message: nil, preferredStyle: .alert)
-//        ac.addTextField()
-//        ac.addTextField()
-        ac.addTextField { field in
-            field.placeholder = "Trip name"
-        }
-        
-        ac.addTextField { field in
-            field.placeholder = "Number of people"
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
-            var name = "Trip"
-            if ac.textFields![0].text != "" {
-                name = ac.textFields![0].text!
-            }
-            let count = ac.textFields![1].text
-                
-            trips.append(Trip(people: Int(count!) ?? 1, name: name , icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
-            self.tableView.reloadData()
-            
-        }
-        ac.addAction(cancelAction)
-        ac.addAction(submitAction)
-
-        present(ac, animated: true)
-    }
-
+//    @objc func addTapped() {
+//        let ac = UIAlertController(title: "Add new trip", message: nil, preferredStyle: .alert)
+////        ac.addTextField()
+////        ac.addTextField()
+//        ac.addTextField { field in
+//            field.placeholder = "Trip name"
+//        }
+//
+//        ac.addTextField { field in
+//            field.placeholder = "Number of people"
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
+//            var name = "Trip"
+//            if ac.textFields![0].text != "" {
+//                name = ac.textFields![0].text!
+//            }
+//            let count = ac.textFields![1].text
+//
+//            trips.append(Trip(people: Int(count!) ?? 1, name: name , icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
+//            self.tableView.reloadData()
+//
+//        }
+//        ac.addAction(cancelAction)
+//        ac.addAction(submitAction)
+//
+//        present(ac, animated: true)
+//    }
+//
     @objc func editTapped() {
         tableView.setEditing(!tableView.isEditing, animated: true)
 

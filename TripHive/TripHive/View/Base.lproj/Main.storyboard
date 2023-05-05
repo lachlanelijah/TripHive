@@ -16,6 +16,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="CeF-S6-Ta3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TripCell" rowHeight="191" id="rWw-mT-2tb" customClass="TripTableViewCell" customModule="TripHive" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="191"/>
@@ -68,7 +69,15 @@
                             <outlet property="delegate" destination="p4H-M8-e6E" id="acS-eb-fQM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Trips" largeTitleDisplayMode="always" id="AHv-Nc-mMs"/>
+                    <navigationItem key="navigationItem" title="Trips" largeTitleDisplayMode="always" id="AHv-Nc-mMs">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="D4w-yt-MhS">
+                            <connections>
+                                <segue destination="X9S-VI-GXl" kind="popoverPresentation" identifier="goToTripAddView" popoverAnchorBarButtonItem="D4w-yt-MhS" id="1xZ-jI-RaD">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWY-3G-ai8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,7 +218,7 @@
                                 <connections>
                                     <outlet property="itemCostLabel" destination="wBt-w6-7f7" id="lDt-tC-5bs"/>
                                     <outlet property="itemNameLabel" destination="XRO-oF-AOz" id="Xne-WK-JyQ"/>
-                                    <segue destination="hsi-Ux-9rg" kind="show" identifier="goToDetailView" id="Uit-P5-Mnq"/>
+                                    <segue destination="hsi-Ux-9rg" kind="showDetail" identifier="goToDetailView" id="Uit-P5-Mnq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -229,7 +238,7 @@
             <objects>
                 <tableViewController id="hsi-Ux-9rg" customClass="DetailTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="KFY-Rg-4QN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -310,12 +319,40 @@
             </objects>
             <point key="canvasLocation" x="3714" y="1647"/>
         </scene>
+        <!--Add Trip View Controller-->
+        <scene sceneID="hSm-nB-uD0">
+            <objects>
+                <viewController id="X9S-VI-GXl" customClass="AddTripViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q4f-0Y-YIj">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iex-o3-UkB">
+                                <rect key="frame" x="153" y="559" width="88" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Add Trip"/>
+                                <connections>
+                                    <action selector="addTripButton:" destination="X9S-VI-GXl" eventType="touchUpInside" id="Cn3-Xk-tDK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yyQ-yn-jic"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Us5-5l-wjP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D1t-Cw-i1D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5178" y="1747"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="wZT-3h-nfn">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Rge-v3-5i0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3oX-2c-SQw">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

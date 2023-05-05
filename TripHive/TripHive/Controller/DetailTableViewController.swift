@@ -17,7 +17,7 @@ class DetailTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.largeTitleDisplayMode = .never
         if category == .accommodation {
             propertyArray.append("Accommodation name: \(trips[selectedTrip].locations[selectedLocation].categories[0].items[selectedItem].itemName)")
             propertyArray.append("Price per night: \(trips[selectedTrip].locations[selectedLocation].categories[0].items[selectedItem].itemPrice)")

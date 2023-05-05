@@ -15,7 +15,7 @@ class ItemTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.largeTitleDisplayMode = .never
         if category == .accommodation {
             self.title = "Accommodation"
         } else {
@@ -81,11 +81,11 @@ class ItemTableViewController: UITableViewController {
             ac.addTextField { field in
                 field.placeholder = "Name of accommodation"
             }
-            
+
             ac.addTextField { field in
                 field.placeholder = "Price"
             }
-            
+
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
                 var name = "Accommodation"
@@ -95,7 +95,7 @@ class ItemTableViewController: UITableViewController {
                 let price = ac.textFields![1].text
                 trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: name , itemPrice: Int(price!) ?? 0))
                 self.tableView.reloadData()
-                
+
             }
             ac.addAction(cancelAction)
             ac.addAction(submitAction)
@@ -106,11 +106,11 @@ class ItemTableViewController: UITableViewController {
             ac.addTextField { field in
                 field.placeholder = "Name of place"
             }
-            
+
             ac.addTextField { field in
                 field.placeholder = "Price"
             }
-            
+
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
                 var name = "Place"
@@ -120,14 +120,14 @@ class ItemTableViewController: UITableViewController {
                 let price = ac.textFields![1].text
                 trips[self.selectedTrip].locations[self.selectedLocation].categories[1].items.append(Item(itemName: name, itemPrice: Int(price!) ?? 0))
                 self.tableView.reloadData()
-                
+
             }
             ac.addAction(cancelAction)
             ac.addAction(submitAction)
 
             present(ac, animated: true)
         }
-        
+
     }
 
     @objc func editTapped() {
