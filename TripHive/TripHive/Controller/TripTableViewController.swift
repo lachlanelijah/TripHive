@@ -9,7 +9,24 @@ import UIKit
 
 var trips: [Trip] = []
 
-class TripTableViewController: UITableViewController {
+class TripTableViewController: UITableViewController, TripDelegate, UINavigationControllerDelegate {
+    
+    func passTripInformation(tripName: String, tripPeople: Int) {
+//        print("trip name is \(tripName) and number of people is \(tripPeople)")
+        addTrip(tripName: tripName, tripPeople: tripPeople)
+    }
+    
+    func addTrip(tripName: String, tripPeople: Int) {
+        trips.append(Trip(people: tripPeople, name: tripName, icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func goToAddTripViewButton(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "goToAddTripView", sender: nil)
+    }
+    
+    var tripName = "Trip"
+    var tripPeople = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,25 +37,14 @@ class TripTableViewController: UITableViewController {
         trips.append(Trip(people: 3, name: "Korea", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
          
         navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+//      navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return trips.count
     }
 
@@ -52,17 +58,10 @@ class TripTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Segue to the second view controller
         self.performSegue(withIdentifier: "goToLocationView", sender: self)
-//        let indexPath = tableView.indexPathForSelectedRow
-//        let VC = segue.destination as! LocationTableViewController
-//        VC.selectedIndex = indexPath
     }
 
-
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
     
@@ -114,7 +113,6 @@ class TripTableViewController: UITableViewController {
                 title: "Cancel",
                 style: .cancel,
                 handler: { _ in
-                // cancel action
             }))
             self.present(alert,
                     animated: true,
@@ -167,32 +165,16 @@ class TripTableViewController: UITableViewController {
                 }
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? AddTripViewController {
+            destination.delegate = self
+            //print("yes")
+        }
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
-            if
-                segue.identifier == "goToLocationView",
-                let VC = segue.destination as? LocationTableViewController
-            {
+            if segue.identifier == "goToLocationView", let VC = segue.destination as? LocationTableViewController {
                 VC.selectedTrip = selectedPath.row
             }
+        
     }
+    
 }

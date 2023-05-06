@@ -7,37 +7,29 @@
 
 import UIKit
 
-class LocationTableViewController: UITableViewController {
+class LocationTableViewController: UITableViewController, LocationDelegate {
+    func passLocationInformation(locationName: String) {
+        addTrip(locationName: locationName)
+    }
+    
+    func addTrip(locationName: String) {
+        trips[selectedTrip].addLocation(locationName)
+        self.tableView.reloadData()
+    }
     
     var selectedTrip: Int = 0
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-//        print(selectedIndex)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        return 1
-//        print("There are \(trips[selectedIndex].getLocationCount()) locations")
-
         return trips[selectedTrip].getLocationCount()
     }
     
@@ -58,14 +50,13 @@ class LocationTableViewController: UITableViewController {
             field.placeholder = "Location name"
         }
         
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
             let name = ac.textFields![0].text
             trips[self.selectedTrip].addLocation(name ?? "Location")
             self.tableView.reloadData()
-            
         }
+        
         ac.addAction(cancelAction)
         ac.addAction(submitAction)
 
@@ -74,7 +65,6 @@ class LocationTableViewController: UITableViewController {
 
     @objc func editTapped() {
         tableView.setEditing(!tableView.isEditing, animated: true)
-
                 if tableView.isEditing {
                     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editTapped))
                 }
@@ -205,6 +195,10 @@ class LocationTableViewController: UITableViewController {
     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? AddLocationViewController {
+            destination.delegate = self
+            print("yesssss")
+        }
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if
                 segue.identifier == "goToCategoryView",

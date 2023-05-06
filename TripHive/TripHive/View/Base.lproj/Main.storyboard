@@ -72,12 +72,13 @@
                     <navigationItem key="navigationItem" title="Trips" largeTitleDisplayMode="always" id="AHv-Nc-mMs">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="D4w-yt-MhS">
                             <connections>
-                                <segue destination="X9S-VI-GXl" kind="popoverPresentation" identifier="goToTripAddView" popoverAnchorBarButtonItem="D4w-yt-MhS" id="1xZ-jI-RaD">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="goToAddTripViewButton:" destination="p4H-M8-e6E" id="VdN-Nl-3AJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="X9S-VI-GXl" kind="presentation" identifier="goToAddTripView" id="VxJ-Lf-0o3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWY-3G-ai8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -118,7 +119,13 @@
                             <outlet property="delegate" destination="jnV-pX-tRo" id="3gi-vq-B4X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Locations" leftItemsSupplementBackButton="YES" id="IED-JM-J8M"/>
+                    <navigationItem key="navigationItem" title="Locations" leftItemsSupplementBackButton="YES" id="IED-JM-J8M">
+                        <barButtonItem key="leftBarButtonItem" image="plus" catalog="system" id="qmz-1U-AJ2">
+                            <connections>
+                                <segue destination="xnx-XE-L2X" kind="presentation" identifier="goToAddLocationView" id="f47-6r-nmA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIh-Ye-r6v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -327,24 +334,119 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iex-o3-UkB">
-                                <rect key="frame" x="153" y="559" width="88" height="35"/>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JH2-CY-8Fu">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <items>
+                                    <navigationItem title="New Trip" id="EC4-xu-cBb">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="W6K-QC-70P">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="X9S-VI-GXl" id="pdP-N4-FKD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" style="done" changesSelectionAsPrimaryAction="YES" id="7EM-yK-koX">
+                                            <connections>
+                                                <action selector="addTripButton:" destination="X9S-VI-GXl" id="WoZ-1c-1CG"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <navigationBarAppearance key="standardAppearance">
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="shadowColor" systemColor="systemBackgroundColor"/>
+                                </navigationBarAppearance>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="E2f-LN-xv9">
+                                <rect key="frame" x="90.333333333333329" y="221" width="212.33333333333337" height="400"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="165" translatesAutoresizingMaskIntoConstraints="NO" id="CAS-Hk-gJC">
+                                        <rect key="frame" x="0.0" y="97.3333333333333" width="35.333333333333336" height="205.66666666666663"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yVZ-Xg-hOL">
+                                                <rect key="frame" x="0.0" y="1.9999999999999982" width="35.333333333333336" height="17"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dbN-R6-bV1">
+                                                <rect key="frame" x="4.3333333333333446" y="184.00000000000003" width="26.666666666666671" height="23.666666666666657"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="168" translatesAutoresizingMaskIntoConstraints="NO" id="AdB-KL-aKC">
+                                        <rect key="frame" x="45.333333333333329" y="95.666666666666671" width="57" height="208.66666666666663"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqV-cn-nqV">
+                                                <rect key="frame" x="0.0" y="0.0" width="57" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oL3-7u-l1D">
+                                                <rect key="frame" x="9.3333333333333428" y="188.33333333333331" width="38.333333333333336" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YVh-II-iOY">
+                                        <rect key="frame" x="112.33333333333331" y="0.0" width="100" height="400"/>
+                                        <subviews>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIZ-T7-edQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="E8p-YQ-o0w"/>
+                                                    <constraint firstAttribute="width" constant="100" id="Gmq-4a-gjH"/>
+                                                </constraints>
+                                            </pickerView>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qvb-gf-3oa">
+                                                <rect key="frame" x="0.0" y="200" width="100" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="bm7-N0-zrm"/>
+                                                    <constraint firstAttribute="width" constant="100" id="rP0-vM-cCu"/>
+                                                </constraints>
+                                            </pickerView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trip Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sEQ-fu-w3E">
+                                <rect key="frame" x="96.666666666666686" y="147" width="200" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="wNC-pW-zCS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="X7h-BF-K1g">
+                                <rect key="frame" x="141" y="321" width="110" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Add Trip"/>
-                                <connections>
-                                    <action selector="addTripButton:" destination="X9S-VI-GXl" eventType="touchUpInside" id="Cn3-Xk-tDK"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yyQ-yn-jic"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="E2f-LN-xv9" firstAttribute="centerY" secondItem="Q4f-0Y-YIj" secondAttribute="centerY" id="3LF-nG-PZA"/>
+                            <constraint firstItem="E2f-LN-xv9" firstAttribute="centerX" secondItem="Q4f-0Y-YIj" secondAttribute="centerX" id="A7w-wa-JPJ"/>
+                            <constraint firstItem="E2f-LN-xv9" firstAttribute="top" secondItem="sEQ-fu-w3E" secondAttribute="bottom" constant="40" id="FXT-qk-emB"/>
+                            <constraint firstItem="sEQ-fu-w3E" firstAttribute="centerX" secondItem="Q4f-0Y-YIj" secondAttribute="centerX" id="KP6-pm-6jZ"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Us5-5l-wjP"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="JH2-CY-8Fu" id="RE7-P0-ftx"/>
+                        <outlet property="peoplePicker" destination="UIZ-T7-edQ" id="Gc7-wt-45l"/>
+                        <outlet property="tripNameTextField" destination="sEQ-fu-w3E" id="Igl-7x-Qde"/>
+                        <outlet property="yearPicker" destination="qvb-gf-3oa" id="zLJ-yp-6Ud"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1t-Cw-i1D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="zmG-7c-jWs">
+                    <rect key="frame" x="0.0" y="0.0" width="110.00000000000001" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <viewLayoutGuide key="safeArea" id="qf2-Mk-FqT"/>
+                </stackView>
             </objects>
-            <point key="canvasLocation" x="5178" y="1747"/>
+            <point key="canvasLocation" x="5177.8625954198469" y="1673.943661971831"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="wZT-3h-nfn">
@@ -365,15 +467,74 @@
             </objects>
             <point key="canvasLocation" x="3324.4274809160306" y="814.78873239436621"/>
         </scene>
+        <!--Add Location View Controller-->
+        <scene sceneID="7Rg-EX-uxd">
+            <objects>
+                <viewController id="xnx-XE-L2X" customClass="AddLocationViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rQr-3r-k8y">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UfH-50-m2r">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <items>
+                                    <navigationItem title="New Location" id="6bg-k2-OQH">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="UPH-dX-POs">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="xnx-XE-L2X" id="B4I-FB-IBi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" style="done" changesSelectionAsPrimaryAction="YES" id="1ji-TS-Ty2">
+                                            <connections>
+                                                <action selector="addLocationButton:" destination="xnx-XE-L2X" id="FhN-5W-iCd"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <navigationBarAppearance key="standardAppearance">
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="shadowColor" systemColor="systemBackgroundColor"/>
+                                </navigationBarAppearance>
+                            </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpW-ZF-CdM">
+                                <rect key="frame" x="96.666666666666686" y="404" width="200" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="sJu-9P-3xV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="md1-Gm-8lI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SpW-ZF-CdM" firstAttribute="centerY" secondItem="rQr-3r-k8y" secondAttribute="centerY" id="NRK-T9-Xoi"/>
+                            <constraint firstItem="SpW-ZF-CdM" firstAttribute="centerX" secondItem="rQr-3r-k8y" secondAttribute="centerX" id="mBC-9u-Ese"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3sk-iW-isY"/>
+                    <connections>
+                        <outlet property="locationNameTextField" destination="SpW-ZF-CdM" id="dnu-kT-v73"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EE6-Nx-PZu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6045" y="1674"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="GWg-57-3gm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="airplane.circle" catalog="system" width="128" height="123"/>
+        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="figure.hiking" catalog="system" width="98" height="128"/>
         <image name="gear" catalog="system" width="128" height="122"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
