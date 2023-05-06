@@ -7,8 +7,34 @@
 
 import UIKit
 
-class ItemTableViewController: UITableViewController {
+class ItemTableViewController: UITableViewController, AccommodationDelegate, ActivityDelegate {
+    func passAccommodationInformation(accommodationName: String, accommodationPrice: Int) {
+        addAccommodation(accommodationName: accommodationName, accommodationPrice: accommodationPrice)
+    }
     
+    func passActivityInformation(activityName: String, activityPrice: Int) {
+        addActivity(activityName: activityName, activityPrice: activityPrice)
+    }
+    
+    func addAccommodation(accommodationName: String, accommodationPrice: Int) {
+        trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: accommodationName , itemPrice: accommodationPrice))
+        self.tableView.reloadData()
+    }
+    
+    func addActivity(activityName: String, activityPrice: Int) {
+        trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: activityName , itemPrice: activityPrice))
+        self.tableView.reloadData()
+    }
+    
+    
+    @IBAction func addItemButton(_ sender: UIBarButtonItem) {
+        if category == .accommodation {
+            performSegue(withIdentifier: "goToAccommodationView", sender: nil)
+        } else {
+            performSegue(withIdentifier: "goToActivityView", sender: nil)
+        }
+        
+    }
     var selectedTrip = 0
     var selectedLocation = 0
     var category: categoryType = .activities
@@ -22,16 +48,9 @@ class ItemTableViewController: UITableViewController {
             self.title = "Activities"
         }
         
-        print("The selected location is index \(selectedLocation)")
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        //print("The selected location is index \(selectedLocation)")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -239,6 +258,15 @@ class ItemTableViewController: UITableViewController {
     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? AddActivityViewController {
+            destination.delegate = self
+        }
+        
+        if let destination = segue.destination as? AddAccommodationViewController {
+            destination.delegate = self
+        }
+        
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if
                 segue.identifier == "goToDetailView",

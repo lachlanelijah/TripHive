@@ -42,7 +42,6 @@ class AddTripViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         if pickerView == peoplePicker {
             selectedPeople = row
         } else {

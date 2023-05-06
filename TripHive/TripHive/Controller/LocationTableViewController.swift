@@ -197,7 +197,6 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AddLocationViewController {
             destination.delegate = self
-            print("yesssss")
         }
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if
