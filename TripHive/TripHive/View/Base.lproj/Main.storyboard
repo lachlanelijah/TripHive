@@ -516,20 +516,28 @@
                                     <color key="shadowColor" systemColor="systemBackgroundColor"/>
                                 </navigationBarAppearance>
                             </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpW-ZF-CdM">
-                                <rect key="frame" x="96.666666666666686" y="404" width="200" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="sJu-9P-3xV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="y8f-dp-jwS">
+                                <rect key="frame" x="83.666666666666671" y="404" width="225.66666666666663" height="34"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="globe.asia.australia.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fOR-vt-apy">
+                                        <rect key="frame" x="0.0" y="1" width="19.666666666666668" height="32.666666666666671"/>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpW-ZF-CdM">
+                                        <rect key="frame" x="25.666666666666657" y="0.0" width="200.00000000000003" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="sJu-9P-3xV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="md1-Gm-8lI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="SpW-ZF-CdM" firstAttribute="centerY" secondItem="rQr-3r-k8y" secondAttribute="centerY" id="NRK-T9-Xoi"/>
-                            <constraint firstItem="SpW-ZF-CdM" firstAttribute="centerX" secondItem="rQr-3r-k8y" secondAttribute="centerX" id="mBC-9u-Ese"/>
+                            <constraint firstItem="y8f-dp-jwS" firstAttribute="centerY" secondItem="rQr-3r-k8y" secondAttribute="centerY" id="OLh-6g-eNr"/>
+                            <constraint firstItem="y8f-dp-jwS" firstAttribute="centerX" secondItem="rQr-3r-k8y" secondAttribute="centerX" id="gO1-5V-gNg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3sk-iW-isY"/>
@@ -539,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EE6-Nx-PZu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6045" y="1674"/>
+            <point key="canvasLocation" x="6043.5114503816794" y="1673.943661971831"/>
         </scene>
         <!--Add Activity View Controller-->
         <scene sceneID="Q3f-kx-jbQ">
@@ -733,6 +741,7 @@
         <image name="figure.run.circle" catalog="system" width="128" height="123"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="92"/>
         <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="globe.asia.australia.fill" catalog="system" width="128" height="123"/>
         <image name="house.circle" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
