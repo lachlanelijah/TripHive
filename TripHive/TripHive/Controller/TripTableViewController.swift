@@ -119,7 +119,15 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
                     completion: nil
             )
         }
-            let swipeActions = UISwipeActionsConfiguration(actions: [delete])
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
+              print("Test")
+              completionHandler(true)
+       }
+        
+        editAction.backgroundColor = .systemMint
+        
+            let swipeActions = UISwipeActionsConfiguration(actions: [delete, editAction])
             return swipeActions
     }
     
