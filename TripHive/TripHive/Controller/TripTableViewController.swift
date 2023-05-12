@@ -119,7 +119,6 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
                     completion: nil
             )
         }
-
             let swipeActions = UISwipeActionsConfiguration(actions: [delete])
             return swipeActions
     }

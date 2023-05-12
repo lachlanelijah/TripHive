@@ -94,60 +94,60 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
     
-    @objc func addTapped() {
-        if category == .accommodation {
-            let ac = UIAlertController(title: "Add new accommodation option", message: nil, preferredStyle: .alert)
-            ac.addTextField { field in
-                field.placeholder = "Name of accommodation"
-            }
-
-            ac.addTextField { field in
-                field.placeholder = "Price"
-            }
-
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
-                var name = "Accommodation"
-                if ac.textFields![0].text != "" {
-                    name = ac.textFields![0].text!
-                }
-                let price = ac.textFields![1].text
-                trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: name , itemPrice: Int(price!) ?? 0))
-                self.tableView.reloadData()
-
-            }
-            ac.addAction(cancelAction)
-            ac.addAction(submitAction)
-
-            present(ac, animated: true)
-        } else {
-            let ac = UIAlertController(title: "Add new place", message: nil, preferredStyle: .alert)
-            ac.addTextField { field in
-                field.placeholder = "Name of place"
-            }
-
-            ac.addTextField { field in
-                field.placeholder = "Price"
-            }
-
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
-                var name = "Place"
-                if ac.textFields![0].text != "" {
-                    name = ac.textFields![0].text!
-                }
-                let price = ac.textFields![1].text
-                trips[self.selectedTrip].locations[self.selectedLocation].categories[1].items.append(Item(itemName: name, itemPrice: Int(price!) ?? 0))
-                self.tableView.reloadData()
-
-            }
-            ac.addAction(cancelAction)
-            ac.addAction(submitAction)
-
-            present(ac, animated: true)
-        }
-
-    }
+//    @objc func addTapped() {
+//        if category == .accommodation {
+//            let ac = UIAlertController(title: "Add new accommodation option", message: nil, preferredStyle: .alert)
+//            ac.addTextField { field in
+//                field.placeholder = "Name of accommodation"
+//            }
+//
+//            ac.addTextField { field in
+//                field.placeholder = "Price"
+//            }
+//
+//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//            let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
+//                var name = "Accommodation"
+//                if ac.textFields![0].text != "" {
+//                    name = ac.textFields![0].text!
+//                }
+//                let price = ac.textFields![1].text
+//                trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: name , itemPrice: Int(price!) ?? 0))
+//                self.tableView.reloadData()
+//
+//            }
+//            ac.addAction(cancelAction)
+//            ac.addAction(submitAction)
+//
+//            present(ac, animated: true)
+//        } else {
+//            let ac = UIAlertController(title: "Add new place", message: nil, preferredStyle: .alert)
+//            ac.addTextField { field in
+//                field.placeholder = "Name of place"
+//            }
+//
+//            ac.addTextField { field in
+//                field.placeholder = "Price"
+//            }
+//
+//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//            let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
+//                var name = "Place"
+//                if ac.textFields![0].text != "" {
+//                    name = ac.textFields![0].text!
+//                }
+//                let price = ac.textFields![1].text
+//                trips[self.selectedTrip].locations[self.selectedLocation].categories[1].items.append(Item(itemName: name, itemPrice: Int(price!) ?? 0))
+//                self.tableView.reloadData()
+//
+//            }
+//            ac.addAction(cancelAction)
+//            ac.addAction(submitAction)
+//
+//            present(ac, animated: true)
+//        }
+//
+//    }
 
     @objc func editTapped() {
         tableView.setEditing(!tableView.isEditing, animated: true)

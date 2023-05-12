@@ -120,11 +120,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Locations" leftItemsSupplementBackButton="YES" id="IED-JM-J8M">
-                        <barButtonItem key="leftBarButtonItem" image="folder.badge.plus" catalog="system" id="qmz-1U-AJ2">
-                            <connections>
-                                <segue destination="xnx-XE-L2X" kind="presentation" identifier="goToAddLocationView" id="f47-6r-nmA"/>
-                            </connections>
-                        </barButtonItem>
+                        <centerItemGroups>
+                            <barButtonItemGroup customizationDisposition="fixed" id="OM5-DW-QIn">
+                                <barButtonItems>
+                                    <barButtonItem title="Add a Location" image="folder.badge.plus" catalog="system" id="qmz-1U-AJ2">
+                                        <connections>
+                                            <segue destination="xnx-XE-L2X" kind="presentation" identifier="goToAddLocationView" id="f47-6r-nmA"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Rank Locations" image="trophy" catalog="system" id="xs7-Vg-PQX"/>
+                                </barButtonItems>
+                            </barButtonItemGroup>
+                        </centerItemGroups>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIh-Ye-r6v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -191,11 +198,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="106" id="lXb-Mb-JYV" customClass="ItemTableViewCell" customModule="TripHive" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="106" id="lXb-Mb-JYV" customClass="ItemTableViewCell" customModule="TripHive" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="106"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lXb-Mb-JYV" id="ikw-3d-o0y">
-                                    <rect key="frame" x="0.0" y="0.0" width="349" height="106"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="106"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Lec-nf-R9a">
@@ -235,11 +242,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="M0R-i1-jp8">
-                        <barButtonItem key="leftBarButtonItem" image="note.text.badge.plus" catalog="system" id="AV1-5g-HCT">
-                            <connections>
-                                <action selector="addItemButton:" destination="Oh8-Ug-Jo5" id="Qxx-Qc-Xjw"/>
-                            </connections>
-                        </barButtonItem>
+                        <centerItemGroups>
+                            <barButtonItemGroup customizationDisposition="fixed" id="zCa-h4-7rA">
+                                <barButtonItems>
+                                    <barButtonItem title="Add a New Item" image="note.text.badge.plus" catalog="system" id="AV1-5g-HCT">
+                                        <connections>
+                                            <action selector="addItemButton:" destination="Oh8-Ug-Jo5" id="Qxx-Qc-Xjw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Rank Options" image="trophy" catalog="system" id="FPP-IJ-t86"/>
+                                </barButtonItems>
+                            </barButtonItemGroup>
+                        </centerItemGroups>
                     </navigationItem>
                     <connections>
                         <segue destination="ZX5-aq-E1j" kind="presentation" identifier="goToActivityView" id="Kh1-pT-jEG"/>
@@ -516,14 +530,14 @@
                                     <color key="shadowColor" systemColor="systemBackgroundColor"/>
                                 </navigationBarAppearance>
                             </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="y8f-dp-jwS">
-                                <rect key="frame" x="83.666666666666671" y="404" width="225.66666666666663" height="34"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="y8f-dp-jwS">
+                                <rect key="frame" x="77.666666666666671" y="286" width="237.66666666666663" height="34"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="globe.asia.australia.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fOR-vt-apy">
                                         <rect key="frame" x="0.0" y="1" width="19.666666666666668" height="32.666666666666671"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpW-ZF-CdM">
-                                        <rect key="frame" x="25.666666666666657" y="0.0" width="200.00000000000003" height="34"/>
+                                        <rect key="frame" x="37.666666666666657" y="0.0" width="200" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="sJu-9P-3xV"/>
                                         </constraints>
@@ -532,16 +546,75 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZKF-Je-3tt">
+                                <rect key="frame" x="56" y="360" width="281" height="122"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="X6b-3E-c6D">
+                                        <rect key="frame" x="0.0" y="25.666666666666686" width="26" height="70.666666666666671"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="hGp-cW-CvT">
+                                                <rect key="frame" x="0.0" y="-3.6666666666666679" width="26" height="28"/>
+                                                <imageReference key="image" image="figure.walk.arrival" catalog="system" symbolScale="large"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="aYe-C6-V7Y">
+                                                <rect key="frame" x="0.0" y="46.666666666666643" width="26" height="28"/>
+                                                <imageReference key="image" image="figure.walk.departure" catalog="system" symbolScale="large"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="QQL-bp-WSn">
+                                        <rect key="frame" x="42" y="24.666666666666686" width="77" height="72.666666666666671"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEi-Cw-YgH">
+                                                <rect key="frame" x="0.0" y="0.0" width="48.333333333333336" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYP-qK-cS1">
+                                                <rect key="frame" x="0.0" y="52.333333333333314" width="76.666666666666671" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="9Ee-zx-eRW">
+                                        <rect key="frame" x="135" y="0.0" width="146" height="122"/>
+                                        <subviews>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="m07-7g-Jn3">
+                                                <rect key="frame" x="0.0" y="0.0" width="146" height="52"/>
+                                                <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                                    <!--1970-01-01 11:00:00 +0000-->
+                                                </date>
+                                                <connections>
+                                                    <action selector="locationLeaveDatePickerChanged:" destination="xnx-XE-L2X" eventType="valueChanged" id="c3t-lz-ddn"/>
+                                                </connections>
+                                            </datePicker>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="ink-fm-sBj">
+                                                <rect key="frame" x="0.0" y="70" width="146" height="52"/>
+                                            </datePicker>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280.67000000000002" id="DjQ-vg-2Ja"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="md1-Gm-8lI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="y8f-dp-jwS" firstAttribute="centerY" secondItem="rQr-3r-k8y" secondAttribute="centerY" id="OLh-6g-eNr"/>
-                            <constraint firstItem="y8f-dp-jwS" firstAttribute="centerX" secondItem="rQr-3r-k8y" secondAttribute="centerX" id="gO1-5V-gNg"/>
+                            <constraint firstItem="ZKF-Je-3tt" firstAttribute="top" secondItem="y8f-dp-jwS" secondAttribute="bottom" constant="40" id="3vz-wk-KbC"/>
+                            <constraint firstItem="y8f-dp-jwS" firstAttribute="centerX" secondItem="rQr-3r-k8y" secondAttribute="centerX" id="VPK-GV-tvb"/>
+                            <constraint firstItem="ZKF-Je-3tt" firstAttribute="centerX" secondItem="rQr-3r-k8y" secondAttribute="centerX" id="fjM-fu-NNM"/>
+                            <constraint firstItem="ZKF-Je-3tt" firstAttribute="centerY" secondItem="rQr-3r-k8y" secondAttribute="centerY" id="hGS-Kw-QgA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3sk-iW-isY"/>
                     <connections>
+                        <outlet property="locationArriveDatePicker" destination="m07-7g-Jn3" id="UUW-AQ-m52"/>
+                        <outlet property="locationLeaveDatePicker" destination="ink-fm-sBj" id="XSY-LH-WN9"/>
                         <outlet property="locationNameTextField" destination="SpW-ZF-CdM" id="dnu-kT-v73"/>
                     </connections>
                 </viewController>
@@ -719,6 +792,7 @@
                             <constraint firstItem="IO6-ku-Ryn" firstAttribute="centerY" secondItem="7QB-at-pAg" secondAttribute="centerY" id="IbV-RI-vp0"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="REc-8j-Su3"/>
                     <connections>
                         <outlet property="accommodationNameTextField" destination="NP0-OK-mWY" id="KZg-AR-cE2"/>
                         <outlet property="accommodationPriceTextField" destination="uqM-3S-Qzv" id="dqG-g2-R4c"/>
@@ -739,6 +813,8 @@
         <image name="dollarsign.circle" catalog="system" width="128" height="123"/>
         <image name="figure.hiking" catalog="system" width="98" height="128"/>
         <image name="figure.run.circle" catalog="system" width="128" height="123"/>
+        <image name="figure.walk.arrival" catalog="system" width="125" height="128"/>
+        <image name="figure.walk.departure" catalog="system" width="123" height="128"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="92"/>
         <image name="gear" catalog="system" width="128" height="122"/>
         <image name="globe.asia.australia.fill" catalog="system" width="128" height="123"/>
@@ -748,6 +824,7 @@
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="trophy" catalog="system" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

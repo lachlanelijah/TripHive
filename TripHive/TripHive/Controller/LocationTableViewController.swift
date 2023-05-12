@@ -8,6 +8,7 @@
 import UIKit
 
 class LocationTableViewController: UITableViewController, LocationDelegate {
+    
     func passLocationInformation(locationName: String) {
         addTrip(locationName: locationName)
     }
@@ -44,24 +45,24 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
             trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
     
-    @objc func addTapped() {
-        let ac = UIAlertController(title: "Add new location", message: nil, preferredStyle: .alert)
-        ac.addTextField { field in
-            field.placeholder = "Location name"
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
-            let name = ac.textFields![0].text
-            trips[self.selectedTrip].addLocation(name ?? "Location")
-            self.tableView.reloadData()
-        }
-        
-        ac.addAction(cancelAction)
-        ac.addAction(submitAction)
-
-        present(ac, animated: true)
-    }
+//    @objc func addTapped() {
+//        let ac = UIAlertController(title: "Add new location", message: nil, preferredStyle: .alert)
+//        ac.addTextField { field in
+//            field.placeholder = "Location name"
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
+//            let name = ac.textFields![0].text
+//            trips[self.selectedTrip].addLocation(name ?? "Location")
+//            self.tableView.reloadData()
+//        }
+//
+//        ac.addAction(cancelAction)
+//        ac.addAction(submitAction)
+//
+//        present(ac, animated: true)
+//    }
 
     @objc func editTapped() {
         tableView.setEditing(!tableView.isEditing, animated: true)
@@ -198,6 +199,7 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
         if let destination = segue.destination as? AddLocationViewController {
             destination.delegate = self
         }
+        
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if
                 segue.identifier == "goToCategoryView",
