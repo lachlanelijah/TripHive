@@ -10,7 +10,6 @@
 		6D113B6B2A05C75D007605F6 /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D113B6A2A05C75D007605F6 /* AddTripViewController.swift */; };
 		6D5AF9F02A01F3E800FE5782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AF9EF2A01F3E800FE5782 /* AppDelegate.swift */; };
 		6D5AF9F22A01F3E800FE5782 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AF9F12A01F3E800FE5782 /* SceneDelegate.swift */; };
-		6D5AF9F42A01F3E800FE5782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AF9F32A01F3E800FE5782 /* ViewController.swift */; };
 		6D5AF9F72A01F3E800FE5782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AF9F52A01F3E800FE5782 /* Main.storyboard */; };
 		6D5AF9F92A01F3E900FE5782 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AF9F82A01F3E900FE5782 /* Assets.xcassets */; };
 		6D5AF9FC2A01F3E900FE5782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AF9FA2A01F3E900FE5782 /* LaunchScreen.storyboard */; };
@@ -32,7 +31,6 @@
 		6D5AF9EC2A01F3E800FE5782 /* TripHive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripHive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5AF9EF2A01F3E800FE5782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D5AF9F12A01F3E800FE5782 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6D5AF9F32A01F3E800FE5782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6D5AF9F62A01F3E800FE5782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6D5AF9F82A01F3E900FE5782 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D5AF9FB2A01F3E900FE5782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 		6D97526C2A0369FB0095B1D8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6D5AF9F32A01F3E800FE5782 /* ViewController.swift */,
 				6D9752832A038CEA0095B1D8 /* TripTableViewController.swift */,
 				6D113B6A2A05C75D007605F6 /* AddTripViewController.swift */,
 				6DB3A00D2A03937C00250F69 /* LocationTableViewController.swift */,
@@ -207,7 +204,6 @@
 				6DFC736B2A06076300E17136 /* AddLocationViewController.swift in Sources */,
 				6D113B6B2A05C75D007605F6 /* AddTripViewController.swift in Sources */,
 				6DFC736F2A060E1600E17136 /* AddAccommodationViewController.swift in Sources */,
-				6D5AF9F42A01F3E800FE5782 /* ViewController.swift in Sources */,
 				6DB3A0182A04B0F600250F69 /* ItemTableViewCell.swift in Sources */,
 				6DB3A0142A04A03A00250F69 /* ItemTableViewController.swift in Sources */,
 				6D5AF9F02A01F3E800FE5782 /* AppDelegate.swift in Sources */,

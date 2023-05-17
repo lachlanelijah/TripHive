@@ -9,7 +9,7 @@ import UIKit
 
 protocol LocationDelegate {
     func passLocationInformation(locationName: String)
-}
+} //Delegate protocol that LocationTableViewController conforms to that allows AddLocationViewController to send information back
 
 class AddLocationViewController: UIViewController {
 
@@ -28,6 +28,7 @@ class AddLocationViewController: UIViewController {
             present(ac, animated: true)
         } else {
             delegate?.passLocationInformation(locationName: locationNameTextField.text!)
+            //Passes the name of the new location into the delegate (sending it to LocationTableViewController) and dismisses AddLocationViewController
             dismiss(animated: true, completion: nil)
         }
     }
@@ -39,5 +40,6 @@ class AddLocationViewController: UIViewController {
         super.viewDidLoad()
         locationArriveDatePicker.minimumDate = Date()
         locationLeaveDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+        //Sets the minimum date of location arrival to today's date, and location departure to the day after
     }
 }

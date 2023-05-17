@@ -36,9 +36,9 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         trips.append(Trip(people: 2, name: "Japan", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
         trips.append(Trip(people: 3, name: "Korea", icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
          
-        navigationController?.navigationBar.prefersLargeTitles = true
-//      navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationController?.navigationBar.prefersLargeTitles = true //sets a large title style for the nav controller
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+        //adds an 'Edit' button in the nav bar
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -55,10 +55,12 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         cell.tripIcon.image = trip.getIcon()
         cell.peopleNumberLabel.text = "People: \(trip.getNumberOfPeople())"
         return cell
+        //sets the custom elements of the trip cell to the relevant info housed in the array at that particular index
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "goToLocationView", sender: self)
+        //when a cell is tapped, go to the next view
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -94,10 +96,12 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
 //    }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-            trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        //Allows the re-ordering of the table rows
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        //Allows for the deleting of rows
             let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
 //                trips.remove(at: indexPath.row)
 //                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
@@ -124,6 +128,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
               print("Test")
               completionHandler(true)
        }
+        //Currently a work in progress - editing info of a row
         
         editAction.backgroundColor = .systemMint
         
@@ -131,36 +136,6 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
             return swipeActions
     }
     
-//    @objc func addTapped() {
-//        let ac = UIAlertController(title: "Add new trip", message: nil, preferredStyle: .alert)
-////        ac.addTextField()
-////        ac.addTextField()
-//        ac.addTextField { field in
-//            field.placeholder = "Trip name"
-//        }
-//
-//        ac.addTextField { field in
-//            field.placeholder = "Number of people"
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
-//            var name = "Trip"
-//            if ac.textFields![0].text != "" {
-//                name = ac.textFields![0].text!
-//            }
-//            let count = ac.textFields![1].text
-//
-//            trips.append(Trip(people: Int(count!) ?? 1, name: name , icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
-//            self.tableView.reloadData()
-//
-//        }
-//        ac.addAction(cancelAction)
-//        ac.addAction(submitAction)
-//
-//        present(ac, animated: true)
-//    }
-//
     @objc func editTapped() {
         tableView.setEditing(!tableView.isEditing, animated: true)
 
@@ -175,8 +150,8 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AddTripViewController {
             destination.delegate = self
-            //print("yes")
         }
+        //If the user is adding a new trip, set TripTableViewController as a delegate. Else, send the index of the selected trip to LocationTableViewController
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if segue.identifier == "goToLocationView", let VC = segue.destination as? LocationTableViewController {
                 VC.selectedTrip = selectedPath.row

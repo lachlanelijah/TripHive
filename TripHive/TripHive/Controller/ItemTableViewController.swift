@@ -10,24 +10,25 @@ import UIKit
 class ItemTableViewController: UITableViewController, AccommodationDelegate, ActivityDelegate {
     func passAccommodationInformation(accommodationName: String, accommodationPrice: Int) {
         addAccommodation(accommodationName: accommodationName, accommodationPrice: accommodationPrice)
-    }
+    } //Function from AccommodationDelegate protocol that allows AddAccommodationViewController to send info back to ItemTableViewController
     
     func passActivityInformation(activityName: String, activityPrice: Int) {
         addActivity(activityName: activityName, activityPrice: activityPrice)
-    }
+    } //Function from ActivityDelegate protocol that allows AddActivityViewController to send info back to ItemTableViewController
     
     func addAccommodation(accommodationName: String, accommodationPrice: Int) {
         trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: accommodationName , itemPrice: accommodationPrice))
         self.tableView.reloadData()
-    }
+    } //Adds a new accommodation option to the selected location and reloads table data
     
     func addActivity(activityName: String, activityPrice: Int) {
         trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: activityName , itemPrice: activityPrice))
         self.tableView.reloadData()
-    }
+    } //Adds a new activity to the selected location and reloads table data
     
     
     @IBAction func addItemButton(_ sender: UIBarButtonItem) {
+        //Depending on the category selected in the previous screen, load either the screen for adding accommodation or an activity
         if category == .accommodation {
             performSegue(withIdentifier: "goToAccommodationView", sender: nil)
         } else {
@@ -47,6 +48,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         } else {
             self.title = "Activities"
         }
+        //Depending on the selected category, change the nav bar title
         
         //print("The selected location is index \(selectedLocation)")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
@@ -56,12 +58,10 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if category == .accommodation {
             return trips[selectedTrip].locations[selectedLocation].categories[0].items.count
         } else {
@@ -73,16 +73,16 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         if category == .accommodation {
             let name = trips[selectedTrip].locations[selectedLocation].categories[0].items[indexPath.row].itemName
-            print("Current number of items in the accom list is \(trips[selectedTrip].locations[selectedLocation].categories[0].getItemCount())")
-            print("Current index to find items from is \(indexPath.row)")
+//            print("Current number of items in the accom list is \(trips[selectedTrip].locations[selectedLocation].categories[0].getItemCount())")
+//            print("Current index to find items from is \(indexPath.row)")
             let price = trips[selectedTrip].locations[selectedLocation].categories[0].items[indexPath.row].itemPrice
             cell.itemNameLabel!.text = name
             cell.itemCostLabel!.text = "$\(String(price)) per night"
             return cell
         } else {
             let name = trips[selectedTrip].locations[selectedLocation].categories[1].items[indexPath.row].itemName
-            print("Current number of items in the place list is \(trips[selectedTrip].locations[selectedLocation].categories[1].getItemCount())")
-            print("Current index to find items from is \(indexPath.row)")
+//            print("Current number of items in the place list is \(trips[selectedTrip].locations[selectedLocation].categories[1].getItemCount())")
+//            print("Current index to find items from is \(indexPath.row)")
             let price = trips[selectedTrip].locations[selectedLocation].categories[1].items[indexPath.row].itemPrice
             cell.itemNameLabel!.text = name
             cell.itemCostLabel!.text = "$\(String(price))"

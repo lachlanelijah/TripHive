@@ -9,7 +9,7 @@ import UIKit
 
 protocol AccommodationDelegate {
     func passAccommodationInformation(accommodationName: String, accommodationPrice: Int)
-}
+} //Delegate protocol that ItemTableViewController conforms to that allows AddAccommodationViewController to send information back
 
 class AddAccommodationViewController: UIViewController {
     
@@ -21,6 +21,7 @@ class AddAccommodationViewController: UIViewController {
             present(ac, animated: true)
         } else {
             delegate?.passAccommodationInformation(accommodationName: accommodationNameTextField.text!, accommodationPrice: Int(accommodationPriceTextField.text!)!)
+            //Passes the name of the new accommodation option into the delegate (sending it to ItemTableViewController) and dismisses AddAccommodationViewController
             dismiss(animated: true, completion: nil)
         }
     }

@@ -8,7 +8,7 @@
 import UIKit
 
 class ItemTableViewCell: UITableViewCell {
-
+    //A custom UITableViewCell class used in ItemTableViewController; allows access to the labels for item name and cost
     @IBOutlet weak var itemCostLabel: UILabel!
     @IBOutlet weak var itemNameLabel: UILabel!
     override func awakeFromNib() {

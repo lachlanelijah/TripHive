@@ -92,6 +92,7 @@ class Trip {
     }
     
     func getItemCount(selectedTrip: Int, selectedLocation: Int, category: categoryType) -> Int {
+        //Gets the item count of the selected trip, so the ItemTableViewController can set the right amount of rows
         if category == .accommodation {
             return trips[selectedTrip].locations[selectedLocation].categories[0].getItemCount()
         } else {

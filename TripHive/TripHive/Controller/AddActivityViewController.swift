@@ -9,7 +9,7 @@ import UIKit
 
 protocol ActivityDelegate {
     func passActivityInformation(activityName: String, activityPrice: Int)
-}
+} //Delegate protocol that ItemTableViewController conforms to that allows AddActivityViewController to send information back
 
 class AddActivityViewController: UIViewController {
 
@@ -23,6 +23,7 @@ class AddActivityViewController: UIViewController {
             present(ac, animated: true)
         } else {
             delegate?.passActivityInformation(activityName: activityNameTextField.text!, activityPrice: Int(activityPriceTextField.text!)!)
+            //Passes the name of the new activity option into the delegate (sending it to ItemTableViewController) and dismisses AddActivityViewController
             dismiss(animated: true, completion: nil)
         }
     }

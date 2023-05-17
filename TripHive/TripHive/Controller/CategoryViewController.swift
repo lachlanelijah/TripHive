@@ -24,6 +24,8 @@ class CategoryViewController: UIViewController {
             VC!.selectedLocation = selectedLocation
         }
         
+        //Send the index of the selected trip, location, and category to ItemTableViewController
+        
         if segue.identifier == "goToActivitiesItemView" {
             let VC = segue.destination as? ItemTableViewController
             VC!.selectedTrip = selectedTrip

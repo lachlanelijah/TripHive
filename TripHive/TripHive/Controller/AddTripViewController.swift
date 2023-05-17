@@ -9,11 +9,10 @@ import UIKit
 
 protocol TripDelegate {
     func passTripInformation(tripName: String, tripPeople: Int)
-}
+} //Delegate protocol that TripTableViewController conforms to that allows AddTripViewController to send information back
 
 class AddTripViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-//    var delegate: TripDelegate?
     var delegate: TripDelegate?
     
     var selectedPeople = 0
@@ -59,6 +58,7 @@ class AddTripViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             present(ac, animated: true)
         } else {
             delegate?.passTripInformation(tripName: "\(tripNameTextField.text!) \(yearPickerData[selectedYear])", tripPeople: peoplePickerData[selectedPeople])
+            //Passes the name of the new location into the delegate (sending it to TripTableViewController) and dismisses AddLocationViewController
             dismiss(animated: true, completion: nil)
         }
     }

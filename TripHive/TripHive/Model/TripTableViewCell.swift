@@ -8,7 +8,7 @@
 import UIKit
 
 class TripTableViewCell: UITableViewCell {
-
+    //A custom UITableViewCell class used in TripTableViewController; allows access to the labels for trip name, icon, and number of people
     @IBOutlet weak var peopleNumberLabel: UILabel!
     @IBOutlet weak var tripIcon: UIImageView!
     @IBOutlet weak var tripNameLabel: UILabel!
