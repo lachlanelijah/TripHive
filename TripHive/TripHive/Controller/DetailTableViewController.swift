@@ -10,6 +10,7 @@ import UIKit
 class DetailTableViewController: UITableViewController {
     
     var selectedTrip = 0
+    //test commit
     var selectedLocation = 0
     var selectedItem = 0
     var category: categoryType = .activities

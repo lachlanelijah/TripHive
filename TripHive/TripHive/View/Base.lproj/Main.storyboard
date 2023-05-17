@@ -537,7 +537,7 @@
                                         <rect key="frame" x="0.0" y="1" width="19.666666666666668" height="32.666666666666671"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpW-ZF-CdM">
-                                        <rect key="frame" x="37.666666666666657" y="0.0" width="200" height="34"/>
+                                        <rect key="frame" x="25.666666666666657" y="0.0" width="200" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="sJu-9P-3xV"/>
                                         </constraints>
