@@ -36,6 +36,15 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         }
         
     }
+    
+    @IBAction func rankOptionsTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "goToRankOptions", sender: nil)
+    }
+    
+    func goToRankOptions(status: Bool) {
+        
+    }
+    
     var selectedTrip = 0
     var selectedLocation = 0
     var category: categoryType = .activities
@@ -266,6 +275,10 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         if let destination = segue.destination as? AddAccommodationViewController {
             destination.delegate = self
         }
+        
+//        if let destination = segue.destination as? RankOptionsViewController {
+//            destination.delegate = self
+//        }
         
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if

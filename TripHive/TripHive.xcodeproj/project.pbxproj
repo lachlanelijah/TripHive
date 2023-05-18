@@ -24,6 +24,7 @@
 		6DFC736B2A06076300E17136 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC736A2A06076300E17136 /* AddLocationViewController.swift */; };
 		6DFC736F2A060E1600E17136 /* AddAccommodationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC736E2A060E1600E17136 /* AddAccommodationViewController.swift */; };
 		6DFC73712A060E2900E17136 /* AddActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC73702A060E2900E17136 /* AddActivityViewController.swift */; };
+		9A4439AC2A16576900B3D774 /* RankOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4439AB2A16576900B3D774 /* RankOptionsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		6DFC736A2A06076300E17136 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		6DFC736E2A060E1600E17136 /* AddAccommodationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationViewController.swift; sourceTree = "<group>"; };
 		6DFC73702A060E2900E17136 /* AddActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityViewController.swift; sourceTree = "<group>"; };
+		9A4439AB2A16576900B3D774 /* RankOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankOptionsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				6DFC736A2A06076300E17136 /* AddLocationViewController.swift */,
 				6DB3A0112A049EE600250F69 /* CategoryViewController.swift */,
 				6DB3A0132A04A03A00250F69 /* ItemTableViewController.swift */,
+				9A4439AB2A16576900B3D774 /* RankOptionsViewController.swift */,
 				6DFC736E2A060E1600E17136 /* AddAccommodationViewController.swift */,
 				6DFC73702A060E2900E17136 /* AddActivityViewController.swift */,
 				6DB3A0152A04A09300250F69 /* DetailTableViewController.swift */,
@@ -209,6 +212,7 @@
 				6D5AF9F02A01F3E800FE5782 /* AppDelegate.swift in Sources */,
 				6D5AF9F22A01F3E800FE5782 /* SceneDelegate.swift in Sources */,
 				6DB3A00E2A03937C00250F69 /* LocationTableViewController.swift in Sources */,
+				9A4439AC2A16576900B3D774 /* RankOptionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
