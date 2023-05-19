@@ -40,6 +40,7 @@ class RankOptionsTableViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.setEditing(!tableView.isEditing, animated: true)
         numberOfPeople = trips[selectedTrip].getNumberOfPeople()
         print("Trip: \(selectedTrip), Location: \(selectedLocation), category: \(category)")
         print(trips[selectedTrip].getNumberOfPeople())
@@ -88,9 +89,13 @@ class RankOptionsTableViewController: UITableViewController {
             cell.itemCostLabel!.text = "$\(String(price))"
             return cell
         }
-
-        return cell
     }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+            
+                return .none
+
+        }
     
 
     /*
@@ -113,12 +118,13 @@ class RankOptionsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        //Allows the re-ordering of the table rows
     }
-    */
+    
 
     /*
     // Override to support conditional rearranging of the table view.

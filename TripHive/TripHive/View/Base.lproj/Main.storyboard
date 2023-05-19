@@ -755,7 +755,7 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onU-y0-qsa">
-                                            <rect key="frame" x="39.999999999999993" y="32.666666666666671" width="73.333333333333314" height="40.666666666666671"/>
+                                            <rect key="frame" x="20" y="32.666666666666671" width="73.333333333333329" height="40.666666666666671"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -766,7 +766,7 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="kG9-wI-4db" secondAttribute="trailing" constant="20" id="Ymi-Bn-8nH"/>
                                         <constraint firstItem="kG9-wI-4db" firstAttribute="top" secondItem="fRx-pb-lt7" secondAttribute="top" constant="20" id="mFJ-mu-GvG"/>
                                         <constraint firstAttribute="bottom" secondItem="kG9-wI-4db" secondAttribute="bottom" constant="20" id="qzC-PV-04v"/>
-                                        <constraint firstItem="onU-y0-qsa" firstAttribute="leading" secondItem="fRx-pb-lt7" secondAttribute="leadingMargin" constant="20" id="wbb-Tc-jy8"/>
+                                        <constraint firstItem="onU-y0-qsa" firstAttribute="leading" secondItem="fRx-pb-lt7" secondAttribute="leadingMargin" id="wbb-Tc-jy8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

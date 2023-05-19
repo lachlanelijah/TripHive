@@ -14,7 +14,6 @@ protocol TripDelegate {
 class AddTripViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var delegate: TripDelegate?
-    
     var selectedPeople = 0
     var selectedYear = 0
     var peoplePickerData: [Int] = []
