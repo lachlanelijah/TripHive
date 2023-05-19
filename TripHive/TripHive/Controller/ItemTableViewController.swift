@@ -7,7 +7,13 @@
 
 import UIKit
 
-class ItemTableViewController: UITableViewController, AccommodationDelegate, ActivityDelegate {
+class ItemTableViewController: UITableViewController, AccommodationDelegate, ActivityDelegate, RankOptionsDelegate {
+    func passRankingInformation() {
+        //maybe create a function to rearrange items
+        //rearrange items in the array based on ranking points determined by RankOptionsTableViewController
+        //reload the table
+    }
+    
     func passAccommodationInformation(accommodationName: String, accommodationPrice: Int) {
         addAccommodation(accommodationName: accommodationName, accommodationPrice: accommodationPrice)
     } //Function from AccommodationDelegate protocol that allows AddAccommodationViewController to send info back to ItemTableViewController
@@ -276,9 +282,20 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             destination.delegate = self
         }
         
-//        if let destination = segue.destination as? RankOptionsViewController {
-//            destination.delegate = self
-//        }
+        if let destination = segue.destination as? RankOptionsTableViewController {
+            destination.delegate = self
+        }
+        
+        if
+            segue.identifier == "goToRankOptionsView",
+            let VC = segue.destination as? UINavigationController
+        {
+            let tableVC = VC.viewControllers.first as! RankOptionsTableViewController
+            tableVC.selectedTrip = selectedTrip
+            tableVC.category = category
+            tableVC.selectedLocation = selectedLocation
+        }
+        
         
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if
