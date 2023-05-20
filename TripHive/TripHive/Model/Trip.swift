@@ -63,6 +63,7 @@ struct Category {
 struct Item {
     var itemName: String
     var itemPrice: Int
+    var pointsFromEachPerson: [Int] = []
 }
 
 class Trip {

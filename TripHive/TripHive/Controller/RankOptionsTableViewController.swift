@@ -15,9 +15,14 @@ class RankOptionsTableViewController: UITableViewController {
     
     var selectedTrip = 0
     var selectedLocation = 0
-    var category: categoryType = .accommodation
+    var category: categoryType = .accommodation // category will be overridden by input
+    var categoryIndex = 0
     var numberOfPeople = 1
     var currentPerson = 1
+    // var allItemRankings = [Item: [Int]]
+    
+    var theItems: [Item] = []
+    var theItemsDefaultSort: [Item] = []
     
     var delegate: RankOptionsDelegate?
     
@@ -30,12 +35,21 @@ class RankOptionsTableViewController: UITableViewController {
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if (currentPerson == numberOfPeople ) {
             dismiss(animated: true, completion: nil)
+            for i in 0..<theItems.count {
+                var itemPointsTotal = 0
+                for k in 0..<theItems[i].pointsFromEachPerson.count {
+                    itemPointsTotal += theItems[i].pointsFromEachPerson[k]
+                }
+                print("The item \(theItems[i]) has \(itemPointsTotal) points total")
+            }
             //do the delegate prepare send data stuff
         } else if (currentPerson == numberOfPeople-1) {
             nextButton.title = "Done"
             currentPerson += 1
         } else {
             currentPerson += 1
+            theItems = theItemsDefaultSort
+            tableView.reloadData()
         }
     }
     override func viewDidLoad() {
@@ -43,8 +57,11 @@ class RankOptionsTableViewController: UITableViewController {
         tableView.setEditing(!tableView.isEditing, animated: true)
         numberOfPeople = trips[selectedTrip].getNumberOfPeople()
         print("Trip: \(selectedTrip), Location: \(selectedLocation), category: \(category)")
-        print(trips[selectedTrip].getNumberOfPeople())
+        print("\(trips[selectedTrip].getNumberOfPeople()) people in this trip")
+        print(categoryIndex)
         
+        theItems = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+        theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -63,9 +80,9 @@ class RankOptionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if category == .accommodation {
-            return trips[selectedTrip].locations[selectedLocation].categories[0].items.count
+            return theItems.count
         } else {
-            return trips[selectedTrip].locations[selectedLocation].categories[1].items.count
+            return theItems.count
         }
     }
 
@@ -73,18 +90,18 @@ class RankOptionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RankOptionsCell", for: indexPath) as! RankOptionsTableViewCell
         if category == .accommodation {
-            let name = trips[selectedTrip].locations[selectedLocation].categories[0].items[indexPath.row].itemName
+            let name = theItems[indexPath.row].itemName
 //            print("Current number of items in the accom list is \(trips[selectedTrip].locations[selectedLocation].categories[0].getItemCount())")
 //            print("Current index to find items from is \(indexPath.row)")
-            let price = trips[selectedTrip].locations[selectedLocation].categories[0].items[indexPath.row].itemPrice
+            let price = theItems[indexPath.row].itemPrice
             cell.itemNameLabel!.text = name
             cell.itemCostLabel!.text = "$\(String(price)) per night"
             return cell
         } else {
-            let name = trips[selectedTrip].locations[selectedLocation].categories[1].items[indexPath.row].itemName
+            let name = theItems[indexPath.row].itemName
 //            print("Current number of items in the place list is \(trips[selectedTrip].locations[selectedLocation].categories[1].getItemCount())")
 //            print("Current index to find items from is \(indexPath.row)")
-            let price = trips[selectedTrip].locations[selectedLocation].categories[1].items[indexPath.row].itemPrice
+            let price = theItems[indexPath.row].itemPrice
             cell.itemNameLabel!.text = name
             cell.itemCostLabel!.text = "$\(String(price))"
             return cell
@@ -121,9 +138,21 @@ class RankOptionsTableViewController: UITableViewController {
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        theItems.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        print("\(theItems[destinationIndexPath.row]) ")
         //Allows the re-ordering of the table rows
+        var thisItemPoints = theItems.count - destinationIndexPath.row
+        // 1st of 2 becomes 2 points, 2nd of 2 becomes 1 point
+        var thePointsArray = theItems[destinationIndexPath.row].pointsFromEachPerson
+        if currentPerson == 1 { // if there are ranks from a previous session
+            if !thePointsArray.isEmpty {
+                thePointsArray.removeAll()
+            }
+        }
+        theItems[destinationIndexPath.row].pointsFromEachPerson.append(thisItemPoints)
     }
+    // THE PROBLEM: If the cells aren't rearranged, they get no points
+    // TO-DO: Append points to cells even if not dragged
     
 
     /*

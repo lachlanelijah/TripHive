@@ -45,7 +45,7 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-            trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        trips[selectedTrip].locations.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
     
 //    @objc func addTapped() {

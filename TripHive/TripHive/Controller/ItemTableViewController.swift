@@ -28,7 +28,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     } //Adds a new accommodation option to the selected location and reloads table data
     
     func addActivity(activityName: String, activityPrice: Int) {
-        trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: activityName , itemPrice: activityPrice))
+        trips[self.selectedTrip].locations[self.selectedLocation].categories[1].items.append(Item(itemName: activityName , itemPrice: activityPrice))
         self.tableView.reloadData()
     } //Adds a new activity to the selected location and reloads table data
     
@@ -53,7 +53,8 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     
     var selectedTrip = 0
     var selectedLocation = 0
-    var category: categoryType = .activities
+    var category: categoryType = .activities // will be overridden
+    var categoryIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +64,8 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         } else {
             self.title = "Activities"
         }
+        
+        print("Category: \(categoryIndex)")
         //Depending on the selected category, change the nav bar title
         
         //print("The selected location is index \(selectedLocation)")
@@ -78,27 +81,27 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if category == .accommodation {
-            return trips[selectedTrip].locations[selectedLocation].categories[0].items.count
+            return trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.count
         } else {
-            return trips[selectedTrip].locations[selectedLocation].categories[1].items.count
+            return trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.count
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         if category == .accommodation {
-            let name = trips[selectedTrip].locations[selectedLocation].categories[0].items[indexPath.row].itemName
-//            print("Current number of items in the accom list is \(trips[selectedTrip].locations[selectedLocation].categories[0].getItemCount())")
+            let name = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row].itemName
+//            print("Current number of items in the accom list is \(trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].getItemCount())")
 //            print("Current index to find items from is \(indexPath.row)")
-            let price = trips[selectedTrip].locations[selectedLocation].categories[0].items[indexPath.row].itemPrice
+            let price = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row].itemPrice
             cell.itemNameLabel!.text = name
             cell.itemCostLabel!.text = "$\(String(price)) per night"
             return cell
         } else {
-            let name = trips[selectedTrip].locations[selectedLocation].categories[1].items[indexPath.row].itemName
-//            print("Current number of items in the place list is \(trips[selectedTrip].locations[selectedLocation].categories[1].getItemCount())")
+            let name = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row].itemName
+//            print("Current number of items in the place list is \(trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].getItemCount())")
 //            print("Current index to find items from is \(indexPath.row)")
-            let price = trips[selectedTrip].locations[selectedLocation].categories[1].items[indexPath.row].itemPrice
+            let price = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row].itemPrice
             cell.itemNameLabel!.text = name
             cell.itemCostLabel!.text = "$\(String(price))"
             return cell
@@ -106,7 +109,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-            trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
     
 //    @objc func addTapped() {

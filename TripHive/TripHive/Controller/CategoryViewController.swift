@@ -21,6 +21,7 @@ class CategoryViewController: UIViewController {
             let VC = segue.destination as? ItemTableViewController
             VC!.selectedTrip = selectedTrip
             VC!.category = .accommodation
+            VC!.categoryIndex = 0
             VC!.selectedLocation = selectedLocation
         }
         
@@ -30,6 +31,7 @@ class CategoryViewController: UIViewController {
             let VC = segue.destination as? ItemTableViewController
             VC!.selectedTrip = selectedTrip
             VC!.category = .activities
+            VC!.categoryIndex = 1
             VC!.selectedLocation = selectedLocation
         }
     }
