@@ -57,7 +57,11 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "goToLocationView", sender: self)
+        if (tableView.isEditing) {
+            performSegue(withIdentifier: "goToAddTripView", sender: trips[indexPath.row]);
+        } else {
+            self.performSegue(withIdentifier: "goToLocationView", sender: self)
+        }
         //when a cell is tapped, go to the next view
     }
     
@@ -134,6 +138,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
     
     @objc func editTapped() {
         tableView.setEditing(!tableView.isEditing, animated: true)
+        tableView.allowsSelectionDuringEditing = true;
         
         if tableView.isEditing {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editTapped))
