@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rge-v3-5i0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rge-v3-5i0">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -288,7 +288,7 @@
             <objects>
                 <tableViewController id="hsi-Ux-9rg" customClass="DetailTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="KFY-Rg-4QN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -374,7 +374,7 @@
             <objects>
                 <viewController id="X9S-VI-GXl" customClass="AddTripViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4f-0Y-YIj">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JH2-CY-8Fu">
@@ -390,7 +390,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="done" changesSelectionAsPrimaryAction="YES" id="7EM-yK-koX">
                                             <connections>
-                                                <action selector="addTripButton:" destination="X9S-VI-GXl" id="WoZ-1c-1CG"/>
+                                                <action selector="performTripAction:" destination="X9S-VI-GXl" id="WoZ-1c-1CG"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -401,7 +401,7 @@
                                 </navigationBarAppearance>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="X7h-BF-K1g">
-                                <rect key="frame" x="90.333333333333329" y="130" width="212.33333333333337" height="34"/>
+                                <rect key="frame" x="90.333333333333329" y="159.66666666666666" width="212.33333333333337" height="34"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="mMF-0h-oDU">
                                         <rect key="frame" x="0.0" y="0.0" width="212.33333333333334" height="34"/>
@@ -414,28 +414,32 @@
                                                 <rect key="frame" x="31" y="0.0" width="181.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="onTripNameChange" destination="X9S-VI-GXl" eventType="editingChanged" id="hd2-55-PaV"/>
+                                                    <action selector="onTripNameChange:" destination="X9S-VI-GXl" eventType="valueChanged" id="Es2-t7-5pz"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="E2f-LN-xv9">
-                                <rect key="frame" x="90.333333333333329" y="204" width="212.33333333333337" height="375"/>
+                                <rect key="frame" x="90.333333333333329" y="233.66666666666663" width="212.33333333333337" height="375"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="166" translatesAutoresizingMaskIntoConstraints="NO" id="CAS-Hk-gJC">
-                                        <rect key="frame" x="0.0" y="84.3333333333333" width="35.333333333333336" height="206.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="84.000000000000043" width="35.333333333333336" height="206.66666666666663"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yVZ-Xg-hOL">
                                                 <rect key="frame" x="0.0" y="1.9999999999999982" width="35.333333333333336" height="17"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dbN-R6-bV1">
-                                                <rect key="frame" x="4.3333333333333446" y="185.00000000000003" width="26.666666666666671" height="23.666666666666657"/>
+                                                <rect key="frame" x="4.3333333333333446" y="184.99999999999997" width="26.666666666666671" height="23.666666666666657"/>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="168" translatesAutoresizingMaskIntoConstraints="NO" id="AdB-KL-aKC">
-                                        <rect key="frame" x="45.333333333333329" y="83.3333333333333" width="57" height="208.66666666666663"/>
+                                        <rect key="frame" x="45.333333333333329" y="83.000000000000043" width="57" height="208.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqV-cn-nqV">
                                                 <rect key="frame" x="0.0" y="0.0" width="57" height="20.333333333333332"/>
@@ -444,7 +448,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oL3-7u-l1D">
-                                                <rect key="frame" x="0.0" y="188.33333333333337" width="38.333333333333336" height="20.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="188.33333333333331" width="38.333333333333336" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -486,6 +490,8 @@
                     <connections>
                         <outlet property="navigationBar" destination="JH2-CY-8Fu" id="RE7-P0-ftx"/>
                         <outlet property="peoplePicker" destination="UIZ-T7-edQ" id="Gc7-wt-45l"/>
+                        <outlet property="tripActionButton" destination="7EM-yK-koX" id="f84-cY-NUm"/>
+                        <outlet property="tripActionLabel" destination="EC4-xu-cBb" id="h6A-YL-fjL"/>
                         <outlet property="tripNameTextField" destination="sEQ-fu-w3E" id="Igl-7x-Qde"/>
                         <outlet property="yearPicker" destination="qvb-gf-3oa" id="zLJ-yp-6Ud"/>
                     </connections>
@@ -523,7 +529,7 @@
             <objects>
                 <viewController id="xnx-XE-L2X" customClass="AddLocationViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rQr-3r-k8y">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UfH-50-m2r">
@@ -550,7 +556,7 @@
                                 </navigationBarAppearance>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="y8f-dp-jwS">
-                                <rect key="frame" x="77.666666666666671" y="256.66666666666669" width="237.66666666666663" height="34"/>
+                                <rect key="frame" x="77.666666666666671" y="286" width="237.66666666666663" height="34"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="globe.asia.australia.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fOR-vt-apy">
                                         <rect key="frame" x="0.0" y="1" width="19.666666666666668" height="32.666666666666671"/>
@@ -566,23 +572,23 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZKF-Je-3tt">
-                                <rect key="frame" x="56" y="330.66666666666669" width="281" height="122"/>
+                                <rect key="frame" x="56" y="360" width="281" height="122"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="X6b-3E-c6D">
-                                        <rect key="frame" x="0.0" y="25.666666666666629" width="26" height="70.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="25.666666666666686" width="26" height="70.666666666666671"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="hGp-cW-CvT">
                                                 <rect key="frame" x="0.0" y="-3.6666666666666679" width="26" height="28"/>
                                                 <imageReference key="image" image="figure.walk.arrival" catalog="system" symbolScale="large"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="aYe-C6-V7Y">
-                                                <rect key="frame" x="0.0" y="46.6666666666667" width="26" height="28"/>
+                                                <rect key="frame" x="0.0" y="46.666666666666643" width="26" height="28"/>
                                                 <imageReference key="image" image="figure.walk.departure" catalog="system" symbolScale="large"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="QQL-bp-WSn">
-                                        <rect key="frame" x="42" y="24.666666666666629" width="77" height="72.666666666666671"/>
+                                        <rect key="frame" x="42" y="24.666666666666686" width="77" height="72.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEi-Cw-YgH">
                                                 <rect key="frame" x="0.0" y="0.0" width="48.333333333333336" height="20.333333333333332"/>
@@ -591,7 +597,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYP-qK-cS1">
-                                                <rect key="frame" x="0.0" y="52.333333333333371" width="76.666666666666671" height="20.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="52.333333333333314" width="76.666666666666671" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -675,7 +681,7 @@
             <objects>
                 <viewController id="ZX5-aq-E1j" customClass="AddActivityViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qjm-IE-VHt">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Yl-E1-uJy">
@@ -702,7 +708,7 @@
                                 </navigationBarAppearance>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="ciW-0u-0SJ">
-                                <rect key="frame" x="89.333333333333329" y="334" width="214.66666666666669" height="115"/>
+                                <rect key="frame" x="89.333333333333329" y="363.66666666666669" width="214.66666666666669" height="115"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="L3T-OT-Snl">
                                         <rect key="frame" x="0.0" y="0.0" width="214.66666666666666" height="34"/>
@@ -765,7 +771,7 @@
             <objects>
                 <tableViewController id="30Z-m4-dr9" customClass="RankOptionsTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Olu-Pd-Efk">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -845,7 +851,7 @@
             <objects>
                 <viewController id="Ds4-ol-CvM" customClass="AddAccommodationViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7QB-at-pAg">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AoS-BR-ZQ7">
@@ -872,7 +878,7 @@
                                 </navigationBarAppearance>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="IO6-ku-Ryn">
-                                <rect key="frame" x="89.333333333333329" y="334" width="214.66666666666669" height="115"/>
+                                <rect key="frame" x="89.333333333333329" y="363.66666666666669" width="214.66666666666669" height="115"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="pcv-bP-DIQ">
                                         <rect key="frame" x="0.0" y="0.0" width="214.66666666666666" height="34"/>
@@ -935,7 +941,7 @@
             <objects>
                 <tableViewController id="L6y-SQ-SYF" customClass="RankLocationsTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="oNl-Mf-7qQ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>

@@ -67,16 +67,32 @@ struct Item {
 }
 
 class Trip {
-    var numberOfPeople: Int
+    var id = UUID();
     var tripName: String
+    var numberOfPeople: Int
+    var tripYear: Int;
     var tripIcon: UIImage
     var locations: [Location]
     
-    init(people: Int, name: String, icon: UIImage) {
+    init(people: Int, name: String, year: Int) {
+        numberOfPeople = people;
+        tripName = name;
+        tripYear = year;
+        tripIcon = UIImage(systemName: "airplane.arrival", withConfiguration: config)!
+        locations = [defaultLocation1, defaultLocation2]
+    }
+    
+    // Parameterised constructor
+    init(people: Int, name: String, year: Int, icon: UIImage) {
         numberOfPeople = people
         tripName = name
+        tripYear = year;
         tripIcon = icon
         locations = [defaultLocation1, defaultLocation2]
+    }
+    
+    func isValid() -> Bool {
+        return !tripName.isEmpty && numberOfPeople > 0 && tripYear > 0;
     }
     
     func addLocation(_ name: String) {
@@ -115,6 +131,14 @@ class Trip {
     
     func getTripName() -> String {
         return tripName
+    }
+    
+    func setTripYear(_ year: Int) {
+        tripYear = year;
+    }
+    
+    func getTripYear() -> Int {
+        return tripYear;
     }
     
     func setIcon(_ name: UIImage) {
