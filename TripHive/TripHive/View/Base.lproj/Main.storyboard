@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rge-v3-5i0">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -71,7 +71,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TripHive" largeTitleDisplayMode="always" id="AHv-Nc-mMs">
-                        <barButtonItem key="leftBarButtonItem" image="calendar.badge.plus" catalog="system" id="D4w-yt-MhS">
+                        <barButtonItem key="rightBarButtonItem" image="calendar.badge.plus" catalog="system" id="D4w-yt-MhS">
                             <connections>
                                 <action selector="goToAddTripViewButton:" destination="p4H-M8-e6E" id="VdN-Nl-3AJ"/>
                             </connections>
@@ -275,6 +275,9 @@
                         </centerItemGroups>
                     </navigationItem>
                     <connections>
+                        <outlet property="addNewItemButton" destination="AV1-5g-HCT" id="e18-zF-cIv"/>
+                        <outlet property="overflowMenu" destination="zCa-h4-7rA" id="S2z-UU-Qhb"/>
+                        <outlet property="rankOptionsButton" destination="FPP-IJ-t86" id="bCn-lw-iJr"/>
                         <segue destination="ZX5-aq-E1j" kind="presentation" identifier="goToActivityView" id="Kh1-pT-jEG"/>
                         <segue destination="Ds4-ol-CvM" kind="presentation" identifier="goToAccommodationView" id="lyV-Jl-Usc"/>
                     </connections>
@@ -817,7 +820,7 @@
                                 <connections>
                                     <outlet property="itemCostLabel" destination="pbL-tx-J90" id="5dH-Id-pUC"/>
                                     <outlet property="itemNameLabel" destination="jeq-Nn-bxx" id="65z-ca-fSU"/>
-                                    <outlet property="rankLabel" destination="onU-y0-qsa" id="izS-jh-F7I"/>
+                                    <outlet property="rankLabel" destination="onU-y0-qsa" id="0xx-Kz-e2U"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

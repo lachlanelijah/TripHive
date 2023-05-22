@@ -43,6 +43,11 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         
     }
     
+    
+    @IBOutlet weak var overflowMenu: UIBarButtonItemGroup!
+    @IBOutlet weak var addNewItemButton: UIBarButtonItem!
+    @IBOutlet weak var rankOptionsButton: UIBarButtonItem!
+    
     @IBAction func rankOptionsTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "goToRankOptions", sender: nil)
     }
@@ -58,7 +63,12 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.largeTitleDisplayMode = .never
+        let editButton = editButtonItem
+        let topRightButtons = [addNewItemButton!, editButton]
+        navigationItem.rightBarButtonItems = topRightButtons
+        
         if category == .accommodation {
             self.title = "Accommodation"
         } else {
@@ -69,7 +79,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         //Depending on the selected category, change the nav bar title
         
         //print("The selected location is index \(selectedLocation)")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
 
     }
 
@@ -296,6 +306,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             let tableVC = VC.viewControllers.first as! RankOptionsTableViewController
             tableVC.selectedTrip = selectedTrip
             tableVC.category = category
+            tableVC.categoryIndex = categoryIndex
             tableVC.selectedLocation = selectedLocation
         }
         

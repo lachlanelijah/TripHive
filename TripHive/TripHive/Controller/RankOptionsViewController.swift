@@ -34,7 +34,8 @@ class RankOptionsViewController: UIViewController { // ,delegates
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.largeTitleDisplayMode = .never
         if category == .accommodation {
             self.title = "Accommodation"
         } else {
