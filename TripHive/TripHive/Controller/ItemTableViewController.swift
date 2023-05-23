@@ -8,7 +8,10 @@
 import UIKit
 
 class ItemTableViewController: UITableViewController, AccommodationDelegate, ActivityDelegate, RankOptionsDelegate {
-    func passRankingInformation() {
+    func fetchRankingInformation(nowRanked: [Item]) {
+        print(nowRanked)
+        sortByRank(array: nowRanked)
+        
         //maybe create a function to rearrange items
         //rearrange items in the array based on ranking points determined by RankOptionsTableViewController
         //reload the table
@@ -24,11 +27,13 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     
     func addAccommodation(accommodationName: String, accommodationPrice: Int) {
         trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: accommodationName , itemPrice: accommodationPrice))
+        theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
         self.tableView.reloadData()
     } //Adds a new accommodation option to the selected location and reloads table data
     
     func addActivity(activityName: String, activityPrice: Int) {
         trips[self.selectedTrip].locations[self.selectedLocation].categories[1].items.append(Item(itemName: activityName , itemPrice: activityPrice))
+        theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
         self.tableView.reloadData()
     } //Adds a new activity to the selected location and reloads table data
     
@@ -61,6 +66,10 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     var category: categoryType = .activities // will be overridden
     var categoryIndex = 0
     
+    var theItemsDefaultSort: [Item] = []
+    var theItemsRanked: [Item] = []
+    var sortingByRank = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -76,6 +85,8 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         }
         
         print("Category: \(categoryIndex)")
+        
+        theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
         //Depending on the selected category, change the nav bar title
         
         //print("The selected location is index \(selectedLocation)")
@@ -83,6 +94,14 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
 
     }
 
+    func sortByRank(array: [Item]) {
+        print(theItemsRanked)
+        theItemsRanked = array.sorted {
+            $0.totalPoints > $1.totalPoints
+        }
+        print(theItemsRanked)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -91,35 +110,39 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if category == .accommodation {
-            return trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.count
+            return theItemsDefaultSort.count
         } else {
-            return trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.count
+            return theItemsRanked.count
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
+        
+        if sortingByRank {
+            let name = theItemsRanked[indexPath.row].itemName
+            let price = theItemsRanked[indexPath.row].itemPrice
+        }
+        
+        let name = theItemsDefaultSort[indexPath.row].itemName
+        let price = theItemsDefaultSort[indexPath.row].itemPrice
+        cell.itemNameLabel!.text = name
+        
         if category == .accommodation {
-            let name = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row].itemName
-//            print("Current number of items in the accom list is \(trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].getItemCount())")
-//            print("Current index to find items from is \(indexPath.row)")
-            let price = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row].itemPrice
-            cell.itemNameLabel!.text = name
             cell.itemCostLabel!.text = "$\(String(price)) per night"
             return cell
         } else {
-            let name = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row].itemName
-//            print("Current number of items in the place list is \(trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].getItemCount())")
-//            print("Current index to find items from is \(indexPath.row)")
-            let price = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row].itemPrice
-            cell.itemNameLabel!.text = name
             cell.itemCostLabel!.text = "$\(String(price))"
             return cell
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        let theItemToMove = theItemsDefaultSort[sourceIndexPath.row]
+        theItemsDefaultSort.remove(at: sourceIndexPath.row)
+        theItemsDefaultSort.insert(theItemToMove, at: destinationIndexPath.row)
+        print(theItemsDefaultSort)
     }
     
 //    @objc func addTapped() {
@@ -308,6 +331,9 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             tableVC.category = category
             tableVC.categoryIndex = categoryIndex
             tableVC.selectedLocation = selectedLocation
+//            theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+            print(theItemsDefaultSort)
+            tableVC.theItemsDefaultSort = theItemsDefaultSort
         }
         
         

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rge-v3-5i0">
     <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -151,11 +150,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="hbY-1y-Rfn">
-                                <rect key="frame" x="71.666666666666686" y="295.66666666666669" width="250" height="261.00000000000006"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="76" translatesAutoresizingMaskIntoConstraints="NO" id="hbY-1y-Rfn">
+                                <rect key="frame" x="71.666666666666686" y="288" width="250" height="276"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDh-iN-F6F">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="100"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES" staticText="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="zDl-M7-OVZ"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="zo7-ah-j3C"/>
@@ -167,9 +169,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0U1-CZ-dbW">
-                                        <rect key="frame" x="0.0" y="161" width="250" height="100"/>
+                                        <rect key="frame" x="0.0" y="176" width="250" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="r3m-Eo-sAA"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="r3m-Eo-sAA"/>
                                             <constraint firstAttribute="height" constant="100" id="z3M-Pl-lXO"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
@@ -181,7 +183,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oA-BG-b1u">
-                                <rect key="frame" x="128" y="617" width="138" height="35"/>
+                                <rect key="frame" x="127" y="734" width="138" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Total Spending"/>
@@ -343,7 +345,7 @@
             </objects>
             <point key="canvasLocation" x="4251.1450381679388" y="814.78873239436621"/>
         </scene>
-        <!--Settings-->
+        <!--Shortlist-->
         <scene sceneID="I9R-UA-nu3">
             <objects>
                 <tableViewController id="CPX-CG-l5I" sceneMemberID="viewController">
@@ -366,7 +368,7 @@
                             <outlet property="delegate" destination="CPX-CG-l5I" id="tyj-ba-Xhc"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Rce-4o-6bu"/>
+                    <tabBarItem key="tabBarItem" title="Shortlist" image="star.fill" catalog="system" selectedImage="star.fill" id="Rce-4o-6bu"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-wy-IYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1021,7 +1023,6 @@
         <image name="figure.walk.arrival" catalog="system" width="125" height="128"/>
         <image name="figure.walk.departure" catalog="system" width="123" height="128"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="92"/>
-        <image name="gear" catalog="system" width="128" height="122"/>
         <image name="globe.asia.australia.fill" catalog="system" width="128" height="123"/>
         <image name="house.circle" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
@@ -1029,6 +1030,7 @@
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="trophy" catalog="system" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

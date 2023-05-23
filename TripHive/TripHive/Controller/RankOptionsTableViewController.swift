@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RankOptionsDelegate {
-    func passRankingInformation()
+    func fetchRankingInformation(nowRanked: [Item])
 } //Delegate protocol that ItemTableViewController conforms to that allows AddAccommodationViewController to send information back
 
 class RankOptionsTableViewController: UITableViewController {
@@ -36,19 +36,22 @@ class RankOptionsTableViewController: UITableViewController {
         commitPoints()
             
             if currentPerson == numberOfPeople { // if this is the last person
-                dismiss(animated: true, completion: nil)
                 for i in 0..<theItems.count { // iterate through items array
                     var itemPointsTotal = 0
                     for k in 0..<theItems[i].pointsFromEachPerson.count {
                         itemPointsTotal += theItems[i].pointsFromEachPerson[k]
                     }
-                    // print("The item \(theItems[i]) has \(itemPointsTotal) points total")
+                    print("The item \(theItems[i]) has \(itemPointsTotal) points total")
                 }
                 print(theItems)
                 print("Done ranking")
-                // do the delegate prepare to send data stuff
+                delegate?.fetchRankingInformation(nowRanked: theItems)
+                //Passes the name of the new activity option into the delegate (sending it to ItemTableViewController) and dismisses AddActivityViewController
+                dismiss(animated: true, completion: nil)
             } else { // if this is NOT the last person
                 // theItems = theItemsDefaultSort
+                // William intended to reset the item sort order to default for the next person
+                // BUT the above code would also clear all points in the array. so it's dormant for now
                 tableView.reloadData()
                 
                 currentPerson += 1
@@ -100,8 +103,7 @@ class RankOptionsTableViewController: UITableViewController {
         print("\(trips[selectedTrip].getNumberOfPeople()) people in this trip")
         // print(categoryIndex)
         
-        theItems = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
-        theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+        theItems = theItemsDefaultSort
         
         self.navigationItem.title = "Rank Items (Person \(currentPerson)/\(numberOfPeople))"
         
@@ -214,12 +216,14 @@ class RankOptionsTableViewController: UITableViewController {
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        theItems.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        let theItemToMove = theItems[sourceIndexPath.row]
+        theItems.remove(at: sourceIndexPath.row)
+        theItems.insert(theItemToMove, at: destinationIndexPath.row)
         // print("\(theItems[destinationIndexPath.row]) ")
+        print(theItems)
         tableView.reloadData()
     }
-    // THE PROBLEM: If the cells aren't rearranged, they get no points
-    // TO-DO: Append points to cells even if not dragged
+
     
 
     /*
