@@ -8,10 +8,16 @@
 import UIKit
 
 class ItemTableViewController: UITableViewController, AccommodationDelegate, ActivityDelegate, RankOptionsDelegate {
-    func fetchRankingInformation(nowRanked: [Item]) {
-        print(nowRanked)
-        sortByRank(array: nowRanked)
+    func fetchRankingInformation(rankedItems: [Item]) {
+        print(rankedItems)
+        for k in 0..<trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.count {
+            trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[k] = rankedItems[k]
+        }
+        theItems = rankedItems
+        sortBy = "RD"
+        sortedItems = sortItems()
         print("Success")
+        print(sortedItems)
         tableView.reloadData()
         overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2193}"
         //maybe create a function to rearrange items
@@ -29,13 +35,13 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     
     func addAccommodation(accommodationName: String, accommodationPrice: Int) {
         trips[self.selectedTrip].locations[self.selectedLocation].categories[0].items.append(Item(itemName: accommodationName , itemPrice: accommodationPrice))
-        theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+        theItems = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
         self.tableView.reloadData()
     } //Adds a new accommodation option to the selected location and reloads table data
     
     func addActivity(activityName: String, activityPrice: Int) {
         trips[self.selectedTrip].locations[self.selectedLocation].categories[1].items.append(Item(itemName: activityName , itemPrice: activityPrice))
-        theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+        theItems = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
         self.tableView.reloadData()
     } //Adds a new activity to the selected location and reloads table data
     
@@ -51,7 +57,13 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     }
     
     @IBAction func sortByRankTapped(_ sender: UIBarButtonItem) {
+        print(theItems)
+        print(sortedItems)
         tableView.reloadData()
+    }
+    @IBAction func sortDefaultTapped(_ sender: UIBarButtonItem) {
+        sortBy = "def"
+        trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items = theItems
     }
     
     @IBOutlet weak var overflowMenu: UIBarButtonItemGroup!
@@ -71,12 +83,46 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     var category: categoryType = .activities // will be overridden
     var categoryIndex = 0
     
-    var theItemsDefaultSort: [Item] = []
-    var theItemsRanked: [Item] = []
-    var sortingByRank = "a"
+    var theItems: [Item] = []
+    var sortedItems: [Item] = []
+    
+    var sortingByRank = "n"
     var sortingByShortlist = "n"
     var sortingByPrice = "n"
     var sortingByName = "n"
+    
+    var sortBy = "def"
+    
+    func sortItems() -> [Item] {
+        switch sortBy {
+        case "RA":
+            return theItems.sorted { $0.totalPoints < $1.totalPoints }
+        case "RD":
+            return theItems.sorted { $0.totalPoints > $1.totalPoints }
+        case "SA":
+            return theItems.sorted { $0.shortlisted < $1.shortlisted }
+        case "SD":
+            return theItems.sorted { $0.shortlisted > $1.shortlisted }
+        case "PA":
+            return theItems.sorted { $0.itemPrice < $1.itemPrice }
+        case "PD":
+            return theItems.sorted { $0.itemPrice > $1.itemPrice }
+        case "NA":
+            return theItems.sorted { $0.itemName < $1.itemName }
+        case "ND":
+            return theItems.sorted { $0.itemName > $1.itemName }
+        default:
+            return theItems
+        }
+    }
+    
+    func resetMenuLabels() {
+        let menuLabels = ["Rank Options...", "Sort by Rank", "Sort by Shortlist", "Sort by Price", "Sort by Name", "Sort Default"]
+        
+        for k in 0..<overflowMenu.barButtonItems.count {
+            overflowMenu.barButtonItems[k].title = menuLabels[k]
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +145,9 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         
         print("Category: \(categoryIndex)")
         
-        theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+        theItems = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+        
+        print("Items default sort: \(theItems)")
         //Depending on the selected category, change the nav bar title
         
         //print("The selected location is index \(selectedLocation)")
@@ -107,13 +155,13 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
 
     }
 
-    func sortByRank(array: [Item]) {
-        print(theItemsRanked)
-        theItemsRanked = array.sorted {
-            $0.totalPoints > $1.totalPoints
-        }
-        print(theItemsRanked)
-    }
+//    func sortByRank(array: [Item]) {
+//        print(sortedItems)
+//        sortedItems = array.sorted {
+//            $0.totalPoints > $1.totalPoints
+//        }
+//        print(sortedItems)
+//    }
     
     // MARK: - Table view data source
 
@@ -122,24 +170,15 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if category == .accommodation {
-//            return theItemsDefaultSort.count
-//        } else {
-//            return theItemsRanked.count
-//        }
-        return theItemsDefaultSort.count
+        return theItems.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         
-        let sortedItems: [Item] = []
-        
-        
-        
-        if sortingByRank == "a" && !theItemsRanked.isEmpty {
-            let name = theItemsRanked[indexPath.row].itemName
-            let price = theItemsRanked[indexPath.row].itemPrice
+        if sortBy != "def" && !sortedItems.isEmpty {
+            let name = sortedItems[indexPath.row].itemName
+            let price = sortedItems[indexPath.row].itemPrice
             cell.itemNameLabel!.text = name
             
             if category == .accommodation {
@@ -151,8 +190,8 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             }
         }
         
-        let name = theItemsDefaultSort[indexPath.row].itemName
-        let price = theItemsDefaultSort[indexPath.row].itemPrice
+        let name = theItems[indexPath.row].itemName
+        let price = theItems[indexPath.row].itemPrice
         cell.itemNameLabel!.text = name
         
         if category == .accommodation {
@@ -166,10 +205,10 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let theItemToMove = theItemsDefaultSort[sourceIndexPath.row]
-        theItemsDefaultSort.remove(at: sourceIndexPath.row)
-        theItemsDefaultSort.insert(theItemToMove, at: destinationIndexPath.row)
-        print(theItemsDefaultSort)
+        let theItemToMove = theItems[sourceIndexPath.row]
+        theItems.remove(at: sourceIndexPath.row)
+        theItems.insert(theItemToMove, at: destinationIndexPath.row)
+        print(theItems)
     }
     
 //    @objc func addTapped() {
@@ -229,12 +268,14 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
 
     @objc func editTapped() {
         tableView.setEditing(!tableView.isEditing, animated: true)
-            if tableView.isEditing {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editTapped))
-            }
-            else {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
-            }
+        if tableView.isEditing {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editTapped))
+        }
+        else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+        }
+        sortBy = "def"
+        resetMenuLabels()
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -312,10 +353,16 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
 
     /*
     // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
+     */
+//    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        let theItemToMove = theItemsDefaultSort[sourceIndexPath.row]
+//        theItemsDefaultSort.remove(at: sourceIndexPath.row)
+//        theItemsDefaultSort.insert(theItemToMove, at: destinationIndexPath.row)
+//        // print("\(theItems[destinationIndexPath.row]) ")
+//        print(theItemsDefaultSort)
+//        tableView.reloadData()
+//    }
+    
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -359,8 +406,8 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             tableVC.categoryIndex = categoryIndex
             tableVC.selectedLocation = selectedLocation
 //            theItemsDefaultSort = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
-            print(theItemsDefaultSort)
-            tableVC.theItemsDefaultSort = theItemsDefaultSort
+            print(theItems)
+            tableVC.theItemsDefaultSort = theItems
         }
 
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }

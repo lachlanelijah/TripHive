@@ -46,7 +46,10 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        trips[selectedTrip].locations.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        let theLocationToMove = trips[selectedTrip].locations[sourceIndexPath.row]
+        trips[selectedTrip].locations.remove(at: sourceIndexPath.row)
+        trips[selectedTrip].locations.insert(theLocationToMove, at: destinationIndexPath.row)
+        print(trips[selectedTrip].locations)
     }
     
 //    @objc func addTapped() {
@@ -170,9 +173,15 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
                     completion: nil
             )
         }
-
-            let swipeActions = UISwipeActionsConfiguration(actions: [delete])
-            return swipeActions
+        
+        // Allows editing of trip details
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
+            self!.performSegue(withIdentifier: "goToAddLocationView", sender: trips[indexPath.row]);
+        }
+        editAction.backgroundColor = .systemTeal
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete, editAction])
+        return swipeActions
         //Sets swipe actions (currently just cancel)
     }
 

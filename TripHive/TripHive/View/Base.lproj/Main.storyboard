@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rge-v3-5i0">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -283,6 +283,11 @@
                                     <barButtonItem title="Sort by Shortlist" image="star.fill" catalog="system" id="KM9-5g-S0z"/>
                                     <barButtonItem title="Sort by Price" image="dollarsign" catalog="system" id="MbT-rG-V3v"/>
                                     <barButtonItem title="Sort by Name" image="textformat.abc" catalog="system" id="xiD-SQ-tvG"/>
+                                    <barButtonItem title="Sort Default" image="lock.open.fill" catalog="system" id="g31-vP-b4W">
+                                        <connections>
+                                            <action selector="sortDefaultTapped:" destination="Oh8-Ug-Jo5" id="Dxu-1b-lvX"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </barButtonItems>
                             </barButtonItemGroup>
                         </centerItemGroups>
@@ -1234,6 +1239,7 @@
         <image name="globe.asia.australia.fill" catalog="system" width="128" height="123"/>
         <image name="house.circle" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="lock.open.fill" catalog="system" width="128" height="110"/>
         <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>

@@ -65,10 +65,11 @@ struct Item {
     var itemPrice: Int
     var pointsFromEachPerson: [Int] = []
     var totalPoints: Int = 0
-    var shortlisted: Bool = false
+    var shortlisted: Int = 0
 }
 
 class Trip {
+    
     var id = UUID();
     var tripName: String
     var numberOfPeople: Int

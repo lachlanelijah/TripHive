@@ -19,6 +19,11 @@ class AddAccommodationViewController: UIViewController {
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             ac.addAction(cancelAction)
             present(ac, animated: true)
+        } else if accommodationPriceTextField.text == "" {
+            let ac = UIAlertController(title: "Your accommodation needs a price!", message: nil, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            ac.addAction(cancelAction)
+            present(ac, animated: true)
         } else {
             delegate?.passAccommodationInformation(accommodationName: accommodationNameTextField.text!, accommodationPrice: Int(accommodationPriceTextField.text!)!)
             //Passes the name of the new accommodation option into the delegate (sending it to ItemTableViewController) and dismisses AddAccommodationViewController

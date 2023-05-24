@@ -132,7 +132,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
             self!.performSegue(withIdentifier: "goToAddTripView", sender: trips[indexPath.row]);
         }
-        editAction.backgroundColor = .systemMint
+        editAction.backgroundColor = .systemTeal
         
         let swipeActions = UISwipeActionsConfiguration(actions: [delete, editAction])
         return swipeActions
