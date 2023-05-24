@@ -9,6 +9,7 @@ import UIKit
 
 class ItemTableViewController: UITableViewController, AccommodationDelegate, ActivityDelegate, RankOptionsDelegate {
     func fetchRankingInformation(rankedItems: [Item]) {
+        resetMenuLabels()
         print(rankedItems)
         for k in 0..<trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.count {
             trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[k] = rankedItems[k]
@@ -57,13 +58,73 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     }
     
     @IBAction func sortByRankTapped(_ sender: UIBarButtonItem) {
-        print(theItems)
-        print(sortedItems)
+        resetMenuLabels()
+        updateLocalItems()
+        
+        // if theItems[0].totalPoints == 0
+        
+        if sortBy != "RD" {
+            sortBy = "RD"
+            overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2193}"
+        } else {
+            sortBy = "RA"
+            overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2191}"
+        }
+        sortedItems = sortItems()
         tableView.reloadData()
     }
+    @IBAction func sortByShortlistTapped(_ sender: UIBarButtonItem) {
+        resetMenuLabels()
+        updateLocalItems()
+        
+        if sortBy != "SD" {
+            sortBy = "SD"
+            overflowMenu.barButtonItems[2].title = "\u{2713} Sort by Shorlist \u{2193}"
+        } else {
+            sortBy = "SA"
+            overflowMenu.barButtonItems[2].title = "\u{2713} Sort by Shortlist \u{2191}"
+        }
+        sortedItems = sortItems()
+        tableView.reloadData()
+    }
+    @IBAction func sortByPriceTapped(_ sender: UIBarButtonItem) {
+        resetMenuLabels()
+        updateLocalItems()
+        
+        if sortBy != "PA" {
+            sortBy = "PA"
+            overflowMenu.barButtonItems[3].title = "\u{2713} Sort by Price \u{2191}"
+        } else {
+            sortBy = "PD"
+            overflowMenu.barButtonItems[3].title = "\u{2713} Sort by Price \u{2193}"
+        }
+        sortedItems = sortItems()
+        tableView.reloadData()
+    }
+    @IBAction func sortByNameTapped(_ sender: UIBarButtonItem) {
+        resetMenuLabels()
+        updateLocalItems()
+        
+        if sortBy != "NA" {
+            sortBy = "NA"
+            overflowMenu.barButtonItems[4].title = "\u{2713} Sort by Name \u{2191}"
+        } else {
+            sortBy = "ND"
+            overflowMenu.barButtonItems[4].title = "\u{2713} Sort by Name \u{2193}"
+        }
+        sortedItems = sortItems()
+        tableView.reloadData()
+    }
+    
     @IBAction func sortDefaultTapped(_ sender: UIBarButtonItem) {
+        resetMenuLabels()
         sortBy = "def"
+        overflowMenu.barButtonItems[5].title = "\u{2713} Unlock Sort Order"
         trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items = theItems
+    }
+    @IBAction func shareTapped(_ sender: UIBarButtonItem) {
+        let shareSheet = UIActivityViewController(activityItems: [exportAsText() as NSString], applicationActivities: nil)
+            present(shareSheet, animated: true, completion: {})
     }
     
     @IBOutlet weak var overflowMenu: UIBarButtonItemGroup!
@@ -116,8 +177,20 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         }
     }
     
+    func updateGlobalItems() {
+        for i in 0..<trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.count {
+            trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[i] = theItems[i]
+        }
+    }
+    
+    func updateLocalItems() {
+        for k in 0..<trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.count {
+            theItems[k] = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[k]
+        }
+    }
+    
     func resetMenuLabels() {
-        let menuLabels = ["Rank Options...", "Sort by Rank", "Sort by Shortlist", "Sort by Price", "Sort by Name", "Sort Default"]
+        let menuLabels = ["Rank Options...", "Sort by Rank", "Sort by Shortlist", "Sort by Price", "Sort by Name", "Unlock Sort Order", "Share Sorted List..."]
         
         for k in 0..<overflowMenu.barButtonItems.count {
             overflowMenu.barButtonItems[k].title = menuLabels[k]
@@ -137,6 +210,9 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
 //            overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2191}"
 //        }
         
+        sortBy = "def"
+        overflowMenu.barButtonItems[5].title = "\u{2713} Unlock Sort Order"
+        
         if category == .accommodation {
             self.title = "Accommodation"
         } else {
@@ -153,6 +229,37 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         //print("The selected location is index \(selectedLocation)")
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
 
+    }
+    
+    func exportAsText() -> String {
+        var theString = ""
+        if !sortedItems.isEmpty {
+            for i in 0..<sortedItems.count {
+                let name = sortedItems[i].itemName
+                let price = ", $\(sortedItems[i].itemPrice)"
+                // let rankPlace = "Ranked #\(i+1)"
+                var shortlisted = ""
+                if sortedItems[i].shortlisted == 1 {
+                    shortlisted = "\u{272a} Shortlisted"
+                }
+                theString.append(name)
+                theString.append(price)
+            }
+        } else {
+            for i in 0..<theItems.count {
+                let name = theItems[i].itemName
+                let price = ", $\(theItems[i].itemPrice)"
+                // let rankPlace = "Ranked #\(i+1)"
+                var shortlisted = ""
+                if theItems[i].shortlisted == 1 {
+                    shortlisted = "\u{272a} Shortlisted"
+                }
+                theString.append(name)
+                theString.append(price)
+                theString.append("\n")
+            }
+        }
+        return theString
     }
 
 //    func sortByRank(array: [Item]) {
@@ -177,16 +284,41 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         
         if sortBy != "def" && !sortedItems.isEmpty {
+            var beforePriceText = ""
+            if sortedItems[indexPath.row].shortlisted == 1 {
+                beforePriceText = "\u{272a} "
+            }
+            var afterPriceText = ""
+            if sortedItems[indexPath.row].totalPoints > 0 {
+                if sortBy == "RD" {
+                    afterPriceText = " \u{2022} Ranked #\(indexPath.row + 1)"
+                } else if sortBy == "RA" {
+                    afterPriceText = " \u{2022} Ranked #\(sortedItems.count - indexPath.row)"
+                }
+            }
             let name = sortedItems[indexPath.row].itemName
             let price = sortedItems[indexPath.row].itemPrice
             cell.itemNameLabel!.text = name
             
             if category == .accommodation {
-                cell.itemCostLabel!.text = "$\(String(price)) per night"
+                cell.itemCostLabel!.text = "\(beforePriceText)$\(String(price)) per night\(afterPriceText)"
                 return cell
             } else {
-                cell.itemCostLabel!.text = "$\(String(price))"
+                cell.itemCostLabel!.text = "\(beforePriceText)$\(String(price))\(afterPriceText)"
                 return cell
+            }
+        }
+        
+        var beforePriceText = ""
+        if theItems[indexPath.row].shortlisted == 1 {
+            beforePriceText = "\u{272a} "
+        }
+        var afterPriceText = ""
+        if theItems[indexPath.row].totalPoints > 0 {
+            if sortBy == "RD" {
+                afterPriceText = " \u{2022} Ranked #\(indexPath.row + 1)"
+            } else if sortBy == "RA" {
+                afterPriceText = " \u{2022} Ranked #\(theItems.count - indexPath.row)"
             }
         }
         
@@ -195,10 +327,10 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         cell.itemNameLabel!.text = name
         
         if category == .accommodation {
-            cell.itemCostLabel!.text = "$\(String(price)) per night"
+            cell.itemCostLabel!.text = "\(beforePriceText)$\(String(price)) per night\(afterPriceText)"
             return cell
         } else {
-            cell.itemCostLabel!.text = "$\(String(price))"
+            cell.itemCostLabel!.text = "\(beforePriceText)$\(String(price))\(afterPriceText)"
             return cell
         }
         
@@ -208,6 +340,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         let theItemToMove = theItems[sourceIndexPath.row]
         theItems.remove(at: sourceIndexPath.row)
         theItems.insert(theItemToMove, at: destinationIndexPath.row)
+        overflowMenu.barButtonItems[5].title = "\u{2713} Unlock Sort Order"
         print(theItems)
     }
     
@@ -276,6 +409,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         }
         sortBy = "def"
         resetMenuLabels()
+        overflowMenu.barButtonItems[5].title = "\u{2713} Unlock Sort Order"
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -305,7 +439,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             return swipeActions
         } else {
             let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
-            let alert = UIAlertController(title: "Are you sure you want to delete this place?", message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: "Are you sure you want to delete this activity?", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(
                 title: "Delete",
                 style: .destructive,

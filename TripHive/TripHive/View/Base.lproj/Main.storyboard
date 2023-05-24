@@ -280,12 +280,29 @@
                                             <action selector="sortByRankTapped:" destination="Oh8-Ug-Jo5" id="pca-IB-qRU"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Sort by Shortlist" image="star.fill" catalog="system" id="KM9-5g-S0z"/>
-                                    <barButtonItem title="Sort by Price" image="dollarsign" catalog="system" id="MbT-rG-V3v"/>
-                                    <barButtonItem title="Sort by Name" image="textformat.abc" catalog="system" id="xiD-SQ-tvG"/>
-                                    <barButtonItem title="Sort Default" image="lock.open.fill" catalog="system" id="g31-vP-b4W">
+                                    <barButtonItem title="Sort by Shortlist" image="star.fill" catalog="system" id="KM9-5g-S0z">
+                                        <connections>
+                                            <action selector="sortByShortlistTapped:" destination="Oh8-Ug-Jo5" id="hGt-Of-e4e"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Sort by Price" image="dollarsign" catalog="system" id="MbT-rG-V3v">
+                                        <connections>
+                                            <action selector="sortByPriceTapped:" destination="Oh8-Ug-Jo5" id="CIS-dB-q1F"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Sort by Name" image="textformat.abc" catalog="system" id="xiD-SQ-tvG">
+                                        <connections>
+                                            <action selector="sortByNameTapped:" destination="Oh8-Ug-Jo5" id="Dbg-b1-30k"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Unlock Sort Order" image="lock.open.fill" catalog="system" id="g31-vP-b4W">
                                         <connections>
                                             <action selector="sortDefaultTapped:" destination="Oh8-Ug-Jo5" id="Dxu-1b-lvX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Share Sorted List..." image="square.and.arrow.up" catalog="system" id="SCq-0C-GeV">
+                                        <connections>
+                                            <action selector="shareTapped:" destination="Oh8-Ug-Jo5" id="PHt-Xj-aNW"/>
                                         </connections>
                                     </barButtonItem>
                                 </barButtonItems>
@@ -1243,6 +1260,7 @@
         <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <image name="star.circle" catalog="system" width="128" height="123"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
