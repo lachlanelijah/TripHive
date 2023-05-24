@@ -12,6 +12,8 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         print(nowRanked)
         sortByRank(array: nowRanked)
         print("Success")
+        tableView.reloadData()
+        overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2193}"
         //maybe create a function to rearrange items
         //rearrange items in the array based on ranking points determined by RankOptionsTableViewController
         //reload the table
@@ -48,6 +50,9 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         
     }
     
+    @IBAction func sortByRankTapped(_ sender: UIBarButtonItem) {
+        tableView.reloadData()
+    }
     
     @IBOutlet weak var overflowMenu: UIBarButtonItemGroup!
     @IBOutlet weak var addNewItemButton: UIBarButtonItem!
@@ -68,7 +73,10 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     
     var theItemsDefaultSort: [Item] = []
     var theItemsRanked: [Item] = []
-    var sortingByRank = false
+    var sortingByRank = "a"
+    var sortingByShortlist = "n"
+    var sortingByPrice = "n"
+    var sortingByName = "n"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +86,10 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
 //        let topRightButtons = [addNewItemButton!, editButton]
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
 //        navigationItem.rightBarButtonItems = topRightButtons
+        
+//        if sortingByRank == "a" {
+//            overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2191}"
+//        }
         
         if category == .accommodation {
             self.title = "Accommodation"
@@ -121,9 +133,22 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         
-        if sortingByRank {
+        let sortedItems: [Item] = []
+        
+        
+        
+        if sortingByRank == "a" && !theItemsRanked.isEmpty {
             let name = theItemsRanked[indexPath.row].itemName
             let price = theItemsRanked[indexPath.row].itemPrice
+            cell.itemNameLabel!.text = name
+            
+            if category == .accommodation {
+                cell.itemCostLabel!.text = "$\(String(price)) per night"
+                return cell
+            } else {
+                cell.itemCostLabel!.text = "$\(String(price))"
+                return cell
+            }
         }
         
         let name = theItemsDefaultSort[indexPath.row].itemName
