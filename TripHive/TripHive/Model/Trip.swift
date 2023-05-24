@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint, .systemOrange])
+var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint])
 var defaultLocation1 = Location(
     locationName: "Default Location 1",
     categories: [

@@ -19,6 +19,7 @@
 		6D5AF9FC2A01F3E900FE5782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AF9FA2A01F3E900FE5782 /* LaunchScreen.storyboard */; };
 		6D97526E2A036CC60095B1D8 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97526D2A036CC60095B1D8 /* Trip.swift */; };
 		6D9752842A038CEA0095B1D8 /* TripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9752832A038CEA0095B1D8 /* TripTableViewController.swift */; };
+		6DB09B1D2A1E03C100E1B7FC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB09B1C2A1E03C100E1B7FC /* DetailViewController.swift */; };
 		6DB3A00E2A03937C00250F69 /* LocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A00D2A03937C00250F69 /* LocationTableViewController.swift */; };
 		6DB3A0102A03963C00250F69 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A00F2A03963C00250F69 /* TripTableViewCell.swift */; };
 		6DB3A0122A049EE600250F69 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A0112A049EE600250F69 /* CategoryViewController.swift */; };
@@ -46,6 +47,7 @@
 		6D5AF9FD2A01F3E900FE5782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D97526D2A036CC60095B1D8 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		6D9752832A038CEA0095B1D8 /* TripTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewController.swift; sourceTree = "<group>"; };
+		6DB09B1C2A1E03C100E1B7FC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6DB3A00D2A03937C00250F69 /* LocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewController.swift; sourceTree = "<group>"; };
 		6DB3A00F2A03963C00250F69 /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		6DB3A0112A049EE600250F69 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				6D25EB072A16EB4900BC801B /* RankOptionsTableViewController.swift */,
 				6D25EB0D2A16F53C00BC801B /* RankLocationsTableViewController.swift */,
 				49F3C22A2A18A53100496CF1 /* SpendingTableViewController.swift */,
+				6DB09B1C2A1E03C100E1B7FC /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				49F3C22B2A18A53100496CF1 /* SpendingTableViewController.swift in Sources */,
 				6DFC73712A060E2900E17136 /* AddActivityViewController.swift in Sources */,
 				6D9752842A038CEA0095B1D8 /* TripTableViewController.swift in Sources */,
+				6DB09B1D2A1E03C100E1B7FC /* DetailViewController.swift in Sources */,
 				6DB3A0122A049EE600250F69 /* CategoryViewController.swift in Sources */,
 				6DFC736B2A06076300E17136 /* AddLocationViewController.swift in Sources */,
 				6D113B6B2A05C75D007605F6 /* AddTripViewController.swift in Sources */,
@@ -378,12 +382,13 @@
 				DEVELOPMENT_TEAM = YN5PJ786SD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripHive/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -407,12 +412,13 @@
 				DEVELOPMENT_TEAM = YN5PJ786SD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripHive/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

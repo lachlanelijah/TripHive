@@ -4,16 +4,6 @@
 //
 //  Created by William Thomas Hartono on 18/5/2023.
 //
-
-import Foundation
-
-//
-//  ItemTableViewController.swift
-//  TripHive
-//
-//  Created by Lachlan Atack on 5/5/2023.
-//
-
 import UIKit
 
 protocol RankOptionsDelegate {

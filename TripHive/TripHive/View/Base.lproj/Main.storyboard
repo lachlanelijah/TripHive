@@ -71,7 +71,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TripHive" largeTitleDisplayMode="always" id="AHv-Nc-mMs">
-                        <barButtonItem key="rightBarButtonItem" image="calendar.badge.plus" catalog="system" id="D4w-yt-MhS">
+                        <barButtonItem key="leftBarButtonItem" image="calendar.badge.plus" catalog="system" id="D4w-yt-MhS">
                             <connections>
                                 <action selector="goToAddTripViewButton:" destination="p4H-M8-e6E" id="VdN-Nl-3AJ"/>
                             </connections>
@@ -122,9 +122,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Locations" leftItemsSupplementBackButton="YES" id="IED-JM-J8M">
                         <centerItemGroups>
-                            <barButtonItemGroup customizationDisposition="fixed" id="OM5-DW-QIn">
+                            <barButtonItemGroup customizationDisposition="fixed" id="loh-9b-ATA">
                                 <barButtonItems>
-                                    <barButtonItem title="Add a Location" image="folder.badge.plus" catalog="system" id="qmz-1U-AJ2">
+                                    <barButtonItem title="Add a Location" image="plus" catalog="system" id="qmz-1U-AJ2">
                                         <connections>
                                             <segue destination="xnx-XE-L2X" kind="presentation" identifier="goToAddLocationView" id="f47-6r-nmA"/>
                                         </connections>
@@ -143,7 +143,7 @@
             </objects>
             <point key="canvasLocation" x="6045.0381679389311" y="814.78873239436621"/>
         </scene>
-        <!--Category View Controller-->
+        <!--Categories-->
         <scene sceneID="6lL-5g-1BP">
             <objects>
                 <viewController id="LNL-is-SE0" customClass="CategoryViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
@@ -200,7 +200,7 @@
                             <constraint firstItem="hbY-1y-Rfn" firstAttribute="centerY" secondItem="MY4-ne-qqH" secondAttribute="centerY" id="Rn9-hq-dho"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Tuh-8t-8K3"/>
+                    <navigationItem key="navigationItem" title="Categories" largeTitleDisplayMode="never" id="Tuh-8t-8K3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Evc-sE-yPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -249,7 +249,7 @@
                                 <connections>
                                     <outlet property="itemCostLabel" destination="wBt-w6-7f7" id="lDt-tC-5bs"/>
                                     <outlet property="itemNameLabel" destination="XRO-oF-AOz" id="Xne-WK-JyQ"/>
-                                    <segue destination="hsi-Ux-9rg" kind="showDetail" identifier="goToDetailView" id="Uit-P5-Mnq"/>
+                                    <segue destination="R4V-Tp-3Hs" kind="show" id="IdZ-la-blb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -260,9 +260,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="M0R-i1-jp8">
                         <centerItemGroups>
-                            <barButtonItemGroup customizationDisposition="fixed" id="zCa-h4-7rA">
+                            <barButtonItemGroup customizationDisposition="fixed" id="KQ2-ms-Emx">
                                 <barButtonItems>
-                                    <barButtonItem title="Add a New Item" image="note.text.badge.plus" catalog="system" id="AV1-5g-HCT">
+                                    <barButtonItem title="Add an Item" image="plus" catalog="system" id="AV1-5g-HCT">
                                         <connections>
                                             <action selector="addItemButton:" destination="Oh8-Ug-Jo5" id="Qxx-Qc-Xjw"/>
                                         </connections>
@@ -281,7 +281,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addNewItemButton" destination="AV1-5g-HCT" id="e18-zF-cIv"/>
-                        <outlet property="overflowMenu" destination="zCa-h4-7rA" id="S2z-UU-Qhb"/>
                         <outlet property="rankOptionsButton" destination="FPP-IJ-t86" id="bCn-lw-iJr"/>
                         <segue destination="ZX5-aq-E1j" kind="presentation" identifier="goToActivityView" id="Kh1-pT-jEG"/>
                         <segue destination="Ds4-ol-CvM" kind="presentation" identifier="goToAccommodationView" id="lyV-Jl-Usc"/>
@@ -296,7 +295,7 @@
             <objects>
                 <tableViewController id="hsi-Ux-9rg" customClass="DetailTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="KFY-Rg-4QN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -323,11 +322,63 @@
                             <outlet property="delegate" destination="hsi-Ux-9rg" id="SLS-dJ-efy"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="AnW-4o-Bt9"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5n-tZ-Zoe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8837" y="815"/>
+            <point key="canvasLocation" x="8700" y="423"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="i28-aL-IM7">
+            <objects>
+                <viewController id="R4V-Tp-3Hs" customClass="DetailViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UhH-Fd-BQW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gDF-If-YgK">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailCell" textLabel="C8b-Ut-jUx" style="IBUITableViewCellStyleDefault" id="jiL-Qr-hJm">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jiL-Qr-hJm" id="RG6-iJ-f9O">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C8b-Ut-jUx">
+                                                    <rect key="frame" x="20" y="0.0" width="353" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0cp-F2-ID5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gDF-If-YgK" firstAttribute="top" secondItem="0cp-F2-ID5" secondAttribute="top" id="6is-6v-2k1"/>
+                            <constraint firstAttribute="bottom" secondItem="gDF-If-YgK" secondAttribute="bottom" id="6lx-Cg-ITL"/>
+                            <constraint firstItem="0cp-F2-ID5" firstAttribute="trailing" secondItem="gDF-If-YgK" secondAttribute="trailing" id="nyV-RX-PNV"/>
+                            <constraint firstItem="gDF-If-YgK" firstAttribute="leading" secondItem="0cp-F2-ID5" secondAttribute="leading" id="ufM-sd-gMl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mnO-vR-TjE"/>
+                    <connections>
+                        <outlet property="tableView" destination="gDF-If-YgK" id="aJc-ZD-3LR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fty-C7-vOl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9604" y="827"/>
         </scene>
         <!--Trips-->
         <scene sceneID="ikH-BC-0Io">
@@ -1124,13 +1175,12 @@
         <image name="figure.run.circle" catalog="system" width="128" height="123"/>
         <image name="figure.walk.arrival" catalog="system" width="125" height="128"/>
         <image name="figure.walk.departure" catalog="system" width="123" height="128"/>
-        <image name="folder.badge.plus" catalog="system" width="128" height="92"/>
         <image name="globe.asia.australia.fill" catalog="system" width="128" height="123"/>
         <image name="house.circle" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
-        <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="trophy" catalog="system" width="128" height="128"/>

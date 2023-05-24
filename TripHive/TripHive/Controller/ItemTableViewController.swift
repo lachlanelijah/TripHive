@@ -74,9 +74,10 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
 //        navigationItem.largeTitleDisplayMode = .never
-        let editButton = editButtonItem
-        let topRightButtons = [addNewItemButton!, editButton]
-        navigationItem.rightBarButtonItems = topRightButtons
+//        let editButton = editButtonItem
+//        let topRightButtons = [addNewItemButton!, editButton]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+//        navigationItem.rightBarButtonItems = topRightButtons
         
         if category == .accommodation {
             self.title = "Accommodation"
@@ -109,11 +110,12 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if category == .accommodation {
-            return theItemsDefaultSort.count
-        } else {
-            return theItemsRanked.count
-        }
+//        if category == .accommodation {
+//            return theItemsDefaultSort.count
+//        } else {
+//            return theItemsRanked.count
+//        }
+        return theItemsDefaultSort.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

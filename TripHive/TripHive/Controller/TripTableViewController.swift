@@ -18,7 +18,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         
         config = config.applying(UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30)))
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
         
         trips.append(Trip(people: 2, name: "Japan", year: 2024, icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
         trips.append(Trip(people: 3, name: "Korea", year: 2025, icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
