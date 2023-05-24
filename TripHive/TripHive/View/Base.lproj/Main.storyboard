@@ -71,7 +71,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TripHive" largeTitleDisplayMode="always" id="AHv-Nc-mMs">
-                        <barButtonItem key="rightBarButtonItem" image="calendar.badge.plus" catalog="system" id="D4w-yt-MhS">
+                        <barButtonItem key="leftBarButtonItem" image="calendar.badge.plus" catalog="system" id="D4w-yt-MhS">
                             <connections>
                                 <action selector="goToAddTripViewButton:" destination="p4H-M8-e6E" id="VdN-Nl-3AJ"/>
                             </connections>
@@ -121,14 +121,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Locations" leftItemsSupplementBackButton="YES" id="IED-JM-J8M">
+                        <barButtonItem key="leftBarButtonItem" title="Add a Location" image="folder.badge.plus" catalog="system" id="qmz-1U-AJ2">
+                            <connections>
+                                <segue destination="xnx-XE-L2X" kind="presentation" identifier="goToAddLocationView" id="f47-6r-nmA"/>
+                            </connections>
+                        </barButtonItem>
                         <centerItemGroups>
                             <barButtonItemGroup customizationDisposition="fixed" id="OM5-DW-QIn">
                                 <barButtonItems>
-                                    <barButtonItem title="Add a Location" image="folder.badge.plus" catalog="system" id="qmz-1U-AJ2">
-                                        <connections>
-                                            <segue destination="xnx-XE-L2X" kind="presentation" identifier="goToAddLocationView" id="f47-6r-nmA"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem title="Rank Locations" image="trophy" catalog="system" id="xs7-Vg-PQX">
                                         <connections>
                                             <segue destination="gZC-Fk-LPt" kind="presentation" identifier="goToRankLocationsView" id="hMf-Ji-JAs"/>
@@ -249,7 +249,7 @@
                                 <connections>
                                     <outlet property="itemCostLabel" destination="wBt-w6-7f7" id="lDt-tC-5bs"/>
                                     <outlet property="itemNameLabel" destination="XRO-oF-AOz" id="Xne-WK-JyQ"/>
-                                    <segue destination="hsi-Ux-9rg" kind="showDetail" identifier="goToDetailView" id="Uit-P5-Mnq"/>
+                                    <segue destination="hHG-y4-gET" kind="show" id="9dU-Zx-IHp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -259,6 +259,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="M0R-i1-jp8">
+                        <barButtonItem key="leftBarButtonItem" title="Add a New Item" image="note.text.badge.plus" catalog="system" id="AV1-5g-HCT">
+                            <connections>
+                                <action selector="addItemButton:" destination="Oh8-Ug-Jo5" id="Qxx-Qc-Xjw"/>
+                            </connections>
+                        </barButtonItem>
                         <centerItemGroups>
                             <barButtonItemGroup customizationDisposition="fixed" id="zCa-h4-7rA">
                                 <barButtonItems>
@@ -281,11 +286,6 @@
                                 </barButtonItems>
                             </barButtonItemGroup>
                         </centerItemGroups>
-                        <barButtonItem key="rightBarButtonItem" title="Add a New Item" image="note.text.badge.plus" catalog="system" id="AV1-5g-HCT">
-                            <connections>
-                                <action selector="addItemButton:" destination="Oh8-Ug-Jo5" id="Qxx-Qc-Xjw"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addNewItemButton" destination="AV1-5g-HCT" id="e18-zF-cIv"/>
@@ -299,16 +299,57 @@
             </objects>
             <point key="canvasLocation" x="7887.7862595419847" y="814.78873239436621"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="nRQ-eP-KN0">
+            <objects>
+                <viewController id="hHG-y4-gET" customClass="DetailViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rD8-QU-YLy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pF9-zj-1x0">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailCell" id="QXe-m5-Jhc">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QXe-m5-Jhc" id="lHp-62-bt6">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dXZ-Cc-DSs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pF9-zj-1x0" firstAttribute="trailing" secondItem="dXZ-Cc-DSs" secondAttribute="trailing" id="B01-CT-ywC"/>
+                            <constraint firstItem="pF9-zj-1x0" firstAttribute="leading" secondItem="dXZ-Cc-DSs" secondAttribute="leading" id="bjk-HU-RT2"/>
+                            <constraint firstAttribute="bottom" secondItem="pF9-zj-1x0" secondAttribute="bottom" id="iea-u6-y07"/>
+                            <constraint firstItem="pF9-zj-1x0" firstAttribute="top" secondItem="dXZ-Cc-DSs" secondAttribute="top" id="tLC-8A-qbB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7fl-ec-LGe"/>
+                    <connections>
+                        <outlet property="tableView" destination="pF9-zj-1x0" id="L7r-Ci-ADL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y58-TO-OUx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8768.702290076335" y="814.78873239436621"/>
+        </scene>
         <!--Detail Table View Controller-->
         <scene sceneID="aqc-5X-VSR">
             <objects>
                 <tableViewController id="hsi-Ux-9rg" customClass="DetailTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="KFY-Rg-4QN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" textLabel="2wP-Ck-5Ri" style="IBUITableViewCellStyleDefault" id="g8Y-2d-GIJ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="2wP-Ck-5Ri" style="IBUITableViewCellStyleDefault" id="g8Y-2d-GIJ">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g8Y-2d-GIJ" id="HPC-7I-GL4">
@@ -335,7 +376,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5n-tZ-Zoe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8837" y="815"/>
+            <point key="canvasLocation" x="9753" y="815"/>
         </scene>
         <!--Trips-->
         <scene sceneID="ikH-BC-0Io">
