@@ -11,7 +11,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
     func fetchRankingInformation(nowRanked: [Item]) {
         print(nowRanked)
         sortByRank(array: nowRanked)
-        
+        print("Success")
         //maybe create a function to rearrange items
         //rearrange items in the array based on ranking points determined by RankOptionsTableViewController
         //reload the table
@@ -318,15 +318,15 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             destination.delegate = self
         }
         
-        if let destination = segue.destination as? RankOptionsTableViewController {
+        if let destination = segue.destination as? RankOptionsViewController {
             destination.delegate = self
         }
         
         if
             segue.identifier == "goToRankOptionsView",
-            let VC = segue.destination as? UINavigationController
+            let tableVC = segue.destination as? RankOptionsViewController
         {
-            let tableVC = VC.viewControllers.first as! RankOptionsTableViewController
+//            let tableVC = VC.viewControllers.first as! RankOptionsTableViewController
             tableVC.selectedTrip = selectedTrip
             tableVC.category = category
             tableVC.categoryIndex = categoryIndex
@@ -335,8 +335,7 @@ class ItemTableViewController: UITableViewController, AccommodationDelegate, Act
             print(theItemsDefaultSort)
             tableVC.theItemsDefaultSort = theItemsDefaultSort
         }
-        
-        
+
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
             if
                 segue.identifier == "goToDetailView",

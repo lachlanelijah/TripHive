@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rge-v3-5i0">
-    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -269,7 +270,9 @@
                                     <barButtonItem title="Rank Options" image="trophy" catalog="system" id="FPP-IJ-t86">
                                         <connections>
                                             <action selector="rankOptionsTapped:" destination="Oh8-Ug-Jo5" id="aov-tp-TIy"/>
-                                            <segue destination="D0i-mq-f3N" kind="presentation" identifier="goToRankOptionsView" id="8gY-3j-Bed"/>
+                                            <segue destination="79R-wn-lb2" kind="popoverPresentation" identifier="goToRankOptionsView" popoverAnchorBarButtonItem="FPP-IJ-t86" id="l00-TL-o8F">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </barButtonItem>
                                 </barButtonItems>
@@ -776,11 +779,11 @@
             <objects>
                 <tableViewController id="30Z-m4-dr9" customClass="RankOptionsTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Olu-Pd-Efk">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RankOptionsCell" rowHeight="106" id="9ww-iH-tAL" customClass="RankOptionsTableViewCell" customModule="TripHive" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="106" id="9ww-iH-tAL" customClass="RankOptionsTableViewCell" customModule="TripHive" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="106"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9ww-iH-tAL" id="fRx-pb-lt7">
@@ -849,7 +852,106 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBg-EW-RGL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9692.3664122137397" y="2354.929577464789"/>
+            <point key="canvasLocation" x="10298" y="1830"/>
+        </scene>
+        <!--Rank Options View Controller-->
+        <scene sceneID="1pG-as-Bg2">
+            <objects>
+                <viewController id="79R-wn-lb2" customClass="RankOptionsViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KAO-em-ool">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="w8Z-nr-jgC">
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RankOptionsCell" rowHeight="106" id="mVr-1m-4P0" customClass="RankOptionsTableViewCell" customModule="TripHive" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="106"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mVr-1m-4P0" id="AKz-s3-H2a">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="106"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="u1p-u5-604">
+                                                    <rect key="frame" x="212.33333333333334" y="20" width="122.33333333333334" height="66"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTW-XA-IBD">
+                                                            <rect key="frame" x="0.0" y="0.0" width="122.33333333333333" height="33"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sg-h5-LtA">
+                                                            <rect key="frame" x="86.666666666666657" y="33" width="35.666666666666657" height="33"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6Z-vV-kLA">
+                                                    <rect key="frame" x="20" y="32.666666666666671" width="73.333333333333329" height="40.666666666666671"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="u1p-u5-604" secondAttribute="bottom" constant="20" id="ATH-hf-epG"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="u1p-u5-604" secondAttribute="trailing" constant="20" id="XlQ-N1-6DO"/>
+                                                <constraint firstItem="P6Z-vV-kLA" firstAttribute="centerY" secondItem="AKz-s3-H2a" secondAttribute="centerY" id="ZfC-qx-h5s"/>
+                                                <constraint firstItem="u1p-u5-604" firstAttribute="top" secondItem="AKz-s3-H2a" secondAttribute="top" constant="20" id="ZfN-C3-7ej"/>
+                                                <constraint firstItem="P6Z-vV-kLA" firstAttribute="leading" secondItem="AKz-s3-H2a" secondAttribute="leadingMargin" id="m99-qj-D5Z"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="itemCostLabel" destination="5Sg-h5-LtA" id="Yoj-1s-LSC"/>
+                                            <outlet property="itemNameLabel" destination="TTW-XA-IBD" id="xYl-Bk-7cS"/>
+                                            <outlet property="rankLabel" destination="P6Z-vV-kLA" id="DlA-eK-g91"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9KB-P5-ifK">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textShadowColor" systemColor="systemBackgroundColor"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <color key="textShadowColor" systemColor="systemBackgroundColor"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Title" id="bkg-P2-v20">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="San-cV-BHs">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="79R-wn-lb2" id="eaC-jQ-Mzq"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Next" style="done" changesSelectionAsPrimaryAction="YES" id="xVA-8G-AHn">
+                                            <connections>
+                                                <action selector="nextButton:" destination="79R-wn-lb2" id="K1A-aW-DzO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hEY-IQ-lze"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="nextButton" destination="xVA-8G-AHn" id="c6r-d0-ZLA"/>
+                        <outlet property="rankOptionsNavigationBarTitle" destination="bkg-P2-v20" id="k2O-vV-aDY"/>
+                        <outlet property="tableView" destination="w8Z-nr-jgC" id="C2J-pH-ePz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a39-c7-lbH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11319.847328244274" y="1829.5774647887324"/>
         </scene>
         <!--Test-->
         <scene sceneID="sNc-Er-nZh">
@@ -973,13 +1075,14 @@
             </objects>
             <point key="canvasLocation" x="7652.6717557251905" y="2343.6619718309862"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Pass Rankings Navigation View Controller-->
         <scene sceneID="2aU-5Z-qkF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D0i-mq-f3N" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ot-lA-ThG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D0i-mq-f3N" customClass="PassRankingsNavigationViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a9f-LT-sEL">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -987,9 +1090,8 @@
                         <segue destination="30Z-m4-dr9" kind="relationship" relationship="rootViewController" id="Dbi-g2-KE9"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ot-lA-ThG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8765.6488549618316" y="2354.929577464789"/>
+            <point key="canvasLocation" x="9408" y="1830"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IN3-1c-3qf">

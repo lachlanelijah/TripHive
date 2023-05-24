@@ -7,9 +7,7 @@
 
 import UIKit
 
-protocol RankOptionsDelegate {
-    func fetchRankingInformation(nowRanked: [Item])
-} //Delegate protocol that ItemTableViewController conforms to that allows AddAccommodationViewController to send information back
+
 
 class RankOptionsTableViewController: UITableViewController {
     
