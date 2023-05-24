@@ -270,9 +270,7 @@
                                     <barButtonItem title="Rank Options..." image="trophy" catalog="system" id="FPP-IJ-t86">
                                         <connections>
                                             <action selector="rankOptionsTapped:" destination="Oh8-Ug-Jo5" id="aov-tp-TIy"/>
-                                            <segue destination="79R-wn-lb2" kind="popoverPresentation" identifier="goToRankOptionsView" popoverAnchorBarButtonItem="FPP-IJ-t86" id="l00-TL-o8F">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
+                                            <segue destination="79R-wn-lb2" kind="presentation" identifier="goToRankOptionsView" id="l00-TL-o8F"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Sort by Rank" image="trophy.fill" catalog="system" id="23U-n0-ozq">
@@ -869,86 +867,6 @@
             </objects>
             <point key="canvasLocation" x="7478.6259541984728" y="1662.6760563380283"/>
         </scene>
-        <!--Rank Items-->
-        <scene sceneID="tJ2-NT-kP3">
-            <objects>
-                <tableViewController id="30Z-m4-dr9" customClass="RankOptionsTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Olu-Pd-Efk">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="106" id="9ww-iH-tAL" customClass="RankOptionsTableViewCell" customModule="TripHive" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="106"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9ww-iH-tAL" id="fRx-pb-lt7">
-                                    <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="106"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="kG9-wI-4db">
-                                            <rect key="frame" x="212.33333333333334" y="20" width="122.33333333333334" height="66"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeq-Nn-bxx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="122.33333333333333" height="33"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbL-tx-J90">
-                                                    <rect key="frame" x="86.666666666666657" y="33" width="35.666666666666657" height="33"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onU-y0-qsa">
-                                            <rect key="frame" x="20" y="32.666666666666671" width="73.333333333333329" height="40.666666666666671"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="onU-y0-qsa" firstAttribute="centerY" secondItem="fRx-pb-lt7" secondAttribute="centerY" id="98u-Fc-8M2"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="kG9-wI-4db" secondAttribute="trailing" constant="20" id="Ymi-Bn-8nH"/>
-                                        <constraint firstItem="kG9-wI-4db" firstAttribute="top" secondItem="fRx-pb-lt7" secondAttribute="top" constant="20" id="mFJ-mu-GvG"/>
-                                        <constraint firstAttribute="bottom" secondItem="kG9-wI-4db" secondAttribute="bottom" constant="20" id="qzC-PV-04v"/>
-                                        <constraint firstItem="onU-y0-qsa" firstAttribute="leading" secondItem="fRx-pb-lt7" secondAttribute="leadingMargin" id="wbb-Tc-jy8"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="itemCostLabel" destination="pbL-tx-J90" id="5dH-Id-pUC"/>
-                                    <outlet property="itemNameLabel" destination="jeq-Nn-bxx" id="65z-ca-fSU"/>
-                                    <outlet property="rankLabel" destination="onU-y0-qsa" id="0xx-Kz-e2U"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="30Z-m4-dr9" id="vzA-5r-BrU"/>
-                            <outlet property="delegate" destination="30Z-m4-dr9" id="zwT-7b-XL3"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Rank Items" id="bX6-A9-5DR">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fra-1N-bbZ">
-                            <connections>
-                                <action selector="cancelButton:" destination="30Z-m4-dr9" id="oTH-3A-Rqq"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" style="done" changesSelectionAsPrimaryAction="YES" id="UW4-An-aIg">
-                            <connections>
-                                <action selector="nextButton:" destination="30Z-m4-dr9" id="ict-Ng-qkw"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="nextButton" destination="UW4-An-aIg" id="2Un-dl-eJ8"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SBg-EW-RGL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="10298" y="1830"/>
-        </scene>
         <!--Rank Options View Controller-->
         <scene sceneID="1pG-as-Bg2">
             <objects>
@@ -1054,7 +972,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a39-c7-lbH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11319.847328244274" y="1829.5774647887324"/>
+            <point key="canvasLocation" x="9637" y="1738"/>
         </scene>
         <!--Test-->
         <scene sceneID="sNc-Er-nZh">
@@ -1201,24 +1119,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLd-K6-Z9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7652.6717557251905" y="2343.6619718309862"/>
-        </scene>
-        <!--Pass Rankings Navigation View Controller-->
-        <scene sceneID="2aU-5Z-qkF">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D0i-mq-f3N" customClass="PassRankingsNavigationViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a9f-LT-sEL">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="30Z-m4-dr9" kind="relationship" relationship="rootViewController" id="Dbi-g2-KE9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ot-lA-ThG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9408" y="1830"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IN3-1c-3qf">
