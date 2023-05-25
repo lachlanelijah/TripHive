@@ -14,4 +14,6 @@ Claudia Sherlyn Effendi - claudiasherlyn.effendi-1@student.uts.edu.au
 
 Mostafa Rahinuzzaman - Mostafa.M.Rahinuzzaman@student.uts.edu.au
 
+### GitHub repo link
+
 https://github.com/lachlanelijah/TripHive
