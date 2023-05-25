@@ -121,16 +121,20 @@ class AddTripViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     @IBAction func onTripNameChange() {
         trip?.setTripName(tripNameTextField.text ?? "")
+        writeToStorage()
+        // trip?.writeToStorage()
     }
     
     // Validate user input before creating a trip
     @IBAction func performTripAction(_ sender: UIBarButtonItem) {
         if ((trip?.isValid()) != nil) {
             // Trip is valid - save trip and dismiss this screen
+            writeToStorage()
             if (tripEditing) {
                 delegate?.updateTrip();
             } else {
                 delegate?.addTrip(trip: trip!);
+                // trip?.writeToStorage()
             }
             dismiss(animated: true, completion: nil)
         } else {

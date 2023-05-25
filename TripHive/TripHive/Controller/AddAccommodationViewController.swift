@@ -45,19 +45,23 @@ class AddAccommodationViewController: UIViewController {
     // Set the item name
     @IBAction func itemNameChanged() {
         accommodation?.itemName = accommodationNameTextField.text ?? "";
+        writeToStorage()
     }
     
     // Set the item price
     @IBAction func itemPriceChanged() {
         accommodation?.itemPrice = Int(accommodationPriceTextField.text ?? "0") ?? 0;
+        writeToStorage()
     }
     
     @IBAction func addAccommodationButton(_ sender: UIBarButtonItem) {
         if accommodationShortlistState.isOn {
             accommodation?.shortlisted = 1
+            writeToStorage()
             print("ON")
         } else {
             accommodation?.shortlisted = 0
+            writeToStorage()
             print("OFF")
         }
         

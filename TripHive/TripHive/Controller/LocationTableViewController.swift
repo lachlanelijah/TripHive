@@ -23,7 +23,8 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
         
         //Adds an edit button to the title bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
-
+        
+        trips = readFromStorage()
         // Set the locations at class level
         locations = trips[selectedTripIndex].locations;
     }
@@ -34,12 +35,14 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
     func addLocation(location: Location) {
         locations.append(location);
         setTripLocations();
+        writeToStorage()
         self.tableView.reloadData()
     }
     
     // Update a Location's details (performed in AddLocationViewController)
     func updateLocation() {
         setTripLocations();
+        writeToStorage()
         self.tableView.reloadData()
     }
     
@@ -96,6 +99,7 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
                     self.locations.remove(at: indexPath.row);
                     self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic);
                     self.setTripLocations();
+                    writeToStorage()
                 }))
             alert.addAction(UIAlertAction(
                 title: "Cancel",

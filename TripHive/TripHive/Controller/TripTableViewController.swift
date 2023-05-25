@@ -7,8 +7,27 @@
 
 import UIKit
 
+var STORAGE_KEY = "savedTrips"
+
 // Store all the trips in the application
 var trips: [Trip] = []
+
+func writeToStorage() {
+    let toWrite = trips
+    let defaults = UserDefaults.standard
+    defaults.set(try? PropertyListEncoder().encode(toWrite), forKey: STORAGE_KEY)
+}
+
+func readFromStorage() -> [Trip] {
+    let defaults = UserDefaults.standard
+    if let savedData = defaults.value(forKey: STORAGE_KEY) as? Data {
+        if let savedTrips = try? PropertyListDecoder().decode(Array<Trip>.self, from: savedData) {
+            print("Trips read from storage: \(savedTrips)")
+            return savedTrips
+        }
+    }
+    return []
+}
 
 class TripTableViewController: UITableViewController, TripDelegate, UINavigationControllerDelegate {
     // Set up the initial state of the home screen
@@ -20,7 +39,12 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
         
-        trips.append(contentsOf: Trip.getDefaults());
+        trips = readFromStorage()
+        if trips.count == 0 {
+            trips.append(contentsOf: Trip.getDefaults());
+        }
+        writeToStorage()
+        trips = readFromStorage()
         
         navigationController?.navigationBar.prefersLargeTitles = true //sets a large title style for the nav controller
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
@@ -30,11 +54,13 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
     // Delegate protocol functions
     func addTrip(trip: Trip) {
         trips.append(trip);
+        writeToStorage()
         self.tableView.reloadData()
     }
     
     func updateTrip() {
         // Trip already updated in child view. Refresh this (parent) view
+        writeToStorage()
         self.tableView.reloadData()
     }
     
@@ -84,6 +110,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
                 style: .destructive,
                 handler: { _ in
                     trips.remove(at: indexPath.row)
+                    writeToStorage()
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }))
             alert.addAction(UIAlertAction(

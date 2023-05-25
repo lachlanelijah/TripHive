@@ -796,6 +796,7 @@
                         <outlet property="activityLabel" destination="JzS-Qd-UCy" id="hRy-ff-H3r"/>
                         <outlet property="activityNameTextField" destination="gff-Sh-kjd" id="ddA-k8-Iad"/>
                         <outlet property="activityPriceTextField" destination="Loo-3z-XsV" id="aOZ-uO-00V"/>
+                        <outlet property="activityShortlistToggled" destination="cSh-t6-7Ye" id="Lod-wc-DBo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUl-YQ-E6D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

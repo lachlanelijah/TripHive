@@ -24,6 +24,8 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         print("Success")
         print(sortedItems)
         tableView.reloadData()
+        updateGlobalItems()
+        writeToStorage()
         overflowMenu.barButtonItems[1].title = menuCheckmarks["RD"]
         //maybe create a function to rearrange items
         //rearrange items in the array based on ranking points determined by RankOptionsTableViewController
@@ -40,6 +42,8 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         theItems = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
         self.tableView.backgroundView = nil;
         self.tableView.reloadData()
+        updateGlobalItems()
+        writeToStorage()
     }
     
     // Depending on the category selected in the previous screen, load either the screen for adding accommodation or an activity
@@ -69,14 +73,24 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         
         // if theItems[0].totalPoints == 0
         
-        if sortBy != "RD" {
-            sortBy = "RD"
+        if !theItems.isEmpty {
+            if sortedItems[0].totalPoints > 0 {
+                if sortBy != "RD" {
+                    sortBy = "RD"
+                } else {
+                    sortBy = "RA"
+                }
+                overflowMenu.barButtonItems[1].title = menuCheckmarks[sortBy]
+                sortedItems = sortItems()
+                tableView.reloadData()
+            }
         } else {
-            sortBy = "RA"
+            let alertDialog = UIAlertController(title: "Not Ranked Yet", message: "Tap \"Rank Options\" to let everyone cast a voting rank. Try it now!", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (_) in
+            }
+            alertDialog.addAction(ok)
+            present(alertDialog, animated: true, completion: nil)
         }
-        overflowMenu.barButtonItems[1].title = menuCheckmarks[sortBy]
-        sortedItems = sortItems()
-        tableView.reloadData()
     }
     
     @IBAction func sortByShortlistTapped(_ sender: UIBarButtonItem) {
@@ -226,6 +240,8 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         //        let editButton = editButtonItem
         //        let topRightButtons = [addNewItemButton!, editButton]
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+        
+        trips = readFromStorage()
         //        navigationItem.rightBarButtonItems = topRightButtons
         
         //        if sortingByRank == "a" {
@@ -244,6 +260,12 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         print("Category: \(categoryIndex)")
         
         theItems = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+        
+        if !theItems.isEmpty {
+            if theItems[0].totalPoints > 0 {
+                sortedItems = theItems
+            }
+        }
         
         print("Items default sort: \(theItems)")
         //Depending on the selected category, change the nav bar title
@@ -426,6 +448,8 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
                     // Update class-level variable "theItems"
                     self.theItems = trips[self.selectedTrip].locations[self.selectedLocation].categories[categoryIndex].items;
                     self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                    self.updateGlobalItems()
+                    writeToStorage()
                 }))
             alert.addAction(UIAlertAction(
                 title: "Cancel",

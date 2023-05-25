@@ -61,6 +61,7 @@ class Trip: Codable {
     var numberOfPeople: Int
     var tripYear: Int;
     var locations: [Location]
+    var id = UUID()
     
     init(people: Int, name: String, year: Int) {
         numberOfPeople = people;
@@ -128,6 +129,23 @@ class Trip: Codable {
     func getTripYear() -> Int {
         return tripYear;
     }
+    
+//    func writeToStorage() {
+//        let toWrite = self
+//        let defaults = UserDefaults.standard
+//        defaults.set(try? PropertyListEncoder().encode(toWrite), forKey: "\(self.id)")
+//    }
+//
+//    func readFromStorage(uuid: UUID) -> [Trip] {
+//        let defaults = UserDefaults.standard
+//        if let savedData = defaults.value(forKey: "\(uuid)") as? Data {
+//            if let savedTrips = try? PropertyListDecoder().decode(Array<Trip>.self, from: savedData) {
+//                print("Trips read from storage: \(savedTrips)")
+//                return savedTrips
+//            }
+//        }
+//        return []
+//    }
     
     static func getDefaults() -> [Trip] {
         return [

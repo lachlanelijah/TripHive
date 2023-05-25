@@ -62,6 +62,7 @@ class AddLocationViewController: UIViewController {
     // Set the Location name
     @IBAction func locationNameChanged() {
         location?.locationName = locationNameTextField.text ?? "";
+        writeToStorage()
     }
     
     // Set the arrival date

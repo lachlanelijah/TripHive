@@ -21,6 +21,7 @@ class AddActivityViewController: UIViewController {
     @IBOutlet weak var activityActionButton: UIBarButtonItem!
     @IBOutlet weak var activityNameTextField: UITextField!
     @IBOutlet weak var activityPriceTextField: UITextField!
+    @IBOutlet weak var activityShortlistToggled: UISwitch!
     
     
     // Initial setup
@@ -44,13 +45,25 @@ class AddActivityViewController: UIViewController {
     // Actions
     @IBAction func activityNameChanged() {
         activity?.itemName = activityNameTextField.text ?? "";
+        writeToStorage()
     }
     
     @IBAction func activityPriceChanged() {
         activity?.itemPrice = Int(activityPriceTextField.text ?? "0") ?? 0;
+        writeToStorage()
     }
     
     @IBAction func addActivityButton(_ sender: UIBarButtonItem) {
+        if activityShortlistToggled.isOn {
+            activity?.shortlisted = 1
+            writeToStorage()
+            print("ON")
+        } else {
+            activity?.shortlisted = 0
+            writeToStorage()
+            print("OFF")
+        }
+        
         if (activity?.isValid() == true) {
             // Activity is valid - Save item and dismiss the screen
             if activityEditing {
