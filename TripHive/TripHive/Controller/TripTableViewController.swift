@@ -8,7 +8,6 @@
 import UIKit
 
 // Store all the trips in the application
-// TODO: this should probably be placed inside the class
 var trips: [Trip] = []
 
 class TripTableViewController: UITableViewController, TripDelegate, UINavigationControllerDelegate {
@@ -62,7 +61,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         if (tableView.isEditing) {
             performSegue(withIdentifier: "goToAddTripView", sender: trips[indexPath.row]);
         } else {
-            self.performSegue(withIdentifier: "goToLocationView", sender: self)
+            performSegue(withIdentifier: "goToLocationView", sender: self);
         }
         //when a cell is tapped, go to the next view
     }
@@ -70,45 +69,15 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    // Override to support editing the table view.
-    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    //        if editingStyle == .delete {
-    //            // Delete the row from the data source
-    //            let alert = UIAlertController(title: "Are you sure you want to delete this trip?", message: nil, preferredStyle: .alert)
-    //            alert.addAction(UIAlertAction(
-    //                title: "Delete",
-    //                style: .destructive,
-    //                handler: { _ in
-    //                    tableView.deleteRows(at: [indexPath], with: .fade)
-    //                    trips.remove(at: indexPath.row)
-    //            }))
-    //            alert.addAction(UIAlertAction(
-    //                title: "Cancel",
-    //                style: .cancel,
-    //                handler: { _ in
-    //                // cancel action
-    //            }))
-    //            present(alert,
-    //                    animated: true,
-    //                    completion: nil
-    //            )
-    //
-    //        } else if editingStyle == .insert {
-    //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    //        }
-    //    }
-    
+
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
         //Allows the re-ordering of the table rows
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        //Allows for the deleting of rows
+        // Allows for the deleting of rows
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
-            //                trips.remove(at: indexPath.row)
-            //                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             let alert = UIAlertController(title: "Are you sure you want to delete this trip?", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(
                 title: "Delete",
@@ -129,12 +98,12 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         }
         
         // Allows editing of trip details
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
+        let edit = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
             self!.performSegue(withIdentifier: "goToAddTripView", sender: trips[indexPath.row]);
         }
-        editAction.backgroundColor = .systemTeal
+        edit.backgroundColor = .systemMint
         
-        let swipeActions = UISwipeActionsConfiguration(actions: [delete, editAction])
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
         return swipeActions
     }
     
@@ -165,7 +134,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         //If the user is adding a new trip, set TripTableViewController as a delegate. Else, send the index of the selected trip to LocationTableViewController
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
         if segue.identifier == "goToLocationView", let VC = segue.destination as? LocationTableViewController {
-            VC.selectedTrip = selectedPath.row
+            VC.selectedTripIndex = selectedPath.row
         }
         
     }
