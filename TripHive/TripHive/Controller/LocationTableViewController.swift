@@ -47,9 +47,17 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
         return 1
     }
     
-    //Sets the number of rows to the number of locations in the selected trip
+    // Sets the number of rows to the number of locations in the selected trip
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count;
+        if locations.count == 0 {
+            let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            emptyLabel.text = "No Locations yet"
+            emptyLabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = emptyLabel
+            return 0
+        } else {
+            return locations.count;
+        }
     }
     
     // Sets each cell with the location's name
@@ -113,6 +121,7 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
     // Helper function which updates the parent object Trip with any changes made to locations
     private func setTripLocations() {
         trips[selectedTripIndex].setLocations(locations: locations);
+        self.tableView.backgroundView = nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

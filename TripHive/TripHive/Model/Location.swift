@@ -18,8 +18,8 @@ class Location: Codable {
         self.arrivalDate = Date()
         self.departureDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         self.categories = [
-            Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation2),
-            Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities2)
+            Category(categoryName: "Accommodation", categoryType: .accommodation, items: []),
+            Category(categoryName: "Activities", categoryType: .activities, items: [])
         ];
     }
     

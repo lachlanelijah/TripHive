@@ -9,19 +9,20 @@ import Foundation
 import UIKit
 
 var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint])
+
 var defaultLocation1 = Location(
-    locationName: "Default Location 1",
+    locationName: "Tokyo",
     arrivalDate: Date(), departureDate: Date(),
     categories: [
         Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation1),
         Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities1)]
 )
 
-var defaultAccommodation1 = [Item(itemName: "Hotel 1", itemPrice: 50), Item(itemName: "Hotel 2", itemPrice: 75)]
+var defaultAccommodation1 = [Item(itemName: "Tokyo Motel", itemPrice: 50), Item(itemName: "Tokyo Luxury Hotel", itemPrice: 75)]
 var defaultActivities1 = [Item(itemName: "Theme Park", itemPrice: 40), Item(itemName: "Art Museum", itemPrice: 30)]
 
 var defaultLocation2 = Location(
-    locationName: "Default Location 2",
+    locationName: "Seoul",
     arrivalDate: Date(), departureDate: Date(),
     categories: [
         Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation2),
@@ -29,7 +30,7 @@ var defaultLocation2 = Location(
     ]
 )
 
-var defaultAccommodation2 = [Item(itemName: "Hotel 3", itemPrice: 30), Item(itemName: "Hotel 4", itemPrice: 100)]
+var defaultAccommodation2 = [Item(itemName: "Seoul Motel", itemPrice: 30), Item(itemName: "Seoul Luxury Hotel", itemPrice: 100)]
 var defaultActivities2 = [Item(itemName: "Coastal Walk", itemPrice: 0), Item(itemName: "Parliament House", itemPrice: 5)]
 
 enum categoryType: Codable {
@@ -56,29 +57,23 @@ struct Category: Codable {
 }
 
 class Trip: Codable {
-    
-    var id = UUID();
     var tripName: String
     var numberOfPeople: Int
     var tripYear: Int;
-//    var tripIcon: UIImage
     var locations: [Location]
     
     init(people: Int, name: String, year: Int) {
         numberOfPeople = people;
         tripName = name;
         tripYear = year;
-//        tripIcon = UIImage(systemName: "airplane.arrival", withConfiguration: config)!
-        locations = [defaultLocation1, defaultLocation2]
+        locations = []
     }
     
-    // Parameterised constructor
-    init(people: Int, name: String, year: Int, icon: UIImage) {
+    init(people: Int, name: String, year: Int, locations: [Location]) {
         numberOfPeople = people
         tripName = name
         tripYear = year;
-//        tripIcon = icon
-        locations = [defaultLocation1, defaultLocation2]
+        self.locations = locations
     }
     
     func isValid() -> Bool {
@@ -134,11 +129,10 @@ class Trip: Codable {
         return tripYear;
     }
     
-//    func setIcon(_ name: UIImage) {
-//        tripIcon = name
-//    }
-//
-//    func getIcon() -> UIImage {
-//        return tripIcon
-//    }
+    static func getDefaults() -> [Trip] {
+        return [
+            Trip(people: 2, name: "Japan", year: 2024, locations: [defaultLocation1]),
+            Trip(people: 3, name: "Korea", year: 2025, locations: [defaultLocation2])
+        ]
+    }
 }

@@ -38,6 +38,7 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
             trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items.append(item!);
         }
         theItems = trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items
+        self.tableView.backgroundView = nil;
         self.tableView.reloadData()
     }
     
@@ -48,7 +49,18 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         } else {
             performSegue(withIdentifier: "goToActivityView", sender: nil)
         }
-        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            if (category == .accommodation) {
+                // We are editing an Accommodation
+                self.performSegue(withIdentifier: "goToAccommodationView", sender: trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row]);
+            } else {
+                // We are editing an Activity
+                self.performSegue(withIdentifier: "goToActivityView", sender: trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row]);
+            }
+        }
     }
     
     @IBAction func sortByRankTapped(_ sender: UIBarButtonItem) {
@@ -310,7 +322,15 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return theItems.count
+        if theItems.count == 0 {
+            let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            emptyLabel.text = "No items in this category yet"
+            emptyLabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = emptyLabel
+            return 0
+        } else {
+            return theItems.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -421,7 +441,6 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         
         // Allows editing of Accommodation or Activity details
         let edit = UIContextualAction(style: .normal, title: "Edit") { [self] (action, view, completionHandler) in
-            print(category);
             if (category == .accommodation) {
                 // We are editing an Accommodation
                 self.performSegue(withIdentifier: "goToAccommodationView", sender: trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items[indexPath.row]);

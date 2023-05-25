@@ -20,8 +20,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
         
-        trips.append(Trip(people: 2, name: "Japan", year: 2024, icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
-        trips.append(Trip(people: 3, name: "Korea", year: 2025, icon: UIImage(systemName: "airplane.arrival", withConfiguration: config)!))
+        trips.append(contentsOf: Trip.getDefaults());
         
         navigationController?.navigationBar.prefersLargeTitles = true //sets a large title style for the nav controller
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
