@@ -8,35 +8,63 @@
 import Foundation
 import UIKit
 
-var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint])
+var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint, .systemOrange])
 var defaultLocation1 = Location(
     locationName: "Default Location 1",
-    arrivalDate: Date(), departureDate: Date(),
     categories: [
         Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation1),
         Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities1)]
 )
-
 var defaultAccommodation1 = [Item(itemName: "Hotel 1", itemPrice: 50), Item(itemName: "Hotel 2", itemPrice: 75)]
 var defaultActivities1 = [Item(itemName: "Theme Park", itemPrice: 40), Item(itemName: "Art Museum", itemPrice: 30)]
 
 var defaultLocation2 = Location(
     locationName: "Default Location 2",
-    arrivalDate: Date(), departureDate: Date(),
     categories: [
         Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation2),
-        Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities2)
-    ]
+        Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities2)]
 )
 
 var defaultAccommodation2 = [Item(itemName: "Hotel 3", itemPrice: 30), Item(itemName: "Hotel 4", itemPrice: 100)]
 var defaultActivities2 = [Item(itemName: "Coastal Walk", itemPrice: 0), Item(itemName: "Parliament House", itemPrice: 5)]
 
-enum categoryType {
+enum categoryType: Codable {
     case accommodation, activities
 }
 
-struct Category {
+struct Location: Codable {
+    var locationName: String
+//    var arrivalDate: Date
+//    var departureDate: Date
+    var categories: [Category]
+    
+    mutating func setLocationName(name: String) {
+        locationName = name
+    }
+    
+//    func getArrivalDate() -> Date {
+//        return arrivalDate
+//    }
+//    
+//    mutating func setArrivalDate(date: Date) {
+//        arrivalDate = date
+//    }
+//    
+//    func getDepartureDate() -> Date {
+//        return departureDate
+//    }
+//    
+//    mutating func setDepartureDate(date: Date) {
+//        departureDate = date
+//    }
+//    
+//    func isValid() -> Bool {
+//        return !locationName.isEmpty;
+//    }
+    
+}
+
+struct Category: Codable {
     var categoryName: String
     var categoryType: categoryType
     var items: [Item]
@@ -55,20 +83,27 @@ struct Category {
     
 }
 
-class Trip {
-    
-    var id = UUID();
+struct Item: Codable {
+    var itemName: String
+    var itemPrice: Int
+    var pointsFromEachPerson: [Int] = []
+    var totalPoints: Int = 0
+    var shortlisted: Bool = false
+}
+
+class Trip: Codable {
+    var id = UUID()
     var tripName: String
     var numberOfPeople: Int
-    var tripYear: Int;
-    var tripIcon: UIImage
+    var tripYear: Int
+//    var tripIcon: UIImage
     var locations: [Location]
     
     init(people: Int, name: String, year: Int) {
         numberOfPeople = people;
         tripName = name;
         tripYear = year;
-        tripIcon = UIImage(systemName: "airplane.arrival", withConfiguration: config)!
+//        tripIcon = UIImage(systemName: "airplane.arrival", withConfiguration: config)!
         locations = [defaultLocation1, defaultLocation2]
     }
     
@@ -77,7 +112,7 @@ class Trip {
         numberOfPeople = people
         tripName = name
         tripYear = year;
-        tripIcon = icon
+//        tripIcon = icon
         locations = [defaultLocation1, defaultLocation2]
     }
     
@@ -85,12 +120,9 @@ class Trip {
         return !tripName.isEmpty && numberOfPeople > 0 && tripYear > 0;
     }
     
-    func addLocation(_ location: Location) {
-        locations.append(location);
-    }
-    
-    func setLocations(locations: [Location]) {
-        self.locations = locations;
+    func addLocation(_ name: String) {
+        locations.append(defaultLocation1)
+        locations[locations.count-1].setLocationName(name: name)
     }
     
     func removeLocation(index: Int) {
@@ -134,11 +166,12 @@ class Trip {
         return tripYear;
     }
     
-    func setIcon(_ name: UIImage) {
-        tripIcon = name
-    }
     
-    func getIcon() -> UIImage {
-        return tripIcon
-    }
+//    func setIcon(_ name: UIImage) {
+//        tripIcon = name
+//    }
+//
+//    func getIcon() -> UIImage {
+//        return tripIcon
+//    }
 }

@@ -46,21 +46,21 @@ class AddActivityViewController: UIViewController {
     }
     
     @IBAction func addActivityButton(_ sender: UIBarButtonItem) {
-        if (activity?.isValid() == true) {
-            // Activity is valid - Save item and dismiss the screen
-            if activityEditing {
-                delegate?.addOrUpdateItem(item: nil);
-            } else {
-                delegate?.addOrUpdateItem(item: activity);
-            }
-            dismiss(animated: true, completion: nil);
-        } else {
-            // Activity is invalid - Show error dialogue
-            let ac = UIAlertController(title: "Your Activity details are incorrect. Please ensure the name is not empty, and the price is $0 or more.", message: nil, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            ac.addAction(cancelAction)
-            present(ac, animated: true)
-        }
+//        if (activity?.isValid() == true) {
+//            // Activity is valid - Save item and dismiss the screen
+//            if activityEditing {
+//                delegate?.addOrUpdateItem(item: nil);
+//            } else {
+//                delegate?.addOrUpdateItem(item: activity);
+//            }
+//            dismiss(animated: true, completion: nil);
+//        } else {
+//            // Activity is invalid - Show error dialogue
+//            let ac = UIAlertController(title: "Your Activity details are incorrect. Please ensure the name is not empty, and the price is $0 or more.", message: nil, preferredStyle: .alert)
+//            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//            ac.addAction(cancelAction)
+//            present(ac, animated: true)
+//        }
     }
     
     // Hide error dialogue

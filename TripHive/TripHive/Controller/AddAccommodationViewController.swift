@@ -55,7 +55,6 @@ class AddAccommodationViewController: UIViewController {
             accommodation?.shortlisted = 0
             print("OFF")
         }
-        
         if (accommodation?.isValid() == true) {
             // Accommodation is valid - Save the Item
             if (accommodationEditing) {

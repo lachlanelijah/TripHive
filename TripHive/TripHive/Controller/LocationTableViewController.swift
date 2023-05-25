@@ -9,6 +9,14 @@ import UIKit
 
 class LocationTableViewController: UITableViewController, LocationDelegate {
     
+    func passLocationName(locationName: String) {
+        addLocation(locationName: locationName)
+    }
+    
+    func addLocation(locationName: String) {
+        trips[selectedTripIndex].addLocation(locationName)
+    }
+    
     // Store the index of the selected Trip
     var selectedTripIndex: Int = 0
     
@@ -31,15 +39,16 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
     // Delegate functions
     
     // Add a Location
-    func addLocation(location: Location) {
-        locations.append(location);
-        setTripLocations();
-        self.tableView.reloadData()
-    }
+//    func addLocation(location: Location) {
+//        locations.append(location);
+//        setTripLocations();
+//        self.tableView.reloadData()
+//    }
     
     // Update a Location's details (performed in AddLocationViewController)
-    func updateLocation() {
-        setTripLocations();
+    func updateLocation(locationName: String, selectedLocationIndex: Int) {
+//        setTripLocations();
+        trips[selectedTripIndex].locations[selectedLocationIndex].setLocationName(name: locationName)
         self.tableView.reloadData()
     }
     
@@ -112,7 +121,7 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
 
     // Helper function which updates the parent object Trip with any changes made to locations
     private func setTripLocations() {
-        trips[selectedTripIndex].setLocations(locations: locations);
+//        trips[selectedTripIndex].setLocations(locations: locations);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -121,6 +130,8 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
             // If sender is a Location object, we are moving to "destination" to edit a Location item
             if (sender as? Location != nil) {
                 destination.locationEditing = true;
+                guard let selectedPath = tableView.indexPathForSelectedRow else { return }
+                destination.selectedIndex = selectedPath.row
                 destination.location = sender as? Location;
             }
         }

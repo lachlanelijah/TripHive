@@ -9,8 +9,8 @@ import UIKit
 
 // Delegate protocol that LocationTableViewController conforms to that allows AddLocationViewController to send information back
 protocol LocationDelegate {
-    func addLocation(location: Location);
-    func updateLocation();
+    func passLocationName(locationName: String)
+    func updateLocation(locationName: String, selectedLocationIndex: Int)
 }
 
 class AddLocationViewController: UIViewController {
@@ -19,6 +19,8 @@ class AddLocationViewController: UIViewController {
     var delegate: LocationDelegate?
     
     var location: Location?
+    
+    var selectedIndex = 0
     
     // var to indicate whether an add or edit action is being performed
     // (set via parent controller)
@@ -45,11 +47,11 @@ class AddLocationViewController: UIViewController {
             locationNameTextField.text = location?.locationName;
         } else {
             // Else when adding, create a default Location object
-            location = Location();
+//            location = Location(from: <#Decoder#>);
         }
         
-        locationArrivalDatePicker.date = location!.arrivalDate;
-        locationDepartureDatePicker.date = location!.departureDate;
+//        locationArrivalDatePicker.date = location!.arrivalDate;
+//        locationDepartureDatePicker.date = location!.departureDate;
     }
     
     
@@ -61,24 +63,24 @@ class AddLocationViewController: UIViewController {
     }
     
     // Set the arrival date
-    @IBAction func arrivalDateChanged(_ sender: UIDatePicker) {
-                location?.arrivalDate = locationArrivalDatePicker.date;
-        locationDepartureDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: locationArrivalDatePicker.date)
-    }
-
-    // Set the departure date
-    @IBAction func departureDateChanged(_ sender: UIDatePicker) {
-        location?.departureDate = locationDepartureDatePicker.date;
-    }
+//    @IBAction func arrivalDateChanged(_ sender: UIDatePicker) {
+//                location?.arrivalDate = locationArrivalDatePicker.date;
+//        locationDepartureDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: locationArrivalDatePicker.date)
+//    }
+//
+//    // Set the departure date
+//    @IBAction func departureDateChanged(_ sender: UIDatePicker) {
+//        location?.departureDate = locationDepartureDatePicker.date;
+//    }
     
     // Add or Update the Location
     @IBAction func addLocationButtonClicked(_ sender: UIBarButtonItem) {
-        if ((location?.isValid()) != nil) {
+        if (locationNameTextField != nil) {
             // Location is valid - Add or Update
             if (locationEditing) {
-                delegate?.updateLocation();
+                delegate?.updateLocation(locationName: locationNameTextField.text!, selectedLocationIndex: selectedIndex);
             } else {
-                delegate?.addLocation(location: location!);
+                delegate?.passLocationName(locationName: locationNameTextField.text!)
             }
             dismiss(animated: true, completion: nil)
         } else {
