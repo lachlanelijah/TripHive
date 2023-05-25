@@ -52,6 +52,10 @@ class AddTripViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        //Allows keyboard to be dismissed by tapping outside of it
+        
         self.peoplePicker.delegate = self
         self.peoplePicker.dataSource = self
         
@@ -136,6 +140,11 @@ class AddTripViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             ac.addAction(cancelAction)
             present(ac, animated: true)
         }
+    }
+    
+    @objc func dismissKeyboard() {
+        //allows the user to dismiss the keyboard by tapping outside of it
+        view.endEditing(true)
     }
     
     // Dismiss the error dialogue

@@ -25,6 +25,11 @@ class AddAccommodationViewController: UIViewController {
     // Initial setup
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        //Allows keyboard to be dismissed by tapping outside of it
+        
         if (accommodationEditing && accommodation != nil) {
             accommodationLabel.title = "Update Accommodation";
             accommodationActionLabel.title = "Confirm"
@@ -76,5 +81,10 @@ class AddAccommodationViewController: UIViewController {
     // Cancel error prompt
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func dismissKeyboard() {
+        //allows the user to dismiss the keyboard by tapping outside of it
+        view.endEditing(true)
     }
 }

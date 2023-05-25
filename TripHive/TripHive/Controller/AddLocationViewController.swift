@@ -38,6 +38,10 @@ class AddLocationViewController: UIViewController {
         locationArrivalDatePicker.minimumDate = Date()
         locationDepartureDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        //Allows keyboard to be dismissed by tapping outside of it
+        
         // If editing, set the original Location data
         if (locationEditing && location != nil) {
             locationActionLabel.title = "Edit Location";
@@ -93,5 +97,10 @@ class AddLocationViewController: UIViewController {
     // Dismiss error prompt
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func dismissKeyboard() {
+        //allows the user to dismiss the keyboard by tapping outside of it
+        view.endEditing(true)
     }
 }

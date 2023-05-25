@@ -26,6 +26,11 @@ class AddActivityViewController: UIViewController {
     // Initial setup
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        //Allows keyboard to be dismissed by tapping outside of it
+        
         if (activityEditing && activity != nil) {
             activityLabel.title = "Update Activity";
             activityActionButton.title = "Confirm";
@@ -66,5 +71,10 @@ class AddActivityViewController: UIViewController {
     // Hide error dialogue
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func dismissKeyboard() {
+        //allows the user to dismiss the keyboard by tapping outside of it
+        view.endEditing(true)
     }
 }
