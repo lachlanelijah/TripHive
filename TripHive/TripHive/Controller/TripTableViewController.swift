@@ -8,7 +8,6 @@
 import UIKit
 
 // Store all the trips in the application
-// TODO: this should probably be placed inside the class
 var trips: [Trip] = []
 
 class TripTableViewController: UITableViewController, TripDelegate, UINavigationControllerDelegate {
@@ -62,7 +61,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         if (tableView.isEditing) {
             performSegue(withIdentifier: "goToAddTripView", sender: trips[indexPath.row]);
         } else {
-            self.performSegue(withIdentifier: "goToLocationView", sender: self)
+            performSegue(withIdentifier: "goToLocationView", sender: self);
         }
         //when a cell is tapped, go to the next view
     }
@@ -129,12 +128,12 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         }
         
         // Allows editing of trip details
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
+        let edit = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
             self!.performSegue(withIdentifier: "goToAddTripView", sender: trips[indexPath.row]);
         }
-        editAction.backgroundColor = .systemMint
+        edit.backgroundColor = .systemMint
         
-        let swipeActions = UISwipeActionsConfiguration(actions: [delete, editAction])
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
         return swipeActions
     }
     
@@ -165,7 +164,8 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         //If the user is adding a new trip, set TripTableViewController as a delegate. Else, send the index of the selected trip to LocationTableViewController
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
         if segue.identifier == "goToLocationView", let VC = segue.destination as? LocationTableViewController {
-            VC.selectedTrip = selectedPath.row
+            VC.selectedTripIndex = selectedPath.row
+//            VC.locations = trips[selectedPath.row].locations;
         }
         
     }

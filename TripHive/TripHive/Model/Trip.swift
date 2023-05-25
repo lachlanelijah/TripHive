@@ -11,18 +11,22 @@ import UIKit
 var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint, .systemOrange])
 var defaultLocation1 = Location(
     locationName: "Default Location 1",
+    arrivalDate: Date(), departureDate: Date(),
     categories: [
         Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation1),
         Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities1)]
 )
+
 var defaultAccommodation1 = [Item(itemName: "Hotel 1", itemPrice: 50), Item(itemName: "Hotel 2", itemPrice: 75)]
 var defaultActivities1 = [Item(itemName: "Theme Park", itemPrice: 40), Item(itemName: "Art Museum", itemPrice: 30)]
 
 var defaultLocation2 = Location(
     locationName: "Default Location 2",
+    arrivalDate: Date(), departureDate: Date(),
     categories: [
         Category(categoryName: "Accommodation", categoryType: .accommodation, items: defaultAccommodation2),
-        Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities2)]
+        Category(categoryName: "Activities", categoryType: .activities, items: defaultActivities2)
+    ]
 )
 
 var defaultAccommodation2 = [Item(itemName: "Hotel 3", itemPrice: 30), Item(itemName: "Hotel 4", itemPrice: 100)]
@@ -30,15 +34,6 @@ var defaultActivities2 = [Item(itemName: "Coastal Walk", itemPrice: 0), Item(ite
 
 enum categoryType {
     case accommodation, activities
-}
-
-struct Location {
-    var locationName: String
-    var categories: [Category]
-    
-    mutating func setLocationName(name: String) {
-        locationName = name
-    }
 }
 
 struct Category {
@@ -97,9 +92,12 @@ class Trip {
         return !tripName.isEmpty && numberOfPeople > 0 && tripYear > 0;
     }
     
-    func addLocation(_ name: String) {
-        locations.append(defaultLocation1)
-        locations[locations.count-1].setLocationName(name: name)
+    func addLocation(_ location: Location) {
+        locations.append(location);
+    }
+    
+    func setLocations(locations: [Location]) {
+        self.locations = locations;
     }
     
     func removeLocation(index: Int) {

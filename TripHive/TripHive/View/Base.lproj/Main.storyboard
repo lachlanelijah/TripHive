@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rge-v3-5i0">
     <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -550,7 +551,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="done" changesSelectionAsPrimaryAction="YES" id="1ji-TS-Ty2">
                                             <connections>
-                                                <action selector="addLocationButton:" destination="xnx-XE-L2X" id="FhN-5W-iCd"/>
+                                                <action selector="addLocationButtonClicked:" destination="xnx-XE-L2X" id="FhN-5W-iCd"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -573,6 +574,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="locationNameChanged" destination="xnx-XE-L2X" eventType="editingChanged" id="HPZ-HS-hOY"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -618,11 +622,14 @@
                                                     <!--1970-01-01 11:00:00 +0000-->
                                                 </date>
                                                 <connections>
-                                                    <action selector="locationLeaveDatePickerChanged:" destination="xnx-XE-L2X" eventType="valueChanged" id="c3t-lz-ddn"/>
+                                                    <action selector="arrivalDateChanged:" destination="xnx-XE-L2X" eventType="valueChanged" id="ku1-m4-6Ey"/>
                                                 </connections>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="ink-fm-sBj">
                                                 <rect key="frame" x="0.0" y="70" width="146" height="52"/>
+                                                <connections>
+                                                    <action selector="departureDateChanged:" destination="xnx-XE-L2X" eventType="valueChanged" id="tzM-wM-I2p"/>
+                                                </connections>
                                             </datePicker>
                                         </subviews>
                                     </stackView>
@@ -643,8 +650,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="3sk-iW-isY"/>
                     <connections>
-                        <outlet property="locationArriveDatePicker" destination="m07-7g-Jn3" id="UUW-AQ-m52"/>
-                        <outlet property="locationLeaveDatePicker" destination="ink-fm-sBj" id="XSY-LH-WN9"/>
+                        <outlet property="locationActionButton" destination="1ji-TS-Ty2" id="ygR-g9-dfC"/>
+                        <outlet property="locationActionLabel" destination="6bg-k2-OQH" id="28s-8c-XDR"/>
+                        <outlet property="locationArrivalDatePicker" destination="m07-7g-Jn3" id="UUW-AQ-m52"/>
+                        <outlet property="locationDepartureDatePicker" destination="ink-fm-sBj" id="XSY-LH-WN9"/>
                         <outlet property="locationNameTextField" destination="SpW-ZF-CdM" id="dnu-kT-v73"/>
                     </connections>
                 </viewController>
