@@ -471,15 +471,15 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         }
         
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
-        if
-            segue.identifier == "goToDetailView",
-            let VC = segue.destination as? DetailTableViewController
-        {
-            VC.selectedTrip = selectedTrip
-            VC.category = category
-            VC.selectedLocation = selectedLocation
-            VC.selectedItem = selectedPath.row
-        }
+//        if
+//            segue.identifier == "goToDetailView",
+//            let VC = segue.destination as? DetailTableViewController
+//        {
+//            VC.selectedTrip = selectedTrip
+//            VC.category = category
+//            VC.selectedLocation = selectedLocation
+//            VC.selectedItem = selectedPath.row
+//        }
     }
     
 }

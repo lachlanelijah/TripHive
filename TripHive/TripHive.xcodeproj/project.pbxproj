@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		06E653042A1EE89000AABAAD /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E653032A1EE89000AABAAD /* Location.swift */; };
 		06E653062A1F40F600AABAAD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E653052A1F40F600AABAAD /* Item.swift */; };
-		49F3C22B2A18A53100496CF1 /* SpendingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F3C22A2A18A53100496CF1 /* SpendingTableViewController.swift */; };
 		6D113B6B2A05C75D007605F6 /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D113B6A2A05C75D007605F6 /* AddTripViewController.swift */; };
 		6D25EB082A16EB4900BC801B /* RankOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25EB072A16EB4900BC801B /* RankOptionsTableViewController.swift */; };
 		6D25EB0C2A16F33200BC801B /* RankOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25EB0B2A16F33200BC801B /* RankOptionsTableViewCell.swift */; };
@@ -21,12 +20,10 @@
 		6D5AF9FC2A01F3E900FE5782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AF9FA2A01F3E900FE5782 /* LaunchScreen.storyboard */; };
 		6D97526E2A036CC60095B1D8 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97526D2A036CC60095B1D8 /* Trip.swift */; };
 		6D9752842A038CEA0095B1D8 /* TripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9752832A038CEA0095B1D8 /* TripTableViewController.swift */; };
-		6DB09B1D2A1E03C100E1B7FC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB09B1C2A1E03C100E1B7FC /* DetailViewController.swift */; };
 		6DB3A00E2A03937C00250F69 /* LocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A00D2A03937C00250F69 /* LocationTableViewController.swift */; };
 		6DB3A0102A03963C00250F69 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A00F2A03963C00250F69 /* TripTableViewCell.swift */; };
 		6DB3A0122A049EE600250F69 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A0112A049EE600250F69 /* CategoryViewController.swift */; };
 		6DB3A0142A04A03A00250F69 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A0132A04A03A00250F69 /* ItemTableViewController.swift */; };
-		6DB3A0162A04A09300250F69 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A0152A04A09300250F69 /* DetailTableViewController.swift */; };
 		6DB3A0182A04B0F600250F69 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3A0172A04B0F600250F69 /* ItemTableViewCell.swift */; };
 		6DFC736B2A06076300E17136 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC736A2A06076300E17136 /* AddLocationViewController.swift */; };
 		6DFC736F2A060E1600E17136 /* AddAccommodationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC736E2A060E1600E17136 /* AddAccommodationViewController.swift */; };
@@ -37,7 +34,6 @@
 /* Begin PBXFileReference section */
 		06E653032A1EE89000AABAAD /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		06E653052A1F40F600AABAAD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		49F3C22A2A18A53100496CF1 /* SpendingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingTableViewController.swift; sourceTree = "<group>"; };
 		6D113B6A2A05C75D007605F6 /* AddTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		6D25EB072A16EB4900BC801B /* RankOptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankOptionsTableViewController.swift; sourceTree = "<group>"; };
 		6D25EB0B2A16F33200BC801B /* RankOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankOptionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -51,12 +47,10 @@
 		6D5AF9FD2A01F3E900FE5782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D97526D2A036CC60095B1D8 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		6D9752832A038CEA0095B1D8 /* TripTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewController.swift; sourceTree = "<group>"; };
-		6DB09B1C2A1E03C100E1B7FC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6DB3A00D2A03937C00250F69 /* LocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewController.swift; sourceTree = "<group>"; };
 		6DB3A00F2A03963C00250F69 /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		6DB3A0112A049EE600250F69 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		6DB3A0132A04A03A00250F69 /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
-		6DB3A0152A04A09300250F69 /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		6DB3A0172A04B0F600250F69 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		6DFC736A2A06076300E17136 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		6DFC736E2A060E1600E17136 /* AddAccommodationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationViewController.swift; sourceTree = "<group>"; };
@@ -111,8 +105,8 @@
 			children = (
 				6DB3A00F2A03963C00250F69 /* TripTableViewCell.swift */,
 				6DB3A0172A04B0F600250F69 /* ItemTableViewCell.swift */,
-				6D97526D2A036CC60095B1D8 /* Trip.swift */,
 				6D25EB0B2A16F33200BC801B /* RankOptionsTableViewCell.swift */,
+				6D97526D2A036CC60095B1D8 /* Trip.swift */,
 				06E653032A1EE89000AABAAD /* Location.swift */,
 				06E653052A1F40F600AABAAD /* Item.swift */,
 			);
@@ -139,11 +133,8 @@
 				9A4439AB2A16576900B3D774 /* RankOptionsViewController.swift */,
 				6DFC736E2A060E1600E17136 /* AddAccommodationViewController.swift */,
 				6DFC73702A060E2900E17136 /* AddActivityViewController.swift */,
-				6DB3A0152A04A09300250F69 /* DetailTableViewController.swift */,
 				6D25EB072A16EB4900BC801B /* RankOptionsTableViewController.swift */,
 				6D25EB0D2A16F53C00BC801B /* RankLocationsTableViewController.swift */,
-				49F3C22A2A18A53100496CF1 /* SpendingTableViewController.swift */,
-				6DB09B1C2A1E03C100E1B7FC /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -219,16 +210,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DB3A0162A04A09300250F69 /* DetailTableViewController.swift in Sources */,
 				6DB3A0102A03963C00250F69 /* TripTableViewCell.swift in Sources */,
 				06E653042A1EE89000AABAAD /* Location.swift in Sources */,
 				6D25EB0C2A16F33200BC801B /* RankOptionsTableViewCell.swift in Sources */,
 				6D97526E2A036CC60095B1D8 /* Trip.swift in Sources */,
-				49F3C22B2A18A53100496CF1 /* SpendingTableViewController.swift in Sources */,
 				06E653062A1F40F600AABAAD /* Item.swift in Sources */,
 				6DFC73712A060E2900E17136 /* AddActivityViewController.swift in Sources */,
 				6D9752842A038CEA0095B1D8 /* TripTableViewController.swift in Sources */,
-				6DB09B1D2A1E03C100E1B7FC /* DetailViewController.swift in Sources */,
 				6DB3A0122A049EE600250F69 /* CategoryViewController.swift in Sources */,
 				6DFC736B2A06076300E17136 /* AddLocationViewController.swift in Sources */,
 				6D113B6B2A05C75D007605F6 /* AddTripViewController.swift in Sources */,

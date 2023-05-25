@@ -137,7 +137,7 @@ class Trip: Codable {
 //    func setIcon(_ name: UIImage) {
 //        tripIcon = name
 //    }
-//    
+//
 //    func getIcon() -> UIImage {
 //        return tripIcon
 //    }

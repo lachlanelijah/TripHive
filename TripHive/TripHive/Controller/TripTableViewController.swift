@@ -13,7 +13,8 @@ var trips: [Trip] = []
 class TripTableViewController: UITableViewController, TripDelegate, UINavigationControllerDelegate {
     // Set up the initial state of the home screen
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()       
+        
         
         config = config.applying(UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30)))
         

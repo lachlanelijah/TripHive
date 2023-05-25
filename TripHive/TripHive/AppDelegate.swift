@@ -7,6 +7,8 @@
 
 import UIKit
 
+let KEY_TRIP = "trips"
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
