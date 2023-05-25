@@ -8,7 +8,7 @@
 import Foundation
 
 // An Activity or Accoommodation item
-class Item {
+class Item: Codable {
     var itemName: String
     var itemPrice: Int
     var pointsFromEachPerson: [Int] = []

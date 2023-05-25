@@ -51,7 +51,7 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell", for: indexPath) as! TripTableViewCell
         let trip = trips[indexPath.row]
         cell.tripNameLabel?.text = trip.getTripName()
-        cell.tripIcon.image = trip.getIcon()
+        cell.tripIcon.image = UIImage(systemName: "airplane.arrival", withConfiguration: config)!
         cell.peopleNumberLabel.text = "People: \(trip.getNumberOfPeople()) | Year: \(trip.tripYear)"
         return cell
         //sets the custom elements of the trip cell to the relevant info housed in the array at that particular index

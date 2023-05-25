@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Location {
+class Location: Codable {
     var locationName: String;
     var arrivalDate: Date;
     var departureDate: Date;

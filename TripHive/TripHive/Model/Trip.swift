@@ -32,11 +32,11 @@ var defaultLocation2 = Location(
 var defaultAccommodation2 = [Item(itemName: "Hotel 3", itemPrice: 30), Item(itemName: "Hotel 4", itemPrice: 100)]
 var defaultActivities2 = [Item(itemName: "Coastal Walk", itemPrice: 0), Item(itemName: "Parliament House", itemPrice: 5)]
 
-enum categoryType {
+enum categoryType: Codable {
     case accommodation, activities
 }
 
-struct Category {
+struct Category: Codable {
     var categoryName: String
     var categoryType: categoryType
     var items: [Item]
@@ -55,20 +55,20 @@ struct Category {
     
 }
 
-class Trip {
+class Trip: Codable {
     
     var id = UUID();
     var tripName: String
     var numberOfPeople: Int
     var tripYear: Int;
-    var tripIcon: UIImage
+//    var tripIcon: UIImage
     var locations: [Location]
     
     init(people: Int, name: String, year: Int) {
         numberOfPeople = people;
         tripName = name;
         tripYear = year;
-        tripIcon = UIImage(systemName: "airplane.arrival", withConfiguration: config)!
+//        tripIcon = UIImage(systemName: "airplane.arrival", withConfiguration: config)!
         locations = [defaultLocation1, defaultLocation2]
     }
     
@@ -77,7 +77,7 @@ class Trip {
         numberOfPeople = people
         tripName = name
         tripYear = year;
-        tripIcon = icon
+//        tripIcon = icon
         locations = [defaultLocation1, defaultLocation2]
     }
     
@@ -134,11 +134,11 @@ class Trip {
         return tripYear;
     }
     
-    func setIcon(_ name: UIImage) {
-        tripIcon = name
-    }
-    
-    func getIcon() -> UIImage {
-        return tripIcon
-    }
+//    func setIcon(_ name: UIImage) {
+//        tripIcon = name
+//    }
+//    
+//    func getIcon() -> UIImage {
+//        return tripIcon
+//    }
 }
