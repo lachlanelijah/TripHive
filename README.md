@@ -17,3 +17,9 @@ Mostafa Rahinuzzaman - Mostafa.M.Rahinuzzaman@student.uts.edu.au
 ### GitHub repo link
 
 https://github.com/lachlanelijah/TripHive
+
+### Video presentation link
+
+UTS credentials required
+
+https://drive.google.com/file/d/15Vj3JbbrlWhsFYGbrHq-gt_q39Ef3-fr/view?usp=sharing
