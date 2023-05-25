@@ -23,7 +23,7 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
         
         //Adds an edit button to the title bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
-        
+
         // Set the locations at class level
         locations = trips[selectedTripIndex].locations;
     }

@@ -20,6 +20,7 @@ class AddAccommodationViewController: UIViewController {
     @IBOutlet weak var accommodationActionLabel: UIBarButtonItem!
     @IBOutlet weak var accommodationNameTextField: UITextField!
     @IBOutlet weak var accommodationPriceTextField: UITextField!
+    @IBOutlet weak var accommodationShortlistState: UISwitch!
     
     // Initial setup
     override func viewDidLoad() {
@@ -47,6 +48,14 @@ class AddAccommodationViewController: UIViewController {
     }
     
     @IBAction func addAccommodationButton(_ sender: UIBarButtonItem) {
+        if accommodationShortlistState.isOn {
+            accommodation?.shortlisted = 1
+            print("ON")
+        } else {
+            accommodation?.shortlisted = 0
+            print("OFF")
+        }
+        
         if (accommodation?.isValid() == true) {
             // Accommodation is valid - Save the Item
             if (accommodationEditing) {

@@ -126,17 +126,6 @@
                                 <segue destination="xnx-XE-L2X" kind="presentation" identifier="goToAddLocationView" id="f47-6r-nmA"/>
                             </connections>
                         </barButtonItem>
-                        <centerItemGroups>
-                            <barButtonItemGroup customizationDisposition="fixed" id="OM5-DW-QIn">
-                                <barButtonItems>
-                                    <barButtonItem title="Rank Locations" image="trophy" catalog="system" id="xs7-Vg-PQX">
-                                        <connections>
-                                            <segue destination="gZC-Fk-LPt" kind="presentation" identifier="goToRankLocationsView" id="hMf-Ji-JAs"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </barButtonItems>
-                            </barButtonItemGroup>
-                        </centerItemGroups>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIh-Ye-r6v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1106,6 +1095,7 @@
                         <outlet property="accommodationLabel" destination="Bta-Jj-cG2" id="T5Y-GO-XYT"/>
                         <outlet property="accommodationNameTextField" destination="NP0-OK-mWY" id="KZg-AR-cE2"/>
                         <outlet property="accommodationPriceTextField" destination="uqM-3S-Qzv" id="dqG-g2-R4c"/>
+                        <outlet property="accommodationShortlistState" destination="kUY-Zs-75P" id="qwY-pA-eui"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a7b-uX-nJg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1117,7 +1107,7 @@
             <objects>
                 <tableViewController id="L6y-SQ-SYF" customClass="RankLocationsTableViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="oNl-Mf-7qQ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -1150,7 +1140,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gZC-Fk-LPt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nd1-Fj-G0b">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

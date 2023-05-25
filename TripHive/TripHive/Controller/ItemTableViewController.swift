@@ -24,7 +24,7 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         print("Success")
         print(sortedItems)
         tableView.reloadData()
-        overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2193}"
+        overflowMenu.barButtonItems[1].title = menuCheckmarks["RD"]
         //maybe create a function to rearrange items
         //rearrange items in the array based on ranking points determined by RankOptionsTableViewController
         //reload the table
@@ -59,11 +59,10 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         
         if sortBy != "RD" {
             sortBy = "RD"
-            overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2193}"
         } else {
             sortBy = "RA"
-            overflowMenu.barButtonItems[1].title = "\u{2713} Sort by Rank \u{2191}"
         }
+        overflowMenu.barButtonItems[1].title = menuCheckmarks[sortBy]
         sortedItems = sortItems()
         tableView.reloadData()
     }
@@ -74,11 +73,10 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         
         if sortBy != "SD" {
             sortBy = "SD"
-            overflowMenu.barButtonItems[2].title = "\u{2713} Sort by Shorlist \u{2193}"
         } else {
             sortBy = "SA"
-            overflowMenu.barButtonItems[2].title = "\u{2713} Sort by Shortlist \u{2191}"
         }
+        overflowMenu.barButtonItems[2].title = menuCheckmarks[sortBy]
         sortedItems = sortItems()
         tableView.reloadData()
     }
@@ -89,11 +87,10 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         
         if sortBy != "PA" {
             sortBy = "PA"
-            overflowMenu.barButtonItems[3].title = "\u{2713} Sort by Price \u{2191}"
         } else {
             sortBy = "PD"
-            overflowMenu.barButtonItems[3].title = "\u{2713} Sort by Price \u{2193}"
         }
+        overflowMenu.barButtonItems[3].title = menuCheckmarks[sortBy]
         sortedItems = sortItems()
         tableView.reloadData()
     }
@@ -104,11 +101,10 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         
         if sortBy != "NA" {
             sortBy = "NA"
-            overflowMenu.barButtonItems[4].title = "\u{2713} Sort by Name \u{2191}"
         } else {
             sortBy = "ND"
-            overflowMenu.barButtonItems[4].title = "\u{2713} Sort by Name \u{2193}"
         }
+        overflowMenu.barButtonItems[4].title = menuCheckmarks[sortBy]
         sortedItems = sortItems()
         tableView.reloadData()
     }
@@ -116,13 +112,22 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
     @IBAction func sortDefaultTapped(_ sender: UIBarButtonItem) {
         resetMenuLabels()
         sortBy = "def"
-        overflowMenu.barButtonItems[5].title = "\u{2713} Unlock Sort Order"
-        trips[selectedTrip].locations[selectedLocation].categories[categoryIndex].items = theItems
+        overflowMenu.barButtonItems[5].title = menuCheckmarks[sortBy]
+        updateGlobalItems()
     }
     
     @IBAction func shareTapped(_ sender: UIBarButtonItem) {
-        let shareSheet = UIActivityViewController(activityItems: [exportAsText() as NSString], applicationActivities: nil)
-        present(shareSheet, animated: true, completion: {})
+        let alertDialog = UIAlertController(title: "Confirm \(menuCheckmarks[sortBy] ?? "")", message: exportAsText(), preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let share = UIAlertAction(title: "Share", style: .default) { (_) in
+            let shareSheet = UIActivityViewController(activityItems: [self.exportAsText() as NSString], applicationActivities: nil)
+            self.present(shareSheet, animated: true, completion: {})
+        }
+        alertDialog.addAction(cancel)
+        alertDialog.addAction(share)
+        present(alertDialog, animated: true, completion: nil)
     }
     
     @IBOutlet weak var overflowMenu: UIBarButtonItemGroup!
@@ -145,12 +150,19 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
     var theItems: [Item] = []
     var sortedItems: [Item] = []
     
-    var sortingByRank = "n"
-    var sortingByShortlist = "n"
-    var sortingByPrice = "n"
-    var sortingByName = "n"
-    
     var sortBy = "def"
+    
+    let menuCheckmarks: [String: String] = [
+        "RA": "\u{2713} Sort by Rank \u{2191}",
+        "RD": "\u{2713} Sort by Rank \u{2193}",
+        "SA": "\u{2713} Sort by Shortlist \u{2191}",
+        "SD": "\u{2713} Sort by Shortlist \u{2193}",
+        "PA": "\u{2713} Sort by Price \u{2191}",
+        "PD": "\u{2713} Sort by Price \u{2193}",
+        "NA": "\u{2713} Sort by Name \u{2191}",
+        "ND": "\u{2713} Sort by Name \u{2193}",
+        "def": "\u{2713} Unlock Sort Order"
+    ]
     
     func sortItems() -> [Item] {
         switch sortBy {
@@ -209,7 +221,7 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         //        }
         
         sortBy = "def"
-        overflowMenu.barButtonItems[5].title = "\u{2713} Unlock Sort Order"
+        overflowMenu.barButtonItems[5].title = menuCheckmarks[sortBy]
         
         if category == .accommodation {
             self.title = "Accommodation"
@@ -230,7 +242,19 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
     }
     
     func exportAsText() -> String {
-        var theString = ""
+        let options: [String: String] = [
+            "RA": "lowest to highest ranked options:\n",
+            "RD": "highest to lowest ranked options:\n",
+            "SA": "options, showing our unchosen ones first:\n",
+            "SD": "options, showing our chosen ones first:\n",
+            "PA": "options from cheapest to most expensive:\n",
+            "PD": "options from most expensive to cheapest:\n",
+            "NA": "options sorted alphabetically:\n",
+            "ND": "options sorted reverse alphabetically:\n",
+            "def": "options I've taken note of:\n"
+        ]
+        
+        var theString = "Here are our \(options[sortBy] ?? "options:\n")"
         if !sortedItems.isEmpty {
             for i in 0..<sortedItems.count {
                 let name = sortedItems[i].itemName
@@ -238,10 +262,19 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
                 // let rankPlace = "Ranked #\(i+1)"
                 var shortlisted = ""
                 if sortedItems[i].shortlisted == 1 {
-                    shortlisted = "\u{272a} Shortlisted"
+                    shortlisted = "\u{2b50} Shortlisted \u{2022} "
                 }
+                theString.append(shortlisted)
                 theString.append(name)
                 theString.append(price)
+                var ranked = ""
+                if sortBy == "RD" {
+                    ranked = " \u{2022} Ranked #\(i+1)"
+                } else if sortBy == "RA" {
+                    ranked = " \u{2022} Ranked #\(sortedItems.count-i)"
+                }
+                theString.append(ranked)
+                theString.append("\n")
             }
         } else {
             for i in 0..<theItems.count {
@@ -250,13 +283,15 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
                 // let rankPlace = "Ranked #\(i+1)"
                 var shortlisted = ""
                 if theItems[i].shortlisted == 1 {
-                    shortlisted = "\u{272a} Shortlisted"
+                    shortlisted = "\u{272a} Shortlisted \u{2022} "
                 }
+                theString.append(shortlisted)
                 theString.append(name)
                 theString.append(price)
                 theString.append("\n")
             }
         }
+        theString.append("~ Made with the TripHive app")
         return theString
     }
     
@@ -338,7 +373,7 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         let theItemToMove = theItems[sourceIndexPath.row]
         theItems.remove(at: sourceIndexPath.row)
         theItems.insert(theItemToMove, at: destinationIndexPath.row)
-        overflowMenu.barButtonItems[5].title = "\u{2713} Unlock Sort Order"
+        overflowMenu.barButtonItems[5].title = menuCheckmarks[sortBy]
         print(theItems)
     }
     
@@ -353,7 +388,7 @@ class ItemTableViewController: UITableViewController, ItemDelegate, RankOptionsD
         }
         sortBy = "def"
         resetMenuLabels()
-        overflowMenu.barButtonItems[5].title = "\u{2713} Unlock Sort Order"
+        overflowMenu.barButtonItems[5].title = menuCheckmarks[sortBy]
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
