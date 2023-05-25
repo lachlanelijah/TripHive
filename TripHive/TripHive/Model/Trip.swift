@@ -55,14 +55,6 @@ struct Category {
     
 }
 
-struct Item {
-    var itemName: String
-    var itemPrice: Int
-    var pointsFromEachPerson: [Int] = []
-    var totalPoints: Int = 0
-    var shortlisted: Int = 0
-}
-
 class Trip {
     
     var id = UUID();

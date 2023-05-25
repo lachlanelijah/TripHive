@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		06E653042A1EE89000AABAAD /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E653032A1EE89000AABAAD /* Location.swift */; };
+		06E653062A1F40F600AABAAD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E653052A1F40F600AABAAD /* Item.swift */; };
 		49F3C22B2A18A53100496CF1 /* SpendingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F3C22A2A18A53100496CF1 /* SpendingTableViewController.swift */; };
 		6D113B6B2A05C75D007605F6 /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D113B6A2A05C75D007605F6 /* AddTripViewController.swift */; };
 		6D25EB082A16EB4900BC801B /* RankOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25EB072A16EB4900BC801B /* RankOptionsTableViewController.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		06E653032A1EE89000AABAAD /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		06E653052A1F40F600AABAAD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		49F3C22A2A18A53100496CF1 /* SpendingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingTableViewController.swift; sourceTree = "<group>"; };
 		6D113B6A2A05C75D007605F6 /* AddTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		6D25EB072A16EB4900BC801B /* RankOptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankOptionsTableViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				6D97526D2A036CC60095B1D8 /* Trip.swift */,
 				6D25EB0B2A16F33200BC801B /* RankOptionsTableViewCell.swift */,
 				06E653032A1EE89000AABAAD /* Location.swift */,
+				06E653052A1F40F600AABAAD /* Item.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				6D25EB0C2A16F33200BC801B /* RankOptionsTableViewCell.swift in Sources */,
 				6D97526E2A036CC60095B1D8 /* Trip.swift in Sources */,
 				49F3C22B2A18A53100496CF1 /* SpendingTableViewController.swift in Sources */,
+				06E653062A1F40F600AABAAD /* Item.swift in Sources */,
 				6DFC73712A060E2900E17136 /* AddActivityViewController.swift in Sources */,
 				6D9752842A038CEA0095B1D8 /* TripTableViewController.swift in Sources */,
 				6DB09B1D2A1E03C100E1B7FC /* DetailViewController.swift in Sources */,

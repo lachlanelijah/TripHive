@@ -18,8 +18,6 @@ class AddLocationViewController: UIViewController {
     // Delegates
     var delegate: LocationDelegate?
     
-    // var to indicate whether an add or edit action is being performed
-    // (set via parent controller)
     var location: Location?
     
     // var to indicate whether an add or edit action is being performed

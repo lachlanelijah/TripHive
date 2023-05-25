@@ -810,6 +810,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="activityNameChanged" destination="ZX5-aq-E1j" eventType="editingChanged" id="4RW-bV-ZE1"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -828,6 +831,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="activityPriceChanged" destination="ZX5-aq-E1j" eventType="editingChanged" id="FDh-Rp-CtX"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -867,8 +873,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="activityNameTextField" destination="gff-Sh-kjd" id="m9o-Vl-8Q7"/>
-                        <outlet property="activityPriceTextField" destination="Loo-3z-XsV" id="vj1-Nx-GJ0"/>
+                        <outlet property="activityActionButton" destination="jUp-wg-kKS" id="6Ub-9U-RTu"/>
+                        <outlet property="activityLabel" destination="JzS-Qd-UCy" id="hRy-ff-H3r"/>
+                        <outlet property="activityNameTextField" destination="gff-Sh-kjd" id="ddA-k8-Iad"/>
+                        <outlet property="activityPriceTextField" destination="Loo-3z-XsV" id="aOZ-uO-00V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUl-YQ-E6D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -982,10 +990,10 @@
             </objects>
             <point key="canvasLocation" x="9637" y="1738"/>
         </scene>
-        <!--Test-->
+        <!--Add Accommodation View Controller Scene-->
         <scene sceneID="sNc-Er-nZh">
             <objects>
-                <viewController id="Ds4-ol-CvM" customClass="AddAccommodationViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Accommodation View Controller Scene" id="Ds4-ol-CvM" customClass="AddAccommodationViewController" customModule="TripHive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7QB-at-pAg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1031,6 +1039,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="itemNameChanged" destination="Ds4-ol-CvM" eventType="editingChanged" id="bNE-PE-PSf"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1049,6 +1060,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="itemPriceChanged" destination="Ds4-ol-CvM" eventType="editingChanged" id="eok-Rq-CIh"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1088,6 +1102,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Test" id="REc-8j-Su3"/>
                     <connections>
+                        <outlet property="accommodationActionLabel" destination="3rb-en-zH9" id="a06-8u-ejP"/>
+                        <outlet property="accommodationLabel" destination="Bta-Jj-cG2" id="T5Y-GO-XYT"/>
                         <outlet property="accommodationNameTextField" destination="NP0-OK-mWY" id="KZg-AR-cE2"/>
                         <outlet property="accommodationPriceTextField" destination="uqM-3S-Qzv" id="dqG-g2-R4c"/>
                     </connections>

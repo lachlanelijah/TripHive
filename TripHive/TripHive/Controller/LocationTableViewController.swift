@@ -52,13 +52,6 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
         return locations.count;
     }
     
-    // Handles going to the Edit Location or Category View page
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView.isEditing) {
-            performSegue(withIdentifier: "goToAddLocationView", sender: locations[indexPath.row]);
-        }
-    }
-    
     // Sets each cell with the location's name
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
@@ -75,7 +68,6 @@ class LocationTableViewController: UITableViewController, LocationDelegate {
     // Go into, or exit editing mode
     @objc func editTapped() {
         tableView.setEditing(!tableView.isEditing, animated: true);
-        tableView.allowsSelectionDuringEditing = true;
         if tableView.isEditing {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editTapped))
         }

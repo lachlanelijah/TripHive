@@ -69,45 +69,15 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    // Override to support editing the table view.
-    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    //        if editingStyle == .delete {
-    //            // Delete the row from the data source
-    //            let alert = UIAlertController(title: "Are you sure you want to delete this trip?", message: nil, preferredStyle: .alert)
-    //            alert.addAction(UIAlertAction(
-    //                title: "Delete",
-    //                style: .destructive,
-    //                handler: { _ in
-    //                    tableView.deleteRows(at: [indexPath], with: .fade)
-    //                    trips.remove(at: indexPath.row)
-    //            }))
-    //            alert.addAction(UIAlertAction(
-    //                title: "Cancel",
-    //                style: .cancel,
-    //                handler: { _ in
-    //                // cancel action
-    //            }))
-    //            present(alert,
-    //                    animated: true,
-    //                    completion: nil
-    //            )
-    //
-    //        } else if editingStyle == .insert {
-    //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    //        }
-    //    }
-    
+
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         trips.swapAt(sourceIndexPath.row, destinationIndexPath.row)
         //Allows the re-ordering of the table rows
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        //Allows for the deleting of rows
+        // Allows for the deleting of rows
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
-            //                trips.remove(at: indexPath.row)
-            //                self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             let alert = UIAlertController(title: "Are you sure you want to delete this trip?", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(
                 title: "Delete",
@@ -165,7 +135,6 @@ class TripTableViewController: UITableViewController, TripDelegate, UINavigation
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
         if segue.identifier == "goToLocationView", let VC = segue.destination as? LocationTableViewController {
             VC.selectedTripIndex = selectedPath.row
-//            VC.locations = trips[selectedPath.row].locations;
         }
         
     }
