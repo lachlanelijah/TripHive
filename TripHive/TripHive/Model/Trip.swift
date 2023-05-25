@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint, .systemOrange])
+var config = UIImage.SymbolConfiguration(paletteColors: [.systemMint])
 var defaultLocation1 = Location(
     locationName: "Default Location 1",
     arrivalDate: Date(), departureDate: Date(),
@@ -60,10 +60,11 @@ struct Item {
     var itemPrice: Int
     var pointsFromEachPerson: [Int] = []
     var totalPoints: Int = 0
-    var shortlisted: Bool = false
+    var shortlisted: Int = 0
 }
 
 class Trip {
+    
     var id = UUID();
     var tripName: String
     var numberOfPeople: Int

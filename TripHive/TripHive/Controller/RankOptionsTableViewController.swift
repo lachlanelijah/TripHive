@@ -7,9 +7,7 @@
 
 import UIKit
 
-protocol RankOptionsDelegate {
-    func fetchRankingInformation(nowRanked: [Item])
-} //Delegate protocol that ItemTableViewController conforms to that allows AddAccommodationViewController to send information back
+
 
 class RankOptionsTableViewController: UITableViewController {
     
@@ -45,7 +43,7 @@ class RankOptionsTableViewController: UITableViewController {
                 }
                 print(theItems)
                 print("Done ranking")
-                delegate?.fetchRankingInformation(nowRanked: theItems)
+                delegate?.fetchRankingInformation(rankedItems: theItems)
                 //Passes the name of the new activity option into the delegate (sending it to ItemTableViewController) and dismisses AddActivityViewController
                 dismiss(animated: true, completion: nil)
             } else { // if this is NOT the last person
